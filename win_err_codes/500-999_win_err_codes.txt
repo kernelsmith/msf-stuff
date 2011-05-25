@@ -1,0 +1,793 @@
+
+
+
+The System Error Codes are very broad.  Each one can occur in one of many hundreds of locations in the system.  Consequently the descriptions of these codes cannot be very specific.  Use of these codes requires some amount of investigation and analysis.  You need to note both the programmatic and the run-time context in which these errors occur.  Because these codes are defined in winerror.h for anyone to use, sometimes the codes are returned by non-system software.  Sometimes the code is returned by a function deep in the stack and far removed from your code that is handling the error.
+The following table provides a list of 
+
+ERROR_USER_PROFILE_LOAD
+500 (0x1F4)
+User profile cannot be loaded.
+ERROR_ARITHMETIC_OVERFLOW
+534 (0x216)
+Arithmetic result exceeded 32 bits.
+ERROR_PIPE_CONNECTED
+535 (0x217)
+There is a process on other end of the pipe.
+ERROR_PIPE_LISTENING
+536 (0x218)
+Waiting for a process to open the other end of the pipe.
+ERROR_VERIFIER_STOP
+537 (0x219)
+Application verifier has found an error in the current process.
+ERROR_ABIOS_ERROR
+538 (0x21A)
+An error occurred in the ABIOS subsystem.
+ERROR_WX86_WARNING
+539 (0x21B)
+A warning occurred in the WX86 subsystem.
+ERROR_WX86_ERROR
+540 (0x21C)
+An error occurred in the WX86 subsystem.
+ERROR_TIMER_NOT_CANCELED
+541 (0x21D)
+An attempt was made to cancel or set a timer that has an associated APC and the subject thread is not the thread that originally set the timer with an associated APC routine.
+ERROR_UNWIND
+542 (0x21E)
+Unwind exception code.
+ERROR_BAD_STACK
+543 (0x21F)
+An invalid or unaligned stack was encountered during an unwind operation.
+ERROR_INVALID_UNWIND_TARGET
+544 (0x220)
+An invalid unwind target was encountered during an unwind operation.
+ERROR_INVALID_PORT_ATTRIBUTES
+545 (0x221)
+Invalid Object Attributes specified to NtCreatePort or invalid Port Attributes specified to NtConnectPort.
+ERROR_PORT_MESSAGE_TOO_LONG
+546 (0x222)
+Length of message passed to NtRequestPort or NtRequestWaitReplyPort was longer than the maximum message allowed by the port.
+ERROR_INVALID_QUOTA_LOWER
+547 (0x223)
+An attempt was made to lower a quota limit below the current usage.
+ERROR_DEVICE_ALREADY_ATTACHED
+548 (0x224)
+An attempt was made to attach to a device that was already attached to another device.
+ERROR_INSTRUCTION_MISALIGNMENT
+549 (0x225)
+An attempt was made to execute an instruction at an unaligned address and the host system does not support unaligned instruction references.
+ERROR_PROFILING_NOT_STARTED
+550 (0x226)
+Profiling not started.
+ERROR_PROFILING_NOT_STOPPED
+551 (0x227)
+Profiling not stopped.
+ERROR_COULD_NOT_INTERPRET
+552 (0x228)
+The passed ACL did not contain the minimum required information.
+ERROR_PROFILING_AT_LIMIT
+553 (0x229)
+The number of active profiling objects is at the maximum and no more may be started.
+ERROR_CANT_WAIT
+554 (0x22A)
+Used to indicate that an operation cannot continue without blocking for IO.
+ERROR_CANT_TERMINATE_SELF
+555 (0x22B)
+Indicates that a thread attempted to terminate itself by default (called NtTerminateThread with NULL) and it was the last thread in the current process.
+ERROR_UNEXPECTED_MM_CREATE_ERR
+556 (0x22C)
+If an MM error is returned which is not defined in the standard FsRtl filter, it is converted to one of the following errors which is guaranteed to be in the filter. In this case information is lost, however, the filter correctly handles the exception.
+ERROR_UNEXPECTED_MM_MAP_ERROR
+557 (0x22D)
+If an MM error is returned which is not defined in the standard FsRtl filter, it is converted to one of the following errors which is guaranteed to be in the filter. In this case information is lost, however, the filter correctly handles the exception.
+ERROR_UNEXPECTED_MM_EXTEND_ERR
+558 (0x22E)
+If an MM error is returned which is not defined in the standard FsRtl filter, it is converted to one of the following errors which is guaranteed to be in the filter. In this case information is lost, however, the filter correctly handles the exception.
+ERROR_BAD_FUNCTION_TABLE
+559 (0x22F)
+A malformed function table was encountered during an unwind operation.
+ERROR_NO_GUID_TRANSLATION
+560 (0x230)
+Indicates that an attempt was made to assign protection to a file system file or directory and one of the SIDs in the security descriptor could not be translated into a GUID that could be stored by the file system. This causes the protection attempt to fail, which may cause a file creation attempt to fail.
+ERROR_INVALID_LDT_SIZE
+561 (0x231)
+Indicates that an attempt was made to grow an LDT by setting its size, or that the size was not an even number of selectors.
+ERROR_INVALID_LDT_OFFSET
+563 (0x233)
+Indicates that the starting value for the LDT information was not an integral multiple of the selector size.
+ERROR_INVALID_LDT_DESCRIPTOR
+564 (0x234)
+Indicates that the user supplied an invalid descriptor when trying to set up Ldt descriptors.
+ERROR_TOO_MANY_THREADS
+565 (0x235)
+Indicates a process has too many threads to perform the requested action. For example, assignment of a primary token may only be performed when a process has zero or one threads.
+ERROR_THREAD_NOT_IN_PROCESS
+566 (0x236)
+An attempt was made to operate on a thread within a specific process, but the thread specified is not in the process specified.
+ERROR_PAGEFILE_QUOTA_EXCEEDED
+567 (0x237)
+Page file quota was exceeded.
+ERROR_LOGON_SERVER_CONFLICT
+568 (0x238)
+The Netlogon service cannot start because another Netlogon service running in the domain conflicts with the specified role.
+ERROR_SYNCHRONIZATION_REQUIRED
+569 (0x239)
+The SAM database on a Windows Server is significantly out of synchronization with the copy on the Domain Controller. A complete synchronization is required.
+ERROR_NET_OPEN_FAILED
+570 (0x23A)
+The NtCreateFile API failed. This error should never be returned to an application, it is a place holder for the Windows Lan Manager Redirector to use in its internal error mapping routines.
+ERROR_IO_PRIVILEGE_FAILED
+571 (0x23B)
+{Privilege Failed} The IO permissions for the process could not be changed.
+ERROR_CONTROL_C_EXIT
+572 (0x23C)
+{Application Exit by CTRL+C} The application terminated as a result of a CTRL+C.
+ERROR_MISSING_SYSTEMFILE
+573 (0x23D)
+{Missing System File} The required system file %hs is bad or missing.
+ERROR_UNHANDLED_EXCEPTION
+574 (0x23E)
+{Application Error} The exception %s (0x%08lx) occurred in the application at location 0x%08lx.
+ERROR_APP_INIT_FAILURE
+575 (0x23F)
+{Application Error} The application failed to initialize properly (0x%lx). Click OK to terminate the application.
+ERROR_PAGEFILE_CREATE_FAILED
+576 (0x240)
+{Unable to Create Paging File} The creation of the paging file %hs failed (%lx). The requested size was %ld.
+ERROR_INVALID_IMAGE_HASH
+577 (0x241)
+Windows cannot verify the digital signature for this file. A recent hardware or software change might have installed a file that is signed incorrectly or damaged, or that might be malicious software from an unknown source.
+ERROR_NO_PAGEFILE
+578 (0x242)
+{No Paging File Specified} No paging file was specified in the system configuration.
+ERROR_ILLEGAL_FLOAT_CONTEXT
+579 (0x243)
+{EXCEPTION} A real-mode application issued a floating-point instruction and floating-point hardware is not present.
+ERROR_NO_EVENT_PAIR
+580 (0x244)
+An event pair synchronization operation was performed using the thread specific clientserver event pair object, but no event pair object was associated with the thread.
+ERROR_DOMAIN_CTRLR_CONFIG_ERROR
+581 (0x245)
+A Windows Server has an incorrect configuration.
+ERROR_ILLEGAL_CHARACTER
+582 (0x246)
+An illegal character was encountered. For a multi-byte character set this includes a lead byte without a succeeding trail byte. For the Unicode character set this includes the characters 0xFFFF and 0xFFFE.
+ERROR_UNDEFINED_CHARACTER
+583 (0x247)
+The Unicode character is not defined in the Unicode character set installed on the system.
+ERROR_FLOPPY_VOLUME
+584 (0x248)
+The paging file cannot be created on a floppy diskette.
+ERROR_BIOS_FAILED_TO_CONNECT_INTERRUPT
+585 (0x249)
+The system BIOS failed to connect a system interrupt to the device or bus for which the device is connected.
+ERROR_BACKUP_CONTROLLER
+586 (0x24A)
+This operation is only allowed for the Primary Domain Controller of the domain.
+ERROR_MUTANT_LIMIT_EXCEEDED
+587 (0x24B)
+An attempt was made to acquire a mutant such that its maximum count would have been exceeded.
+ERROR_FS_DRIVER_REQUIRED
+588 (0x24C)
+A volume has been accessed for which a file system driver is required that has not yet been loaded.
+ERROR_CANNOT_LOAD_REGISTRY_FILE
+589 (0x24D)
+{Registry File Failure} The registry cannot load the hive (file): %hs or its log or alternate. It is corrupt, absent, or not writable.
+ERROR_DEBUG_ATTACH_FAILED
+590 (0x24E)
+{Unexpected Failure in DebugActiveProcess} An unexpected failure occurred while processing a DebugActiveProcess API request. You may choose OK to terminate the process, or Cancel to ignore the error.
+ERROR_SYSTEM_PROCESS_TERMINATED
+591 (0x24F)
+{Fatal System Error} The %hs system process terminated unexpectedly with a status of 0x%08x (0x%08x 0x%08x). The system has been shut down.
+ERROR_DATA_NOT_ACCEPTED
+592 (0x250)
+{Data Not Accepted} The TDI client could not handle the data received during an indication.
+ERROR_VDM_HARD_ERROR
+593 (0x251)
+NTVDM encountered a hard error.
+ERROR_DRIVER_CANCEL_TIMEOUT
+594 (0x252)
+{Cancel Timeout} The driver %hs failed to complete a canceled IO request in the allotted time.
+ERROR_REPLY_MESSAGE_MISMATCH
+595 (0x253)
+{Reply Message Mismatch} An attempt was made to reply to an LPC message, but the thread specified by the client ID in the message was not waiting on that message.
+ERROR_LOST_WRITEBEHIND_DATA
+596 (0x254)
+{Delayed Write Failed} Windows was unable to save all the data for the file %hs. The data has been lost. This error may be caused by a failure of your computer hardware or network connection. Please try to save this file elsewhere.
+ERROR_CLIENT_SERVER_PARAMETERS_INVALID
+597 (0x255)
+The parameter(s) passed to the server in the clientserver shared memory window were invalid. Too much data may have been put in the shared memory window.
+ERROR_NOT_TINY_STREAM
+598 (0x256)
+The stream is not a tiny stream.
+ERROR_STACK_OVERFLOW_READ
+599 (0x257)
+The request must be handled by the stack overflow code.
+ERROR_CONVERT_TO_LARGE
+600 (0x258)
+Internal OFS status codes indicating how an allocation operation is handled. Either it is retried after the containing node is moved or the extent stream is converted to a large stream.
+ERROR_FOUND_OUT_OF_SCOPE
+601 (0x259)
+The attempt to find the object found an object matching by ID on the volume but it is out of the scope of the handle used for the operation.
+ERROR_ALLOCATE_BUCKET
+602 (0x25A)
+The bucket array must be grown. Retry transaction after doing so.
+ERROR_MARSHALL_OVERFLOW
+603 (0x25B)
+The userkernel marshalling buffer has overflowed.
+ERROR_INVALID_VARIANT
+604 (0x25C)
+The supplied variant structure contains invalid data.
+ERROR_BAD_COMPRESSION_BUFFER
+605 (0x25D)
+The specified buffer contains ill-formed data.
+ERROR_AUDIT_FAILED
+606 (0x25E)
+{Audit Failed} An attempt to generate a security audit failed.
+ERROR_TIMER_RESOLUTION_NOT_SET
+607 (0x25F)
+The timer resolution was not previously set by the current process.
+ERROR_INSUFFICIENT_LOGON_INFO
+608 (0x260)
+There is insufficient account information to log you on.
+ERROR_BAD_DLL_ENTRYPOINT
+609 (0x261)
+{Invalid DLL Entry point} The dynamic link library %hs is not written correctly. The stack pointer has been left in an inconsistent state. The entry point should be declared as WINAPI or STDCALL. Select YES to fail the DLL load. Select NO to continue execution. Selecting NO may cause the application to operate incorrectly.
+ERROR_BAD_SERVICE_ENTRYPOINT
+610 (0x262)
+{Invalid Service Callback Entry point} The %hs service is not written correctly. The stack pointer has been left in an inconsistent state. The callback entry point should be declared as WINAPI or STDCALL. Selecting OK will cause the service to continue operation. However, the service process may operate incorrectly.
+ERROR_IP_ADDRESS_CONFLICT1
+611 (0x263)
+There is an IP address conflict with another system on the network
+ERROR_IP_ADDRESS_CONFLICT2
+612 (0x264)
+There is an IP address conflict with another system on the network
+ERROR_REGISTRY_QUOTA_LIMIT
+613 (0x265)
+{Low On Registry Space} The system has reached the maximum size allowed for the system part of the registry.  Additional storage requests will be ignored.
+ERROR_NO_CALLBACK_ACTIVE
+614 (0x266)
+A callback return system service cannot be executed when no callback is active.
+ERROR_PWD_TOO_SHORT
+615 (0x267)
+The password provided is too short to meet the policy of your user account. Please choose a longer password.
+ERROR_PWD_TOO_RECENT
+616 (0x268)
+The policy of your user account does not allow you to change passwords too frequently. This is done to prevent users from changing back to a familiar, but potentially discovered, password. If you feel your password has been compromised then please contact your administrator immediately to have a new one assigned.
+ERROR_PWD_HISTORY_CONFLICT
+617 (0x269)
+You have attempted to change your password to one that you have used in the past. The policy of your user account does not allow this. Please select a password that you have not previously used.
+ERROR_UNSUPPORTED_COMPRESSION
+618 (0x26A)
+The specified compression format is unsupported.
+ERROR_INVALID_HW_PROFILE
+619 (0x26B)
+The specified hardware profile configuration is invalid.
+ERROR_INVALID_PLUGPLAY_DEVICE_PATH
+620 (0x26C)
+The specified Plug and Play registry device path is invalid.
+ERROR_QUOTA_LIST_INCONSISTENT
+621 (0x26D)
+The specified quota list is internally inconsistent with its descriptor.
+ERROR_EVALUATION_EXPIRATION
+622 (0x26E)
+{Windows Evaluation Notification} The evaluation period for this installation of Windows has expired. This system will shutdown in 1 hour. To restore access to this installation of Windows, please upgrade this installation using a licensed distribution of this product.
+ERROR_ILLEGAL_DLL_RELOCATION
+623 (0x26F)
+{Illegal System DLL Relocation} The system DLL %hs was relocated in memory. The application will not run properly. The relocation occurred because the DLL %hs occupied an address range reserved for Windows system DLLs. The vendor supplying the DLL should be contacted for a new DLL.
+ERROR_DLL_INIT_FAILED_LOGOFF
+624 (0x270)
+{DLL Initialization Failed} The application failed to initialize because the window station is shutting down.
+ERROR_VALIDATE_CONTINUE
+625 (0x271)
+The validation process needs to continue on to the next step.
+ERROR_NO_MORE_MATCHES
+626 (0x272)
+There are no more matches for the current index enumeration.
+ERROR_RANGE_LIST_CONFLICT
+627 (0x273)
+The range could not be added to the range list because of a conflict.
+ERROR_SERVER_SID_MISMATCH
+628 (0x274)
+The server process is running under a SID different than that required by client.
+ERROR_CANT_ENABLE_DENY_ONLY
+629 (0x275)
+A group marked use for deny only cannot be enabled.
+ERROR_FLOAT_MULTIPLE_FAULTS
+630 (0x276)
+{EXCEPTION} Multiple floating point faults.
+ERROR_FLOAT_MULTIPLE_TRAPS
+631 (0x277)
+{EXCEPTION} Multiple floating point traps.
+ERROR_NOINTERFACE
+632 (0x278)
+The requested interface is not supported.
+ERROR_DRIVER_FAILED_SLEEP
+633 (0x279)
+{System Standby Failed} The driver %hs does not support standby mode. Updating this driver may allow the system to go to standby mode.
+ERROR_CORRUPT_SYSTEM_FILE
+634 (0x27A)
+The system file %1 has become corrupt and has been replaced.
+ERROR_COMMITMENT_MINIMUM
+635 (0x27B)
+{Virtual Memory Minimum Too Low} Your system is low on virtual memory. Windows is increasing the size of your virtual memory paging file. During this process, memory requests for some applications may be denied. For more information, see Help.
+ERROR_PNP_RESTART_ENUMERATION
+636 (0x27C)
+A device was removed so enumeration must be restarted.
+ERROR_SYSTEM_IMAGE_BAD_SIGNATURE
+637 (0x27D)
+{Fatal System Error} The system image %s is not properly signed. The file has been replaced with the signed file. The system has been shut down.
+ERROR_PNP_REBOOT_REQUIRED
+638 (0x27E)
+Device will not start without a reboot.
+ERROR_INSUFFICIENT_POWER
+639 (0x27F)
+There is not enough power to complete the requested operation.
+ERROR_MULTIPLE_FAULT_VIOLATION
+640 (0x280)
+ERROR_MULTIPLE_FAULT_VIOLATION
+ERROR_SYSTEM_SHUTDOWN
+641 (0x281)
+The system is in the process of shutting down.
+ERROR_PORT_NOT_SET
+642 (0x282)
+An attempt to remove a processes DebugPort was made, but a port was not already associated with the process.
+ERROR_DS_VERSION_CHECK_FAILURE
+643 (0x283)
+This version of Windows is not compatible with the behavior version of directory forest, domain or domain controller.
+ERROR_RANGE_NOT_FOUND
+644 (0x284)
+The specified range could not be found in the range list.
+ERROR_NOT_SAFE_MODE_DRIVER
+646 (0x286)
+The driver was not loaded because the system is booting into safe mode.
+ERROR_FAILED_DRIVER_ENTRY
+647 (0x287)
+The driver was not loaded because it failed it's initialization call.
+ERROR_DEVICE_ENUMERATION_ERROR
+648 (0x288)
+The "%hs" encountered an error while applying power or reading the device configuration. This may be caused by a failure of your hardware or by a poor connection.
+ERROR_MOUNT_POINT_NOT_RESOLVED
+649 (0x289)
+The create operation failed because the name contained at least one mount point which resolves to a volume to which the specified device object is not attached.
+ERROR_INVALID_DEVICE_OBJECT_PARAMETER
+650 (0x28A)
+The device object parameter is either not a valid device object or is not attached to the volume specified by the file name.
+ERROR_MCA_OCCURED
+651 (0x28B)
+A Machine Check Error has occurred. Please check the system event log for additional information.
+ERROR_DRIVER_DATABASE_ERROR
+652 (0x28C)
+There was error [%2] processing the driver database.
+ERROR_SYSTEM_HIVE_TOO_LARGE
+653 (0x28D)
+System hive size has exceeded its limit.
+ERROR_DRIVER_FAILED_PRIOR_UNLOAD
+654 (0x28E)
+The driver could not be loaded because a previous version of the driver is still in memory.
+ERROR_VOLSNAP_PREPARE_HIBERNATE
+655 (0x28F)
+{Volume Shadow Copy Service} Please wait while the Volume Shadow Copy Service prepares volume %hs for hibernation.
+ERROR_HIBERNATION_FAILURE
+656 (0x290)
+The system has failed to hibernate (The error code is %hs).  Hibernation will be disabled until the system is restarted.
+ERROR_FILE_SYSTEM_LIMITATION
+665 (0x299)
+The requested operation could not be completed due to a file system limitation
+ERROR_ASSERTION_FAILURE
+668 (0x29C)
+An assertion failure has occurred.
+ERROR_ACPI_ERROR
+669 (0x29D)
+An error occurred in the ACPI subsystem.
+ERROR_WOW_ASSERTION
+670 (0x29E)
+WOW Assertion Error.
+ERROR_PNP_BAD_MPS_TABLE
+671 (0x29F)
+A device is missing in the system BIOS MPS table. This device will not be used. Please contact your system vendor for system BIOS update.
+ERROR_PNP_TRANSLATION_FAILED
+672 (0x2A0)
+A translator failed to translate resources.
+ERROR_PNP_IRQ_TRANSLATION_FAILED
+673 (0x2A1)
+A IRQ translator failed to translate resources.
+ERROR_PNP_INVALID_ID
+674 (0x2A2)
+Driver %2 returned invalid ID for a child device (%3).
+ERROR_WAKE_SYSTEM_DEBUGGER
+675 (0x2A3)
+{Kernel Debugger Awakened} the system debugger was awakened by an interrupt.
+ERROR_HANDLES_CLOSED
+676 (0x2A4)
+{Handles Closed} Handles to objects have been automatically closed as a result of the requested operation.
+ERROR_EXTRANEOUS_INFORMATION
+677 (0x2A5)
+{Too Much Information} The specified access control list (ACL) contained more information than was expected.
+ERROR_RXACT_COMMIT_NECESSARY
+678 (0x2A6)
+This warning level status indicates that the transaction state already exists for the registry sub-tree, but that a transaction commit was previously aborted. The commit has NOT been completed, but has not been rolled back either (so it may still be committed if desired).
+ERROR_MEDIA_CHECK
+679 (0x2A7)
+{Media Changed} The media may have changed.
+ERROR_GUID_SUBSTITUTION_MADE
+680 (0x2A8)
+{GUID Substitution} During the translation of a global identifier (GUID) to a Windows security ID (SID), no administratively-defined GUID prefix was found. A substitute prefix was used, which will not compromise system security. However, this may provide a more restrictive access than intended.
+ERROR_STOPPED_ON_SYMLINK
+681 (0x2A9)
+The create operation stopped after reaching a symbolic link
+ERROR_LONGJUMP
+682 (0x2AA)
+A long jump has been executed.
+ERROR_PLUGPLAY_QUERY_VETOED
+683 (0x2AB)
+The Plug and Play query operation was not successful.
+ERROR_UNWIND_CONSOLIDATE
+684 (0x2AC)
+A frame consolidation has been executed.
+ERROR_REGISTRY_HIVE_RECOVERED
+685 (0x2AD)
+{Registry Hive Recovered} Registry hive (file): %hs was corrupted and it has been recovered. Some data might have been lost.
+ERROR_DLL_MIGHT_BE_INSECURE
+686 (0x2AE)
+The application is attempting to run executable code from the module %hs.  This may be insecure.  An alternative, %hs, is available.  Should the application use the secure module %hs?
+ERROR_DLL_MIGHT_BE_INCOMPATIBLE
+687 (0x2AF)
+The application is loading executable code from the module %hs.  This is secure, but may be incompatible with previous releases of the operating system.  An alternative, %hs, is available.  Should the application use the secure module %hs?
+ERROR_DBG_EXCEPTION_NOT_HANDLED
+688 (0x2B0)
+Debugger did not handle the exception.
+ERROR_DBG_REPLY_LATER
+689 (0x2B1)
+Debugger will reply later.
+ERROR_DBG_UNABLE_TO_PROVIDE_HANDLE
+690 (0x2B2)
+Debugger cannot provide handle.
+ERROR_DBG_TERMINATE_THREAD
+691 (0x2B3)
+Debugger terminated thread.
+ERROR_DBG_TERMINATE_PROCESS
+692 (0x2B4)
+Debugger terminated process.
+ERROR_DBG_CONTROL_C
+693 (0x2B5)
+Debugger got control C.
+ERROR_DBG_PRINTEXCEPTION_C
+694 (0x2B6)
+Debugger printed exception on control C.
+ERROR_DBG_RIPEXCEPTION
+695 (0x2B7)
+Debugger received RIP exception.
+ERROR_DBG_CONTROL_BREAK
+696 (0x2B8)
+Debugger received control break.
+ERROR_DBG_COMMAND_EXCEPTION
+697 (0x2B9)
+Debugger command communication exception.
+ERROR_OBJECT_NAME_EXISTS
+698 (0x2BA)
+{Object Exists} An attempt was made to create an object and the object name already existed.
+ERROR_THREAD_WAS_SUSPENDED
+699 (0x2BB)
+{Thread Suspended} A thread termination occurred while the thread was suspended. The thread was resumed, and termination proceeded.
+ERROR_IMAGE_NOT_AT_BASE
+700 (0x2BC)
+{Image Relocated} An image file could not be mapped at the address specified in the image file. Local fixups must be performed on this image.
+ERROR_RXACT_STATE_CREATED
+701 (0x2BD)
+This informational level status indicates that a specified registry sub-tree transaction state did not yet exist and had to be created.
+ERROR_SEGMENT_NOTIFICATION
+702 (0x2BE)
+{Segment Load} A virtual DOS machine (VDM) is loading, unloading, or moving an MS-DOS or Win16 program segment image. An exception is raised so a debugger can load, unload or track symbols and breakpoints within these 16-bit segments.
+ERROR_BAD_CURRENT_DIRECTORY
+703 (0x2BF)
+{Invalid Current Directory} The process cannot switch to the startup current directory %hs. Select OK to set current directory to %hs, or select CANCEL to exit.
+ERROR_FT_READ_RECOVERY_FROM_BACKUP
+704 (0x2C0)
+{Redundant Read} To satisfy a read request, the NT fault-tolerant file system successfully read the requested data from a redundant copy. This was done because the file system encountered a failure on a member of the fault-tolerant volume, but was unable to reassign the failing area of the device.
+ERROR_FT_WRITE_RECOVERY
+705 (0x2C1)
+{Redundant Write} To satisfy a write request, the NT fault-tolerant file system successfully wrote a redundant copy of the information. This was done because the file system encountered a failure on a member of the fault-tolerant volume, but was not able to reassign the failing area of the device.
+ERROR_IMAGE_MACHINE_TYPE_MISMATCH
+706 (0x2C2)
+{Machine Type Mismatch} The image file %hs is valid, but is for a machine type other than the current machine. Select OK to continue, or CANCEL to fail the DLL load.
+ERROR_RECEIVE_PARTIAL
+707 (0x2C3)
+{Partial Data Received} The network transport returned partial data to its client. The remaining data will be sent later.
+ERROR_RECEIVE_EXPEDITED
+708 (0x2C4)
+{Expedited Data Received} The network transport returned data to its client that was marked as expedited by the remote system.
+ERROR_RECEIVE_PARTIAL_EXPEDITED
+709 (0x2C5)
+{Partial Expedited Data Received} The network transport returned partial data to its client and this data was marked as expedited by the remote system. The remaining data will be sent later.
+ERROR_EVENT_DONE
+710 (0x2C6)
+{TDI Event Done} The TDI indication has completed successfully.
+ERROR_EVENT_PENDING
+711 (0x2C7)
+{TDI Event Pending} The TDI indication has entered the pending state.
+ERROR_CHECKING_FILE_SYSTEM
+712 (0x2C8)
+Checking file system on %wZ
+ERROR_FATAL_APP_EXIT
+713 (0x2C9)
+{Fatal Application Exit} %hs
+ERROR_PREDEFINED_HANDLE
+714 (0x2CA)
+The specified registry key is referenced by a predefined handle.
+ERROR_WAS_UNLOCKED
+715 (0x2CB)
+{Page Unlocked} The page protection of a locked page was changed to 'No Access' and the page was unlocked from memory and from the process.
+ERROR_SERVICE_NOTIFICATION
+716 (0x2CC)
+%hs
+ERROR_WAS_LOCKED
+717 (0x2CD)
+{Page Locked} One of the pages to lock was already locked.
+ERROR_LOG_HARD_ERROR
+718 (0x2CE)
+Application popup: %1 : %2
+ERROR_ALREADY_WIN32
+719 (0x2CF)
+ERROR_ALREADY_WIN32
+ERROR_IMAGE_MACHINE_TYPE_MISMATCH_EXE
+720 (0x2D0)
+{Machine Type Mismatch} The image file %hs is valid, but is for a machine type other than the current machine.
+ERROR_NO_YIELD_PERFORMED
+721 (0x2D1)
+A yield execution was performed and no thread was available to run.
+ERROR_TIMER_RESUME_IGNORED
+722 (0x2D2)
+The resumable flag to a timer API was ignored.
+ERROR_ARBITRATION_UNHANDLED
+723 (0x2D3)
+The arbiter has deferred arbitration of these resources to its parent
+ERROR_CARDBUS_NOT_SUPPORTED
+724 (0x2D4)
+The inserted CardBus device cannot be started because of a configuration error on "%hs".
+ERROR_MP_PROCESSOR_MISMATCH
+725 (0x2D5)
+The CPUs in this multiprocessor system are not all the same revision level.  To use all processors the operating system restricts itself to the features of the least capable processor in the system.  Should problems occur with this system, contact the CPU manufacturer to see if this mix of processors is supported.
+ERROR_HIBERNATED
+726 (0x2D6)
+The system was put into hibernation.
+ERROR_RESUME_HIBERNATION
+727 (0x2D7)
+The system was resumed from hibernation.
+ERROR_FIRMWARE_UPDATED
+728 (0x2D8)
+Windows has detected that the system firmware (BIOS) was updated [previous firmware date = %2, current firmware date %3].
+ERROR_DRIVERS_LEAKING_LOCKED_PAGES
+729 (0x2D9)
+A device driver is leaking locked IO pages causing system degradation.  The system has automatically enabled tracking code in order to try and catch the culprit.
+ERROR_WAKE_SYSTEM
+730 (0x2DA)
+The system has awoken
+ERROR_WAIT_1
+731 (0x2DB)
+ERROR_WAIT_1
+ERROR_WAIT_2
+732 (0x2DC)
+ERROR_WAIT_2
+ERROR_WAIT_3
+733 (0x2DD)
+ERROR_WAIT_3
+ERROR_WAIT_63
+734 (0x2DE)
+ERROR_WAIT_63
+ERROR_ABANDONED_WAIT_0
+735 (0x2DF)
+ERROR_ABANDONED_WAIT_0
+ERROR_ABANDONED_WAIT_63
+736 (0x2E0)
+ERROR_ABANDONED_WAIT_63
+ERROR_USER_APC
+737 (0x2E1)
+ERROR_USER_APC
+ERROR_KERNEL_APC
+738 (0x2E2)
+ERROR_KERNEL_APC
+ERROR_ALERTED
+739 (0x2E3)
+ERROR_ALERTED
+ERROR_ELEVATION_REQUIRED
+740 (0x2E4)
+The requested operation requires elevation.
+ERROR_REPARSE
+741 (0x2E5)
+A reparse should be performed by the Object Manager since the name of the file resulted in a symbolic link.
+ERROR_OPLOCK_BREAK_IN_PROGRESS
+742 (0x2E6)
+An opencreate operation completed while an oplock break is underway.
+ERROR_VOLUME_MOUNTED
+743 (0x2E7)
+A new volume has been mounted by a file system.
+ERROR_RXACT_COMMITTED
+744 (0x2E8)
+This success level status indicates that the transaction state already exists for the registry sub-tree, but that a transaction commit was previously aborted. The commit has now been completed.
+ERROR_NOTIFY_CLEANUP
+745 (0x2E9)
+This indicates that a notify change request has been completed due to closing the handle which made the notify change request.
+ERROR_PRIMARY_TRANSPORT_CONNECT_FAILED
+746 (0x2EA)
+{Connect Failure on Primary Transport} An attempt was made to connect to the remote server %hs on the primary transport, but the connection failed. The computer WAS able to connect on a secondary transport.
+ERROR_PAGE_FAULT_TRANSITION
+747 (0x2EB)
+Page fault was a transition fault.
+ERROR_PAGE_FAULT_DEMAND_ZERO
+748 (0x2EC)
+Page fault was a demand zero fault.
+ERROR_PAGE_FAULT_COPY_ON_WRITE
+749 (0x2ED)
+Page fault was a demand zero fault.
+ERROR_PAGE_FAULT_GUARD_PAGE
+750 (0x2EE)
+Page fault was a demand zero fault.
+ERROR_PAGE_FAULT_PAGING_FILE
+751 (0x2EF)
+Page fault was satisfied by reading from a secondary storage device.
+ERROR_CACHE_PAGE_LOCKED
+752 (0x2F0)
+Cached page was locked during operation.
+ERROR_CRASH_DUMP
+753 (0x2F1)
+Crash dump exists in paging file.
+ERROR_BUFFER_ALL_ZEROS
+754 (0x2F2)
+Specified buffer contains all zeros.
+ERROR_REPARSE_OBJECT
+755 (0x2F3)
+A reparse should be performed by the Object Manager since the name of the file resulted in a symbolic link.
+ERROR_RESOURCE_REQUIREMENTS_CHANGED
+756 (0x2F4)
+The device has succeeded a query-stop and its resource requirements have changed.
+ERROR_TRANSLATION_COMPLETE
+757 (0x2F5)
+The translator has translated these resources into the global space and no further translations should be performed.
+ERROR_NOTHING_TO_TERMINATE
+758 (0x2F6)
+A process being terminated has no threads to terminate.
+ERROR_PROCESS_NOT_IN_JOB
+759 (0x2F7)
+The specified process is not part of a job.
+ERROR_PROCESS_IN_JOB
+760 (0x2F8)
+The specified process is part of a job.
+ERROR_VOLSNAP_HIBERNATE_READY
+761 (0x2F9)
+{Volume Shadow Copy Service} The system is now ready for hibernation.
+ERROR_FSFILTER_OP_COMPLETED_SUCCESSFULLY
+762 (0x2FA)
+A file system or file system filter driver has successfully completed an FsFilter operation.
+ERROR_INTERRUPT_VECTOR_ALREADY_CONNECTED
+763 (0x2FB)
+The specified interrupt vector was already connected.
+ERROR_INTERRUPT_STILL_CONNECTED
+764 (0x2FC)
+The specified interrupt vector is still connected.
+ERROR_WAIT_FOR_OPLOCK
+765 (0x2FD)
+An operation is blocked waiting for an oplock.
+ERROR_DBG_EXCEPTION_HANDLED
+766 (0x2FE)
+Debugger handled exception
+ERROR_DBG_CONTINUE
+767 (0x2FF)
+Debugger continued
+ERROR_CALLBACK_POP_STACK
+768 (0x300)
+An exception occurred in a user mode callback and the kernel callback frame should be removed.
+ERROR_COMPRESSION_DISABLED
+769 (0x301)
+Compression is disabled for this volume.
+ERROR_CANTFETCHBACKWARDS
+770 (0x302)
+The data provider cannot fetch backwards through a result set.
+ERROR_CANTSCROLLBACKWARDS
+771 (0x303)
+The data provider cannot scroll backwards through a result set.
+ERROR_ROWSNOTRELEASED
+772 (0x304)
+The data provider requires that previously fetched data is released before asking for more data.
+ERROR_BAD_ACCESSOR_FLAGS
+773 (0x305)
+The data provider was not able to interpret the flags set for a column binding in an accessor.
+ERROR_ERRORS_ENCOUNTERED
+774 (0x306)
+One or more errors occurred while processing the request.
+ERROR_NOT_CAPABLE
+775 (0x307)
+The implementation is not capable of performing the request.
+ERROR_REQUEST_OUT_OF_SEQUENCE
+776 (0x308)
+The client of a component requested an operation which is not valid given the state of the component instance.
+ERROR_VERSION_PARSE_ERROR
+777 (0x309)
+A version number could not be parsed.
+ERROR_BADSTARTPOSITION
+778 (0x30A)
+The iterator's start position is invalid.
+ERROR_MEMORY_HARDWARE
+779 (0x30B)
+The hardware has reported an uncorrectable memory error.
+ERROR_DISK_REPAIR_DISABLED
+780 (0x30C)
+The attempted operation required self healing to be enabled.
+ERROR_INSUFFICIENT_RESOURCE_FOR_SPECIFIED_SHARED_SECTION_SIZE
+781 (0x30D)
+The Desktop heap encountered an error while allocating session memory. There is more information in the system event log.
+ERROR_SYSTEM_POWERSTATE_TRANSITION
+782 (0x30E)
+The system power state is transitioning from %2 to %3.
+ERROR_SYSTEM_POWERSTATE_COMPLEX_TRANSITION
+783 (0x30F)
+The system power state is transitioning from %2 to %3 but could enter %4.
+ERROR_MCA_EXCEPTION
+784 (0x310)
+A thread is getting dispatched with MCA EXCEPTION because of MCA.
+ERROR_ACCESS_AUDIT_BY_POLICY
+785 (0x311)
+Access to %1 is monitored by policy rule %2.
+ERROR_ACCESS_DISABLED_NO_SAFER_UI_BY_POLICY
+786 (0x312)
+Access to %1 has been restricted by your Administrator by policy rule %2.
+ERROR_ABANDON_HIBERFILE
+787 (0x313)
+A valid hibernation file has been invalidated and should be abandoned.
+ERROR_LOST_WRITEBEHIND_DATA_NETWORK_DISCONNECTED
+788 (0x314)
+{Delayed Write Failed}
+ERROR_LOST_WRITEBEHIND_DATA_NETWORK_SERVER_ERROR
+789 (0x315)
+{Delayed Write Failed}
+ ERROR_LOST_WRITEBEHIND_DATA_LOCAL_DISK_ERROR
+790 (0x316)
+{Delayed Write Failed}
+ERROR_BAD_MCFG_TABLE
+791 (0x317)
+The resources required for this device conflict with the MCFG table.
+ERROR_OPLOCK_SWITCHED_TO_NEW_HANDLE
+800 (0x320)
+The oplock that was associated with this handle is now associated with a different handle.
+ERROR_CANNOT_GRANT_REQUESTED_OPLOCK
+801 (0x321)
+An oplock of the requested level cannot be granted.  An oplock of a lower level may be available.
+ERROR_CANNOT_BREAK_OPLOCK
+802 (0x322)
+The operation did not complete successfully because it would cause an oplock to be broken. The caller has requested that existing oplocks not be broken.
+ERROR_OPLOCK_HANDLE_CLOSED
+803 (0x323)
+The handle with which this oplock was associated has been closed.  The oplock is now broken.
+ERROR_NO_ACE_CONDITION
+804 (0x324)
+The specified access control entry (ACE) does not contain a condition.
+ERROR_INVALID_ACE_CONDITION
+805 (0x325)
+The specified access control entry (ACE) contains an invalid condition.
+ERROR_EA_ACCESS_DENIED
+994 (0x3E2)
+Access to the extended attribute was denied.
+ERROR_OPERATION_ABORTED
+995 (0x3E3)
+The IO operation has been aborted because of either a thread exit or an application request.
+ERROR_IO_INCOMPLETE
+996 (0x3E4)
+Overlapped IO event is not in a signaled state.
+ERROR_IO_PENDING
+997 (0x3E5)
+Overlapped IO operation is in progress.
+ERROR_NOACCESS
+998 (0x3E6)
+Invalid access to memory location.
+ERROR_SWAPERROR
+999 (0x3E7)
+Error performing inpage operation.
+
+Minimum supported client
+Minimum supported server
+Header
+
+
+ 
+ 
+
+Build date: 2102011

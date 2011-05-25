@@ -1,0 +1,674 @@
+
+
+
+The System Error Codes are very broad.  Each one can occur in one of many hundreds of locations in the system.  Consequently the descriptions of these codes cannot be very specific.  Use of these codes requires some amount of investigation and analysis.  You need to note both the programmatic and the run-time context in which these errors occur.  Because these codes are defined in winerror.h for anyone to use, sometimes the codes are returned by non-system software.  Sometimes the code is returned by a function deep in the stack and far removed from your code that is handling the error.
+The table in this topic provides a list of 
+
+ERROR_STACK_OVERFLOW
+1001 (0x3E9)
+Recursion too deep; the stack overflowed.
+ERROR_INVALID_MESSAGE
+1002 (0x3EA)
+The window cannot act on the sent message.
+ERROR_CAN_NOT_COMPLETE
+1003 (0x3EB)
+Cannot complete this function.
+ERROR_INVALID_FLAGS
+1004 (0x3EC)
+Invalid flags.
+ERROR_UNRECOGNIZED_VOLUME
+1005 (0x3ED)
+The volume does not contain a recognized file system. Please make sure that all required file system drivers are loaded and that the volume is not corrupted.
+ERROR_FILE_INVALID
+1006 (0x3EE)
+The volume for a file has been externally altered so that the opened file is no longer valid.
+ERROR_FULLSCREEN_MODE
+1007 (0x3EF)
+The requested operation cannot be performed in full-screen mode.
+ERROR_NO_TOKEN
+1008 (0x3F0)
+An attempt was made to reference a token that does not exist.
+ERROR_BADDB
+1009 (0x3F1)
+The configuration registry database is corrupt.
+ERROR_BADKEY
+1010 (0x3F2)
+The configuration registry key is invalid.
+ERROR_CANTOPEN
+1011 (0x3F3)
+The configuration registry key could not be opened.
+ERROR_CANTREAD
+1012 (0x3F4)
+The configuration registry key could not be read.
+ERROR_CANTWRITE
+1013 (0x3F5)
+The configuration registry key could not be written.
+ERROR_REGISTRY_RECOVERED
+1014 (0x3F6)
+One of the files in the registry database had to be recovered by use of a log or alternate copy. The recovery was successful.
+ERROR_REGISTRY_CORRUPT
+1015 (0x3F7)
+The registry is corrupted. The structure of one of the files containing registry data is corrupted, or the system's memory image of the file is corrupted, or the file could not be recovered because the alternate copy or log was absent or corrupted.
+ERROR_REGISTRY_IO_FAILED
+1016 (0x3F8)
+An IO operation initiated by the registry failed unrecoverably. The registry could not read in, or write out, or flush, one of the files that contain the system's image of the registry.
+ERROR_NOT_REGISTRY_FILE
+1017 (0x3F9)
+The system has attempted to load or restore a file into the registry, but the specified file is not in a registry file format.
+ERROR_KEY_DELETED
+1018 (0x3FA)
+Illegal operation attempted on a registry key that has been marked for deletion.
+ERROR_NO_LOG_SPACE
+1019 (0x3FB)
+System could not allocate the required space in a registry log.
+ERROR_KEY_HAS_CHILDREN
+1020 (0x3FC)
+Cannot create a symbolic link in a registry key that already has subkeys or values.
+ERROR_CHILD_MUST_BE_VOLATILE
+1021 (0x3FD)
+Cannot create a stable subkey under a volatile parent key.
+ERROR_NOTIFY_ENUM_DIR
+1022 (0x3FE)
+A notify change request is being completed and the information is not being returned in the caller's buffer. The caller now needs to enumerate the files to find the changes.
+ERROR_DEPENDENT_SERVICES_RUNNING
+1051 (0x41B)
+A stop control has been sent to a service that other running services are dependent on.
+ERROR_INVALID_SERVICE_CONTROL
+1052 (0x41C)
+The requested control is not valid for this service.
+ERROR_SERVICE_REQUEST_TIMEOUT
+1053 (0x41D)
+The service did not respond to the start or control request in a timely fashion.
+ERROR_SERVICE_NO_THREAD
+1054 (0x41E)
+A thread could not be created for the service.
+ERROR_SERVICE_DATABASE_LOCKED
+1055 (0x41F)
+The service database is locked.
+ERROR_SERVICE_ALREADY_RUNNING
+1056 (0x420)
+An instance of the service is already running.
+ERROR_INVALID_SERVICE_ACCOUNT
+1057 (0x421)
+The account name is invalid or does not exist, or the password is invalid for the account name specified.
+ERROR_SERVICE_DISABLED
+1058 (0x422)
+The service cannot be started, either because it is disabled or because it has no enabled devices associated with it.
+ERROR_CIRCULAR_DEPENDENCY
+1059 (0x423)
+Circular service dependency was specified.
+ERROR_SERVICE_DOES_NOT_EXIST
+1060 (0x424)
+The specified service does not exist as an installed service.
+ERROR_SERVICE_CANNOT_ACCEPT_CTRL
+1061 (0x425)
+The service cannot accept control messages at this time.
+ERROR_SERVICE_NOT_ACTIVE
+1062 (0x426)
+The service has not been started.
+ERROR_FAILED_SERVICE_CONTROLLER_CONNECT
+1063 (0x427)
+The service process could not connect to the service controller.
+ERROR_EXCEPTION_IN_SERVICE
+1064 (0x428)
+An exception occurred in the service when handling the control request.
+ERROR_DATABASE_DOES_NOT_EXIST
+1065 (0x429)
+The database specified does not exist.
+ERROR_SERVICE_SPECIFIC_ERROR
+1066 (0x42A)
+The service has returned a service-specific error code.
+ERROR_PROCESS_ABORTED
+1067 (0x42B)
+The process terminated unexpectedly.
+ERROR_SERVICE_DEPENDENCY_FAIL
+1068 (0x42C)
+The dependency service or group failed to start.
+ERROR_SERVICE_LOGON_FAILED
+1069 (0x42D)
+The service did not start due to a logon failure.
+ERROR_SERVICE_START_HANG
+1070 (0x42E)
+After starting, the service hung in a start-pending state.
+ERROR_INVALID_SERVICE_LOCK
+1071 (0x42F)
+The specified service database lock is invalid.
+ERROR_SERVICE_MARKED_FOR_DELETE
+1072 (0x430)
+The specified service has been marked for deletion.
+ERROR_SERVICE_EXISTS
+1073 (0x431)
+The specified service already exists.
+ERROR_ALREADY_RUNNING_LKG
+1074 (0x432)
+The system is currently running with the last-known-good configuration.
+ERROR_SERVICE_DEPENDENCY_DELETED
+1075 (0x433)
+The dependency service does not exist or has been marked for deletion.
+ERROR_BOOT_ALREADY_ACCEPTED
+1076 (0x434)
+The current boot has already been accepted for use as the last-known-good control set.
+ERROR_SERVICE_NEVER_STARTED
+1077 (0x435)
+No attempts to start the service have been made since the last boot.
+ERROR_DUPLICATE_SERVICE_NAME
+1078 (0x436)
+The name is already in use as either a service name or a service display name.
+ERROR_DIFFERENT_SERVICE_ACCOUNT
+1079 (0x437)
+The account specified for this service is different from the account specified for other services running in the same process.
+ERROR_CANNOT_DETECT_DRIVER_FAILURE
+1080 (0x438)
+Failure actions can only be set for Win32 services, not for drivers.
+ERROR_CANNOT_DETECT_PROCESS_ABORT
+1081 (0x439)
+This service runs in the same process as the service control manager. Therefore, the service control manager cannot take action if this service's process terminates unexpectedly.
+ERROR_NO_RECOVERY_PROGRAM
+1082 (0x43A)
+No recovery program has been configured for this service.
+ERROR_SERVICE_NOT_IN_EXE
+1083 (0x43B)
+The executable program that this service is configured to run in does not implement the service.
+ERROR_NOT_SAFEBOOT_SERVICE
+1084 (0x43C)
+This service cannot be started in Safe Mode
+ERROR_END_OF_MEDIA
+1100 (0x44C)
+The physical end of the tape has been reached.
+ERROR_FILEMARK_DETECTED
+1101 (0x44D)
+A tape access reached a filemark.
+ERROR_BEGINNING_OF_MEDIA
+1102 (0x44E)
+The beginning of the tape or a partition was encountered.
+ERROR_SETMARK_DETECTED
+1103 (0x44F)
+A tape access reached the end of a set of files.
+ERROR_NO_DATA_DETECTED
+1104 (0x450)
+No more data is on the tape.
+ERROR_PARTITION_FAILURE
+1105 (0x451)
+Tape could not be partitioned.
+ERROR_INVALID_BLOCK_LENGTH
+1106 (0x452)
+When accessing a new tape of a multivolume partition, the current block size is incorrect.
+ERROR_DEVICE_NOT_PARTITIONED
+1107 (0x453)
+Tape partition information could not be found when loading a tape.
+ERROR_UNABLE_TO_LOCK_MEDIA
+1108 (0x454)
+Unable to lock the media eject mechanism.
+ERROR_UNABLE_TO_UNLOAD_MEDIA
+1109 (0x455)
+Unable to unload the media.
+ERROR_MEDIA_CHANGED
+1110 (0x456)
+The media in the drive may have changed.
+ERROR_BUS_RESET
+1111 (0x457)
+The IO bus was reset.
+ERROR_NO_MEDIA_IN_DRIVE
+1112 (0x458)
+No media in drive.
+ERROR_NO_UNICODE_TRANSLATION
+1113 (0x459)
+No mapping for the Unicode character exists in the target multi-byte code page.
+ERROR_DLL_INIT_FAILED
+1114 (0x45A)
+A dynamic link library (DLL) initialization routine failed.
+ERROR_SHUTDOWN_IN_PROGRESS
+1115 (0x45B)
+A system shutdown is in progress.
+ERROR_NO_SHUTDOWN_IN_PROGRESS
+1116 (0x45C)
+Unable to abort the system shutdown because no shutdown was in progress.
+ERROR_IO_DEVICE
+1117 (0x45D)
+The request could not be performed because of an IO device error.
+ERROR_SERIAL_NO_DEVICE
+1118 (0x45E)
+No serial device was successfully initialized. The serial driver will unload.
+ERROR_IRQ_BUSY
+1119 (0x45F)
+Unable to open a device that was sharing an interrupt request (IRQ) with other devices. At least one other device that uses that IRQ was already opened.
+ERROR_MORE_WRITES
+1120 (0x460)
+A serial IO operation was completed by another write to the serial port. The IOCTL_SERIAL_XOFF_COUNTER reached zero.)
+ERROR_COUNTER_TIMEOUT
+1121 (0x461)
+A serial IO operation completed because the timeout period expired. The IOCTL_SERIAL_XOFF_COUNTER did not reach zero.)
+ERROR_FLOPPY_ID_MARK_NOT_FOUND
+1122 (0x462)
+No ID address mark was found on the floppy disk.
+ERROR_FLOPPY_WRONG_CYLINDER
+1123 (0x463)
+Mismatch between the floppy disk sector ID field and the floppy disk controller track address.
+ERROR_FLOPPY_UNKNOWN_ERROR
+1124 (0x464)
+The floppy disk controller reported an error that is not recognized by the floppy disk driver.
+ERROR_FLOPPY_BAD_REGISTERS
+1125 (0x465)
+The floppy disk controller returned inconsistent results in its registers.
+ERROR_DISK_RECALIBRATE_FAILED
+1126 (0x466)
+While accessing the hard disk, a recalibrate operation failed, even after retries.
+ERROR_DISK_OPERATION_FAILED
+1127 (0x467)
+While accessing the hard disk, a disk operation failed even after retries.
+ERROR_DISK_RESET_FAILED
+1128 (0x468)
+While accessing the hard disk, a disk controller reset was needed, but even that failed.
+ERROR_EOM_OVERFLOW
+1129 (0x469)
+Physical end of tape encountered.
+ERROR_NOT_ENOUGH_SERVER_MEMORY
+1130 (0x46A)
+Not enough server storage is available to process this command.
+ERROR_POSSIBLE_DEADLOCK
+1131 (0x46B)
+A potential deadlock condition has been detected.
+ERROR_MAPPED_ALIGNMENT
+1132 (0x46C)
+The base address or the file offset specified does not have the proper alignment.
+ERROR_SET_POWER_STATE_VETOED
+1140 (0x474)
+An attempt to change the system power state was vetoed by another application or driver.
+ERROR_SET_POWER_STATE_FAILED
+1141 (0x475)
+The system BIOS failed an attempt to change the system power state.
+ERROR_TOO_MANY_LINKS
+1142 (0x476)
+An attempt was made to create more links on a file than the file system supports.
+ERROR_OLD_WIN_VERSION
+1150 (0x47E)
+The specified program requires a newer version of Windows.
+ERROR_APP_WRONG_OS
+1151 (0x47F)
+The specified program is not a Windows or MS-DOS program.
+ERROR_SINGLE_INSTANCE_APP
+1152 (0x480)
+Cannot start more than one instance of the specified program.
+ERROR_RMODE_APP
+1153 (0x481)
+The specified program was written for an earlier version of Windows.
+ERROR_INVALID_DLL
+1154 (0x482)
+One of the library files needed to run this application is damaged.
+ERROR_NO_ASSOCIATION
+1155 (0x483)
+No application is associated with the specified file for this operation.
+ERROR_DDE_FAIL
+1156 (0x484)
+An error occurred in sending the command to the application.
+ERROR_DLL_NOT_FOUND
+1157 (0x485)
+One of the library files needed to run this application cannot be found.
+ERROR_NO_MORE_USER_HANDLES
+1158 (0x486)
+The current process has used all of its system allowance of handles for Window Manager objects.
+ERROR_MESSAGE_SYNC_ONLY
+1159 (0x487)
+The message can be used only with synchronous operations.
+ERROR_SOURCE_ELEMENT_EMPTY
+1160 (0x488)
+The indicated source element has no media.
+ERROR_DESTINATION_ELEMENT_FULL
+1161 (0x489)
+The indicated destination element already contains media.
+ERROR_ILLEGAL_ELEMENT_ADDRESS
+1162 (0x48A)
+The indicated element does not exist.
+ERROR_MAGAZINE_NOT_PRESENT
+1163 (0x48B)
+The indicated element is part of a magazine that is not present.
+ERROR_DEVICE_REINITIALIZATION_NEEDED
+1164 (0x48C)
+The indicated device requires reinitialization due to hardware errors.
+ERROR_DEVICE_REQUIRES_CLEANING
+1165 (0x48D)
+The device has indicated that cleaning is required before further operations are attempted.
+ERROR_DEVICE_DOOR_OPEN
+1166 (0x48E)
+The device has indicated that its door is open.
+ERROR_DEVICE_NOT_CONNECTED
+1167 (0x48F)
+The device is not connected.
+ERROR_NOT_FOUND
+1168 (0x490)
+Element not found.
+ERROR_NO_MATCH
+1169 (0x491)
+There was no match for the specified key in the index.
+ERROR_SET_NOT_FOUND
+1170 (0x492)
+The property set specified does not exist on the object.
+ERROR_POINT_NOT_FOUND
+1171 (0x493)
+The point passed to GetMouseMovePoints is not in the buffer.
+ERROR_NO_TRACKING_SERVICE
+1172 (0x494)
+The tracking (workstation) service is not running.
+ERROR_NO_VOLUME_ID
+1173 (0x495)
+The Volume ID could not be found.
+ERROR_UNABLE_TO_REMOVE_REPLACED
+1175 (0x497)
+Unable to remove the file to be replaced.
+ERROR_UNABLE_TO_MOVE_REPLACEMENT
+1176 (0x498)
+Unable to move the replacement file to the file to be replaced. The file to be replaced has retained its original name.
+ERROR_UNABLE_TO_MOVE_REPLACEMENT_2
+1177 (0x499)
+Unable to move the replacement file to the file to be replaced. The file to be replaced has been renamed using the backup name.
+ERROR_JOURNAL_DELETE_IN_PROGRESS
+1178 (0x49A)
+The volume change journal is being deleted.
+ERROR_JOURNAL_NOT_ACTIVE
+1179 (0x49B)
+The volume change journal is not active.
+ERROR_POTENTIAL_FILE_FOUND
+1180 (0x49C)
+A file was found, but it may not be the correct file.
+ERROR_JOURNAL_ENTRY_DELETED
+1181 (0x49D)
+The journal entry has been deleted from the journal.
+ERROR_SHUTDOWN_IS_SCHEDULED
+1190 (0x4A6)
+A system shutdown has already been scheduled.
+ERROR_SHUTDOWN_USERS_LOGGED_ON
+1191 (0x4A7)
+The system shutdown cannot be initiated because there are other users logged on to the computer.
+ERROR_BAD_DEVICE
+1200 (0x4B0)
+The specified device name is invalid.
+ERROR_CONNECTION_UNAVAIL
+1201 (0x4B1)
+The device is not currently connected but it is a remembered connection.
+ERROR_DEVICE_ALREADY_REMEMBERED
+1202 (0x4B2)
+The local device name has a remembered connection to another network resource.
+ERROR_NO_NET_OR_BAD_PATH
+1203 (0x4B3)
+The network path was either typed incorrectly, does not exist, or the network provider is not currently available. Please try retyping the path or contact your network administrator.
+ERROR_BAD_PROVIDER
+1204 (0x4B4)
+The specified network provider name is invalid.
+ERROR_CANNOT_OPEN_PROFILE
+1205 (0x4B5)
+Unable to open the network connection profile.
+ERROR_BAD_PROFILE
+1206 (0x4B6)
+The network connection profile is corrupted.
+ERROR_NOT_CONTAINER
+1207 (0x4B7)
+Cannot enumerate a noncontainer.
+ERROR_EXTENDED_ERROR
+1208 (0x4B8)
+An extended error has occurred.
+ERROR_INVALID_GROUPNAME
+1209 (0x4B9)
+The format of the specified group name is invalid.
+ERROR_INVALID_COMPUTERNAME
+1210 (0x4BA)
+The format of the specified computer name is invalid.
+ERROR_INVALID_EVENTNAME
+1211 (0x4BB)
+The format of the specified event name is invalid.
+ERROR_INVALID_DOMAINNAME
+1212 (0x4BC)
+The format of the specified domain name is invalid.
+ERROR_INVALID_SERVICENAME
+1213 (0x4BD)
+The format of the specified service name is invalid.
+ERROR_INVALID_NETNAME
+1214 (0x4BE)
+The format of the specified network name is invalid.
+ERROR_INVALID_SHARENAME
+1215 (0x4BF)
+The format of the specified share name is invalid.
+ERROR_INVALID_PASSWORDNAME
+1216 (0x4C0)
+The format of the specified password is invalid.
+ERROR_INVALID_MESSAGENAME
+1217 (0x4C1)
+The format of the specified message name is invalid.
+ERROR_INVALID_MESSAGEDEST
+1218 (0x4C2)
+The format of the specified message destination is invalid.
+ERROR_SESSION_CREDENTIAL_CONFLICT
+1219 (0x4C3)
+Multiple connections to a server or shared resource by the same user, using more than one user name, are not allowed. Disconnect all previous connections to the server or shared resource and try again.
+ERROR_REMOTE_SESSION_LIMIT_EXCEEDED
+1220 (0x4C4)
+An attempt was made to establish a session to a network server, but there are already too many sessions established to that server.
+ERROR_DUP_DOMAINNAME
+1221 (0x4C5)
+The workgroup or domain name is already in use by another computer on the network.
+ERROR_NO_NETWORK
+1222 (0x4C6)
+The network is not present or not started.
+ERROR_CANCELLED
+1223 (0x4C7)
+The operation was canceled by the user.
+ERROR_USER_MAPPED_FILE
+1224 (0x4C8)
+The requested operation cannot be performed on a file with a user-mapped section open.
+ERROR_CONNECTION_REFUSED
+1225 (0x4C9)
+The remote computer refused the network connection.
+ERROR_GRACEFUL_DISCONNECT
+1226 (0x4CA)
+The network connection was gracefully closed.
+ERROR_ADDRESS_ALREADY_ASSOCIATED
+1227 (0x4CB)
+The network transport endpoint already has an address associated with it.
+ERROR_ADDRESS_NOT_ASSOCIATED
+1228 (0x4CC)
+An address has not yet been associated with the network endpoint.
+ERROR_CONNECTION_INVALID
+1229 (0x4CD)
+An operation was attempted on a nonexistent network connection.
+ERROR_CONNECTION_ACTIVE
+1230 (0x4CE)
+An invalid operation was attempted on an active network connection.
+ERROR_NETWORK_UNREACHABLE
+1231 (0x4CF)
+The network location cannot be reached. For information about network troubleshooting, see Windows Help.
+ERROR_HOST_UNREACHABLE
+1232 (0x4D0)
+The network location cannot be reached. For information about network troubleshooting, see Windows Help.
+ERROR_PROTOCOL_UNREACHABLE
+1233 (0x4D1)
+The network location cannot be reached. For information about network troubleshooting, see Windows Help.
+ERROR_PORT_UNREACHABLE
+1234 (0x4D2)
+No service is operating at the destination network endpoint on the remote system.
+ERROR_REQUEST_ABORTED
+1235 (0x4D3)
+The request was aborted.
+ERROR_CONNECTION_ABORTED
+1236 (0x4D4)
+The network connection was aborted by the local system.
+ERROR_RETRY
+1237 (0x4D5)
+The operation could not be completed. A retry should be performed.
+ERROR_CONNECTION_COUNT_LIMIT
+1238 (0x4D6)
+A connection to the server could not be made because the limit on the number of concurrent connections for this account has been reached.
+ERROR_LOGIN_TIME_RESTRICTION
+1239 (0x4D7)
+Attempting to log in during an unauthorized time of day for this account.
+ERROR_LOGIN_WKSTA_RESTRICTION
+1240 (0x4D8)
+The account is not authorized to log in from this station.
+ERROR_INCORRECT_ADDRESS
+1241 (0x4D9)
+The network address could not be used for the operation requested.
+ERROR_ALREADY_REGISTERED
+1242 (0x4DA)
+The service is already registered.
+ERROR_SERVICE_NOT_FOUND
+1243 (0x4DB)
+The specified service does not exist.
+ERROR_NOT_AUTHENTICATED
+1244 (0x4DC)
+The operation being requested was not performed because the user has not been authenticated.
+ERROR_NOT_LOGGED_ON
+1245 (0x4DD)
+The operation being requested was not performed because the user has not logged on to the network. The specified service does not exist.
+ERROR_CONTINUE
+1246 (0x4DE)
+Continue with work in progress.
+ERROR_ALREADY_INITIALIZED
+1247 (0x4DF)
+An attempt was made to perform an initialization operation when initialization has already been completed.
+ERROR_NO_MORE_DEVICES
+1248 (0x4E0)
+No more local devices.
+ERROR_NO_SUCH_SITE
+1249 (0x4E1)
+The specified site does not exist.
+ERROR_DOMAIN_CONTROLLER_EXISTS
+1250 (0x4E2)
+A domain controller with the specified name already exists.
+ERROR_ONLY_IF_CONNECTED
+1251 (0x4E3)
+This operation is supported only when you are connected to the server.
+ERROR_OVERRIDE_NOCHANGES
+1252 (0x4E4)
+The group policy framework should call the extension even if there are no changes.
+ERROR_BAD_USER_PROFILE
+1253 (0x4E5)
+The specified user does not have a valid profile.
+ERROR_NOT_SUPPORTED_ON_SBS
+1254 (0x4E6)
+This operation is not supported on a computer running Windows Server 2003 for Small Business Server
+ERROR_SERVER_SHUTDOWN_IN_PROGRESS
+1255 (0x4E7)
+The server machine is shutting down.
+ERROR_HOST_DOWN
+1256 (0x4E8)
+The remote system is not available. For information about network troubleshooting, see Windows Help.
+ERROR_NON_ACCOUNT_SID
+1257 (0x4E9)
+The security identifier provided is not from an account domain.
+ERROR_NON_DOMAIN_SID
+1258 (0x4EA)
+The security identifier provided does not have a domain component.
+ERROR_APPHELP_BLOCK
+1259 (0x4EB)
+AppHelp dialog canceled thus preventing the application from starting.
+ERROR_ACCESS_DISABLED_BY_POLICY
+1260 (0x4EC)
+This program is blocked by group policy. For more information, contact your system administrator.
+ERROR_REG_NAT_CONSUMPTION
+1261 (0x4ED)
+A program attempt to use an invalid register value.  Normally caused by an uninitialized register. This error is Itanium specific.
+ERROR_CSCSHARE_OFFLINE
+1262 (0x4EE)
+The share is currently offline or does not exist.
+ERROR_PKINIT_FAILURE
+1263 (0x4EF)
+The Kerberos protocol encountered an error while validating the KDC certificate during smartcard logon.  There is more information in the system event log.
+ERROR_SMARTCARD_SUBSYSTEM_FAILURE
+1264 (0x4F0)
+The Kerberos protocol encountered an error while attempting to utilize the smartcard subsystem.
+ERROR_DOWNGRADE_DETECTED
+1265 (0x4F1)
+The system detected a possible attempt to compromise security. Please ensure that you can contact the server that authenticated you.
+ERROR_MACHINE_LOCKED
+1271 (0x4F7)
+The machine is locked and cannot be shut down without the force option.
+ERROR_CALLBACK_SUPPLIED_INVALID_DATA
+1273 (0x4F9)
+An application-defined callback gave invalid data when called.
+ERROR_SYNC_FOREGROUND_REFRESH_REQUIRED
+1274 (0x4FA)
+The group policy framework should call the extension in the synchronous foreground policy refresh.
+ERROR_DRIVER_BLOCKED
+1275 (0x4FB)
+This driver has been blocked from loading
+ERROR_INVALID_IMPORT_OF_NON_DLL
+1276 (0x4FC)
+A dynamic link library (DLL) referenced a module that was neither a DLL nor the process's executable image.
+ERROR_ACCESS_DISABLED_WEBBLADE
+1277 (0x4FD)
+Windows cannot open this program since it has been disabled.
+ERROR_ACCESS_DISABLED_WEBBLADE_TAMPER
+1278 (0x4FE)
+Windows cannot open this program because the license enforcement system has been tampered with or become corrupted.
+ERROR_RECOVERY_FAILURE
+1279 (0x4FF)
+A transaction recover failed.
+ERROR_ALREADY_FIBER
+1280 (0x500)
+The current thread has already been converted to a fiber.
+ERROR_ALREADY_THREAD
+1281 (0x501)
+The current thread has already been converted from a fiber.
+ERROR_STACK_BUFFER_OVERRUN
+1282 (0x502)
+The system detected an overrun of a stack-based buffer in this application.  This overrun could potentially allow a malicious user to gain control of this application.
+ERROR_PARAMETER_QUOTA_EXCEEDED
+1283 (0x503)
+Data present in one of the parameters is more than the function can operate on.
+ERROR_DEBUGGER_INACTIVE
+1284 (0x504)
+An attempt to do an operation on a debug object failed because the object is in the process of being deleted.
+ERROR_DELAY_LOAD_FAILED
+1285 (0x505)
+An attempt to delay-load a .dll or get a function address in a delay-loaded .dll failed.
+ERROR_VDM_DISALLOWED
+1286 (0x506)
+%1 is a 16-bit application. You do not have permissions to execute 16-bit applications. Check your permissions with your system administrator.
+ERROR_UNIDENTIFIED_ERROR
+1287 (0x507)
+Insufficient information exists to identify the cause of failure.
+ERROR_INVALID_CRUNTIME_PARAMETER
+1288 (0x508)
+The parameter passed to a C runtime function is incorrect.
+ERROR_BEYOND_VDL
+1289 (0x509)
+The operation occurred beyond the valid data length of the file.
+ERROR_INCOMPATIBLE_SERVICE_SID_TYPE
+1290 (0x50A)
+The service start failed since one or more services in the same process have an incompatible service SID type setting.  A service with restricted service SID type can only coexist in the same process with other services with a restricted SID type. If the service SID type for this service was just configured, the hosting process must be restarted in order to start this service.
+On Windows Server 2003 and Windows XP, an unrestricted service cannot coexist in the same process with other services. The service with the unrestricted service SID type must be moved to an owned process in order to start this service.
+ERROR_DRIVER_PROCESS_TERMINATED
+1291 (0x50B)
+The process hosting the driver for this device has been terminated.
+ERROR_IMPLEMENTATION_LIMIT
+1292 (0x50C)
+An operation attempted to exceed an implementation-defined limit.
+ERROR_PROCESS_IS_PROTECTED
+1293 (0x50D)
+Either the target process, or the target thread's containing process, is a protected process.
+ERROR_SERVICE_NOTIFY_CLIENT_LAGGING
+1294 (0x50E)
+The service notification client is lagging too far behind the current state of services in the machine.
+ERROR_DISK_QUOTA_EXCEEDED
+1295 (0x50F)
+The requested file operation failed because the storage quota was exceeded. To free up disk space, move files to a different location or delete unnecessary files. For more information, contact your system administrator.
+ERROR_CONTENT_BLOCKED
+1296 (0x510)
+The requested files operation failed because the storage policy blocks that type of file. For more information, contact your system administrator.
+ERROR_INCOMPATIBLE_SERVICE_PRIVILEGE
+1297 (0x511)
+A privilege that the service requires to function properly does not exist in the service account configuration.  
+ERROR_APP_HANG
+1298 (0x512)
+A thread involved in this operation appears to be unresponsive.
+ERROR_INVALID_LABEL
+1299 (0x513)
+Indicates a particular Security ID may not be assigned as the label of an object.
+
+Minimum supported client
+Minimum supported server
+Header
+
+
+ 
+ 
+
+Build date: 2102011

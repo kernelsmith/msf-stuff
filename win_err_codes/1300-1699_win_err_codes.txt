@@ -1,0 +1,706 @@
+
+
+
+The System Error Codes are very broad.  Each one can occur in one of many hundreds of locations in the system.  Consequently the descriptions of these codes cannot be very specific.  Use of these codes requires some amount of investigation and analysis.  You need to note both the programmatic and the run-time context in which these errors occur.  Because these codes are defined in winerror.h for anyone to use, sometimes the codes are returned by non-system software.  Sometimes the code is returned by a function deep in the stack and far removed from your code that is handling the error.
+The table in this topic provides a list of 
+
+ERROR_NOT_ALL_ASSIGNED
+1300 (0x514)
+Not all privileges or groups referenced are assigned to the caller.
+ERROR_SOME_NOT_MAPPED
+1301 (0x515)
+Some mapping between account names and security IDs was not done.
+ERROR_NO_QUOTAS_FOR_ACCOUNT
+1302 (0x516)
+No system quota limits are specifically set for this account.
+ERROR_LOCAL_USER_SESSION_KEY
+1303 (0x517)
+No encryption key is available. A well-known encryption key was returned.
+ERROR_NULL_LM_PASSWORD
+1304 (0x518)
+The password is too complex to be converted to a LAN Manager password. The LAN Manager password returned is a NULL string.
+ERROR_UNKNOWN_REVISION
+1305 (0x519)
+The revision level is unknown.
+ERROR_REVISION_MISMATCH
+1306 (0x51A)
+Indicates two revision levels are incompatible.
+ERROR_INVALID_OWNER
+1307 (0x51B)
+This security ID may not be assigned as the owner of this object.
+ERROR_INVALID_PRIMARY_GROUP
+1308 (0x51C)
+This security ID may not be assigned as the primary group of an object.
+ERROR_NO_IMPERSONATION_TOKEN
+1309 (0x51D)
+An attempt has been made to operate on an impersonation token by a thread that is not currently impersonating a client.
+ERROR_CANT_DISABLE_MANDATORY
+1310 (0x51E)
+The group may not be disabled.
+ERROR_NO_LOGON_SERVERS
+1311 (0x51F)
+There are currently no logon servers available to service the logon request.
+ERROR_NO_SUCH_LOGON_SESSION
+1312 (0x520)
+A specified logon session does not exist. It may already have been terminated.
+ERROR_NO_SUCH_PRIVILEGE
+1313 (0x521)
+A specified privilege does not exist.
+ERROR_PRIVILEGE_NOT_HELD
+1314 (0x522)
+A required privilege is not held by the client.
+ERROR_INVALID_ACCOUNT_NAME
+1315 (0x523)
+The name provided is not a properly formed account name.
+ERROR_USER_EXISTS
+1316 (0x524)
+The specified account already exists.
+ERROR_NO_SUCH_USER
+1317 (0x525)
+The specified account does not exist.
+ERROR_GROUP_EXISTS
+1318 (0x526)
+The specified group already exists.
+ERROR_NO_SUCH_GROUP
+1319 (0x527)
+The specified group does not exist.
+ERROR_MEMBER_IN_GROUP
+1320 (0x528)
+Either the specified user account is already a member of the specified group, or the specified group cannot be deleted because it contains a member.
+ERROR_MEMBER_NOT_IN_GROUP
+1321 (0x529)
+The specified user account is not a member of the specified group account.
+ERROR_LAST_ADMIN
+1322 (0x52A)
+The last remaining administration account cannot be disabled or deleted.
+ERROR_WRONG_PASSWORD
+1323 (0x52B)
+Unable to update the password. The value provided as the current password is incorrect.
+ERROR_ILL_FORMED_PASSWORD
+1324 (0x52C)
+Unable to update the password. The value provided for the new password contains values that are not allowed in passwords.
+ERROR_PASSWORD_RESTRICTION
+1325 (0x52D)
+Unable to update the password. The value provided for the new password does not meet the length, complexity, or history requirements of the domain.
+ERROR_LOGON_FAILURE
+1326 (0x52E)
+Logon failure: unknown user name or bad password.
+ERROR_ACCOUNT_RESTRICTION
+1327 (0x52F)
+Logon failure: user account restriction.  Possible reasons are blank passwords not allowed, logon hour restrictions, or a policy restriction has been enforced.
+ERROR_INVALID_LOGON_HOURS
+1328 (0x530)
+Logon failure: account logon time restriction violation.
+ERROR_INVALID_WORKSTATION
+1329 (0x531)
+Logon failure: user not allowed to log on to this computer.
+ERROR_PASSWORD_EXPIRED
+1330 (0x532)
+Logon failure: the specified account password has expired.
+ERROR_ACCOUNT_DISABLED
+1331 (0x533)
+Logon failure: account currently disabled.
+ERROR_NONE_MAPPED
+1332 (0x534)
+No mapping between account names and security IDs was done.
+ERROR_TOO_MANY_LUIDS_REQUESTED
+1333 (0x535)
+Too many local user identifiers (LUIDs) were requested at one time.
+ERROR_LUIDS_EXHAUSTED
+1334 (0x536)
+No more local user identifiers (LUIDs) are available.
+ERROR_INVALID_SUB_AUTHORITY
+1335 (0x537)
+The subauthority part of a security ID is invalid for this particular use.
+ERROR_INVALID_ACL
+1336 (0x538)
+The access control list (ACL) structure is invalid.
+ERROR_INVALID_SID
+1337 (0x539)
+The security ID structure is invalid.
+ERROR_INVALID_SECURITY_DESCR
+1338 (0x53A)
+The security descriptor structure is invalid.
+ERROR_BAD_INHERITANCE_ACL
+1340 (0x53C)
+The inherited access control list (ACL) or access control entry (ACE) could not be built.
+ERROR_SERVER_DISABLED
+1341 (0x53D)
+The server is currently disabled.
+ERROR_SERVER_NOT_DISABLED
+1342 (0x53E)
+The server is currently enabled.
+ERROR_INVALID_ID_AUTHORITY
+1343 (0x53F)
+The value provided was an invalid value for an identifier authority.
+ERROR_ALLOTTED_SPACE_EXCEEDED
+1344 (0x540)
+No more memory is available for security information updates.
+ERROR_INVALID_GROUP_ATTRIBUTES
+1345 (0x541)
+The specified attributes are invalid, or incompatible with the attributes for the group as a whole.
+ERROR_BAD_IMPERSONATION_LEVEL
+1346 (0x542)
+Either a required impersonation level was not provided, or the provided impersonation level is invalid.
+ERROR_CANT_OPEN_ANONYMOUS
+1347 (0x543)
+Cannot open an anonymous level security token.
+ERROR_BAD_VALIDATION_CLASS
+1348 (0x544)
+The validation information class requested was invalid.
+ERROR_BAD_TOKEN_TYPE
+1349 (0x545)
+The type of the token is inappropriate for its attempted use.
+ERROR_NO_SECURITY_ON_OBJECT
+1350 (0x546)
+Unable to perform a security operation on an object that has no associated security.
+ERROR_CANT_ACCESS_DOMAIN_INFO
+1351 (0x547)
+Configuration information could not be read from the domain controller, either because the machine is unavailable, or access has been denied.
+ERROR_INVALID_SERVER_STATE
+1352 (0x548)
+The security account manager (SAM) or local security authority (LSA) server was in the wrong state to perform the security operation.
+ERROR_INVALID_DOMAIN_STATE
+1353 (0x549)
+The domain was in the wrong state to perform the security operation.
+ERROR_INVALID_DOMAIN_ROLE
+1354 (0x54A)
+This operation is only allowed for the Primary Domain Controller of the domain.
+ERROR_NO_SUCH_DOMAIN
+1355 (0x54B)
+The specified domain either does not exist or could not be contacted.
+ERROR_DOMAIN_EXISTS
+1356 (0x54C)
+The specified domain already exists.
+ERROR_DOMAIN_LIMIT_EXCEEDED
+1357 (0x54D)
+An attempt was made to exceed the limit on the number of domains per server.
+ERROR_INTERNAL_DB_CORRUPTION
+1358 (0x54E)
+Unable to complete the requested operation because of either a catastrophic media failure or a data structure corruption on the disk.
+ERROR_INTERNAL_ERROR
+1359 (0x54F)
+An internal error occurred.
+ERROR_GENERIC_NOT_MAPPED
+1360 (0x550)
+Generic access types were contained in an access mask which should already be mapped to nongeneric types.
+ERROR_BAD_DESCRIPTOR_FORMAT
+1361 (0x551)
+A security descriptor is not in the right format (absolute or self-relative).
+ERROR_NOT_LOGON_PROCESS
+1362 (0x552)
+The requested action is restricted for use by logon processes only. The calling process has not registered as a logon process.
+ERROR_LOGON_SESSION_EXISTS
+1363 (0x553)
+Cannot start a new logon session with an ID that is already in use.
+ERROR_NO_SUCH_PACKAGE
+1364 (0x554)
+A specified authentication package is unknown.
+ERROR_BAD_LOGON_SESSION_STATE
+1365 (0x555)
+The logon session is not in a state that is consistent with the requested operation.
+ERROR_LOGON_SESSION_COLLISION
+1366 (0x556)
+The logon session ID is already in use.
+ERROR_INVALID_LOGON_TYPE
+1367 (0x557)
+A logon request contained an invalid logon type value.
+ERROR_CANNOT_IMPERSONATE
+1368 (0x558)
+Unable to impersonate using a named pipe until data has been read from that pipe.
+ERROR_RXACT_INVALID_STATE
+1369 (0x559)
+The transaction state of a registry subtree is incompatible with the requested operation.
+ERROR_RXACT_COMMIT_FAILURE
+1370 (0x55A)
+An internal security database corruption has been encountered.
+ERROR_SPECIAL_ACCOUNT
+1371 (0x55B)
+Cannot perform this operation on built-in accounts.
+ERROR_SPECIAL_GROUP
+1372 (0x55C)
+Cannot perform this operation on this built-in special group.
+ERROR_SPECIAL_USER
+1373 (0x55D)
+Cannot perform this operation on this built-in special user.
+ERROR_MEMBERS_PRIMARY_GROUP
+1374 (0x55E)
+The user cannot be removed from a group because the group is currently the user's primary group.
+ERROR_TOKEN_ALREADY_IN_USE
+1375 (0x55F)
+The token is already in use as a primary token.
+ERROR_NO_SUCH_ALIAS
+1376 (0x560)
+The specified local group does not exist.
+ERROR_MEMBER_NOT_IN_ALIAS
+1377 (0x561)
+The specified account name is not a member of the group.
+ERROR_MEMBER_IN_ALIAS
+1378 (0x562)
+The specified account name is already a member of the group.
+ERROR_ALIAS_EXISTS
+1379 (0x563)
+The specified local group already exists.
+ERROR_LOGON_NOT_GRANTED
+1380 (0x564)
+Logon failure: the user has not been granted the requested logon type at this computer.
+ERROR_TOO_MANY_SECRETS
+1381 (0x565)
+The maximum number of secrets that may be stored in a single system has been exceeded.
+ERROR_SECRET_TOO_LONG
+1382 (0x566)
+The length of a secret exceeds the maximum length allowed.
+ERROR_INTERNAL_DB_ERROR
+1383 (0x567)
+The local security authority database contains an internal inconsistency.
+ERROR_TOO_MANY_CONTEXT_IDS
+1384 (0x568)
+During a logon attempt, the user's security context accumulated too many security IDs.
+ERROR_LOGON_TYPE_NOT_GRANTED
+1385 (0x569)
+Logon failure: the user has not been granted the requested logon type at this computer.
+ERROR_NT_CROSS_ENCRYPTION_REQUIRED
+1386 (0x56A)
+A cross-encrypted password is necessary to change a user password.
+ERROR_NO_SUCH_MEMBER
+1387 (0x56B)
+A member could not be added to or removed from the local group because the member does not exist.
+ERROR_INVALID_MEMBER
+1388 (0x56C)
+A new member could not be added to a local group because the member has the wrong account type.
+ERROR_TOO_MANY_SIDS
+1389 (0x56D)
+Too many security IDs have been specified.
+ERROR_LM_CROSS_ENCRYPTION_REQUIRED
+1390 (0x56E)
+A cross-encrypted password is necessary to change this user password.
+ERROR_NO_INHERITANCE
+1391 (0x56F)
+Indicates an ACL contains no inheritable components.
+ERROR_FILE_CORRUPT
+1392 (0x570)
+The file or directory is corrupted and unreadable.
+ERROR_DISK_CORRUPT
+1393 (0x571)
+The disk structure is corrupted and unreadable.
+ERROR_NO_USER_SESSION_KEY
+1394 (0x572)
+There is no user session key for the specified logon session.
+ERROR_LICENSE_QUOTA_EXCEEDED
+1395 (0x573)
+The service being accessed is licensed for a particular number of connections. No more connections can be made to the service at this time because there are already as many connections as the service can accept.
+ERROR_WRONG_TARGET_NAME
+1396 (0x574)
+Logon Failure: The target account name is incorrect.
+ERROR_MUTUAL_AUTH_FAILED
+1397 (0x575)
+Mutual Authentication failed. The server's password is out of date at the domain controller.
+ERROR_TIME_SKEW
+1398 (0x576)
+There is a time andor date difference between the client and server.
+ERROR_CURRENT_DOMAIN_NOT_ALLOWED
+1399 (0x577)
+This operation cannot be performed on the current domain.
+ERROR_INVALID_WINDOW_HANDLE
+1400 (0x578)
+Invalid window handle.
+ERROR_INVALID_MENU_HANDLE
+1401 (0x579)
+Invalid menu handle.
+ERROR_INVALID_CURSOR_HANDLE
+1402 (0x57A)
+Invalid cursor handle.
+ERROR_INVALID_ACCEL_HANDLE
+1403 (0x57B)
+Invalid accelerator table handle.
+ERROR_INVALID_HOOK_HANDLE
+1404 (0x57C)
+Invalid hook handle.
+ERROR_INVALID_DWP_HANDLE
+1405 (0x57D)
+Invalid handle to a multiple-window position structure.
+ERROR_TLW_WITH_WSCHILD
+1406 (0x57E)
+Cannot create a top-level child window.
+ERROR_CANNOT_FIND_WND_CLASS
+1407 (0x57F)
+Cannot find window class.
+ERROR_WINDOW_OF_OTHER_THREAD
+1408 (0x580)
+Invalid window; it belongs to other thread.
+ERROR_HOTKEY_ALREADY_REGISTERED
+1409 (0x581)
+Hot key is already registered.
+ERROR_CLASS_ALREADY_EXISTS
+1410 (0x582)
+Class already exists.
+ERROR_CLASS_DOES_NOT_EXIST
+1411 (0x583)
+Class does not exist.
+ERROR_CLASS_HAS_WINDOWS
+1412 (0x584)
+Class still has open windows.
+ERROR_INVALID_INDEX
+1413 (0x585)
+Invalid index.
+ERROR_INVALID_ICON_HANDLE
+1414 (0x586)
+Invalid icon handle.
+ERROR_PRIVATE_DIALOG_INDEX
+1415 (0x587)
+Using private DIALOG window words.
+ERROR_LISTBOX_ID_NOT_FOUND
+1416 (0x588)
+The list box identifier was not found.
+ERROR_NO_WILDCARD_CHARACTERS
+1417 (0x589)
+No wildcards were found.
+ERROR_CLIPBOARD_NOT_OPEN
+1418 (0x58A)
+Thread does not have a clipboard open.
+ERROR_HOTKEY_NOT_REGISTERED
+1419 (0x58B)
+Hot key is not registered.
+ERROR_WINDOW_NOT_DIALOG
+1420 (0x58C)
+The window is not a valid dialog window.
+ERROR_CONTROL_ID_NOT_FOUND
+1421 (0x58D)
+Control ID not found.
+ERROR_INVALID_COMBOBOX_MESSAGE
+1422 (0x58E)
+Invalid message for a combo box because it does not have an edit control.
+ERROR_WINDOW_NOT_COMBOBOX
+1423 (0x58F)
+The window is not a combo box.
+ERROR_INVALID_EDIT_HEIGHT
+1424 (0x590)
+Height must be less than 256.
+ERROR_DC_NOT_FOUND
+1425 (0x591)
+Invalid device context (DC) handle.
+ERROR_INVALID_HOOK_FILTER
+1426 (0x592)
+Invalid hook procedure type.
+ERROR_INVALID_FILTER_PROC
+1427 (0x593)
+Invalid hook procedure.
+ERROR_HOOK_NEEDS_HMOD
+1428 (0x594)
+Cannot set nonlocal hook without a module handle.
+ERROR_GLOBAL_ONLY_HOOK
+1429 (0x595)
+This hook procedure can only be set globally.
+ERROR_JOURNAL_HOOK_SET
+1430 (0x596)
+The journal hook procedure is already installed.
+ERROR_HOOK_NOT_INSTALLED
+1431 (0x597)
+The hook procedure is not installed.
+ERROR_INVALID_LB_MESSAGE
+1432 (0x598)
+Invalid message for single-selection list box.
+ERROR_SETCOUNT_ON_BAD_LB
+1433 (0x599)
+LB_SETCOUNT sent to non-lazy list box.
+ERROR_LB_WITHOUT_TABSTOPS
+1434 (0x59A)
+This list box does not support tab stops.
+ERROR_DESTROY_OBJECT_OF_OTHER_THREAD
+1435 (0x59B)
+Cannot destroy object created by another thread.
+ERROR_CHILD_WINDOW_MENU
+1436 (0x59C)
+Child windows cannot have menus.
+ERROR_NO_SYSTEM_MENU
+1437 (0x59D)
+The window does not have a system menu.
+ERROR_INVALID_MSGBOX_STYLE
+1438 (0x59E)
+Invalid message box style.
+ERROR_INVALID_SPI_VALUE
+1439 (0x59F)
+Invalid system-wide (SPI_*) parameter.
+ERROR_SCREEN_ALREADY_LOCKED
+1440 (0x5A0)
+Screen already locked.
+ERROR_HWNDS_HAVE_DIFF_PARENT
+1441 (0x5A1)
+All handles to windows in a multiple-window position structure must have the same parent.
+ERROR_NOT_CHILD_WINDOW
+1442 (0x5A2)
+The window is not a child window.
+ERROR_INVALID_GW_COMMAND
+1443 (0x5A3)
+Invalid GW_* command.
+ERROR_INVALID_THREAD_ID
+1444 (0x5A4)
+Invalid thread identifier.
+ERROR_NON_MDICHILD_WINDOW
+1445 (0x5A5)
+Cannot process a message from a window that is not a multiple document interface (MDI) window.
+ERROR_POPUP_ALREADY_ACTIVE
+1446 (0x5A6)
+Popup menu already active.
+ERROR_NO_SCROLLBARS
+1447 (0x5A7)
+The window does not have scroll bars.
+ERROR_INVALID_SCROLLBAR_RANGE
+1448 (0x5A8)
+Scroll bar range cannot be greater than MAXLONG.
+ERROR_INVALID_SHOWWIN_COMMAND
+1449 (0x5A9)
+Cannot show or remove the window in the way specified.
+ERROR_NO_SYSTEM_RESOURCES
+1450 (0x5AA)
+Insufficient system resources exist to complete the requested service.
+ERROR_NONPAGED_SYSTEM_RESOURCES
+1451 (0x5AB)
+Insufficient system resources exist to complete the requested service.
+ERROR_PAGED_SYSTEM_RESOURCES
+1452 (0x5AC)
+Insufficient system resources exist to complete the requested service.
+ERROR_WORKING_SET_QUOTA
+1453 (0x5AD)
+Insufficient quota to complete the requested service.
+ERROR_PAGEFILE_QUOTA
+1454 (0x5AE)
+Insufficient quota to complete the requested service.
+ERROR_COMMITMENT_LIMIT
+1455 (0x5AF)
+The paging file is too small for this operation to complete.
+ERROR_MENU_ITEM_NOT_FOUND
+1456 (0x5B0)
+A menu item was not found.
+ERROR_INVALID_KEYBOARD_HANDLE
+1457 (0x5B1)
+Invalid keyboard layout handle.
+ERROR_HOOK_TYPE_NOT_ALLOWED
+1458 (0x5B2)
+Hook type not allowed.
+ERROR_REQUIRES_INTERACTIVE_WINDOWSTATION
+1459 (0x5B3)
+This operation requires an interactive window station.
+ERROR_TIMEOUT
+1460 (0x5B4)
+This operation returned because the timeout period expired.
+ERROR_INVALID_MONITOR_HANDLE
+1461 (0x5B5)
+Invalid monitor handle.
+ERROR_INCORRECT_SIZE
+1462 (0x5B6)
+Incorrect size argument.
+ERROR_SYMLINK_CLASS_DISABLED
+1463 (0x5B7)
+The symbolic link cannot be followed because its type is disabled.
+ERROR_SYMLINK_NOT_SUPPORTED
+1464 (0x5B8)
+This application does not support the current operation on  symbolic links.
+ERROR_XML_PARSE_ERROR
+1465 (0x5B9)
+Windows was unable to parse the requested XML data.
+ERROR_XMLDSIG_ERROR
+1466 (0x5BA)
+An error was encountered while processing an XML digital signature.
+ERROR_RESTART_APPLICATION
+1467 (0x5BB)
+This application must be restarted.
+ERROR_WRONG_COMPARTMENT
+1468 (0x5BC)
+The caller made the connection request in the wrong routing compartment.
+ERROR_AUTHIP_FAILURE
+1469 (0x5BD)
+There was an AuthIP failure when attempting to connect to the remote host.
+ERROR_NO_NVRAM_RESOURCES
+1470 (0x5BE)
+Insufficient NVRAM resources exist to complete the requested service. A reboot might be required.
+ERROR_EVENTLOG_FILE_CORRUPT
+1500 (0x5DC)
+The event log file is corrupted.
+ERROR_EVENTLOG_CANT_START
+1501 (0x5DD)
+No event log file could be opened, so the event logging service did not start.
+ERROR_LOG_FILE_FULL
+1502 (0x5DE)
+The event log file is full.
+ERROR_EVENTLOG_FILE_CHANGED
+1503 (0x5DF)
+The event log file has changed between read operations.
+ERROR_INVALID_TASK_NAME
+1550 (0x60E)
+The specified task name is invalid.
+ERROR_INVALID_TASK_INDEX
+1551 (0x60F)
+The specified task index is invalid.
+ERROR_THREAD_ALREADY_IN_TASK
+1552 (0x610)
+The specified thread is already joining a task.
+ERROR_INSTALL_SERVICE_FAILURE
+1601 (0x641)
+The Windows Installer Service could not be accessed. This can occur if the Windows Installer is not correctly installed. Contact your support personnel for assistance.
+ERROR_INSTALL_USEREXIT
+1602 (0x642)
+User canceled installation.
+ERROR_INSTALL_FAILURE
+1603 (0x643)
+Fatal error during installation.
+ERROR_INSTALL_SUSPEND
+1604 (0x644)
+Installation suspended, incomplete.
+ERROR_UNKNOWN_PRODUCT
+1605 (0x645)
+This action is only valid for products that are currently installed.
+ERROR_UNKNOWN_FEATURE
+1606 (0x646)
+Feature ID not registered.
+ERROR_UNKNOWN_COMPONENT
+1607 (0x647)
+Component ID not registered.
+ERROR_UNKNOWN_PROPERTY
+1608 (0x648)
+Unknown property.
+ERROR_INVALID_HANDLE_STATE
+1609 (0x649)
+A handle is in an invalid state.
+ERROR_BAD_CONFIGURATION
+1610 (0x64A)
+The configuration data for this product is corrupt.  Contact your support personnel.
+ERROR_INDEX_ABSENT
+1611 (0x64B)
+Component qualifier not present.
+ERROR_INSTALL_SOURCE_ABSENT
+1612 (0x64C)
+The installation source for this product is not available.  Verify that the source exists and that you can access it.
+ERROR_INSTALL_PACKAGE_VERSION
+1613 (0x64D)
+This installation package cannot be installed by the Windows Installer service.  You must install a Windows service pack that contains a newer version of the Windows Installer service.
+ERROR_PRODUCT_UNINSTALLED
+1614 (0x64E)
+Product is uninstalled.
+ERROR_BAD_QUERY_SYNTAX
+1615 (0x64F)
+SQL query syntax invalid or unsupported.
+ERROR_INVALID_FIELD
+1616 (0x650)
+Record field does not exist.
+ERROR_DEVICE_REMOVED
+1617 (0x651)
+The device has been removed.
+ERROR_INSTALL_ALREADY_RUNNING
+1618 (0x652)
+Another installation is already in progress.  Complete that installation before proceeding with this install.
+ERROR_INSTALL_PACKAGE_OPEN_FAILED
+1619 (0x653)
+This installation package could not be opened.  Verify that the package exists and that you can access it, or contact the application vendor to verify that this is a valid Windows Installer package.
+ERROR_INSTALL_PACKAGE_INVALID
+1620 (0x654)
+This installation package could not be opened.  Contact the application vendor to verify that this is a valid Windows Installer package.
+ERROR_INSTALL_UI_FAILURE
+1621 (0x655)
+There was an error starting the Windows Installer service user interface.  Contact your support personnel.
+ERROR_INSTALL_LOG_FAILURE
+1622 (0x656)
+Error opening installation log file. Verify that the specified log file location exists and that you can write to it.
+ERROR_INSTALL_LANGUAGE_UNSUPPORTED
+1623 (0x657)
+The language of this installation package is not supported by your system.
+ERROR_INSTALL_TRANSFORM_FAILURE
+1624 (0x658)
+Error applying transforms.  Verify that the specified transform paths are valid.
+ERROR_INSTALL_PACKAGE_REJECTED
+1625 (0x659)
+This installation is forbidden by system policy.  Contact your system administrator.
+ERROR_FUNCTION_NOT_CALLED
+1626 (0x65A)
+Function could not be executed.
+ERROR_FUNCTION_FAILED
+1627 (0x65B)
+Function failed during execution.
+ERROR_INVALID_TABLE
+1628 (0x65C)
+Invalid or unknown table specified.
+ERROR_DATATYPE_MISMATCH
+1629 (0x65D)
+Data supplied is of wrong type.
+ERROR_UNSUPPORTED_TYPE
+1630 (0x65E)
+Data of this type is not supported.
+ERROR_CREATE_FAILED
+1631 (0x65F)
+The Windows Installer service failed to start.  Contact your support personnel.
+ERROR_INSTALL_TEMP_UNWRITABLE
+1632 (0x660)
+The Temp folder is on a drive that is full or is inaccessible. Free up space on the drive or verify that you have write permission on the Temp folder.
+ERROR_INSTALL_PLATFORM_UNSUPPORTED
+1633 (0x661)
+This installation package is not supported by this processor type. Contact your product vendor.
+ERROR_INSTALL_NOTUSED
+1634 (0x662)
+Component not used on this computer.
+ERROR_PATCH_PACKAGE_OPEN_FAILED
+1635 (0x663)
+This update package could not be opened.  Verify that the update package exists and that you can access it, or contact the application vendor to verify that this is a valid Windows Installer update package.
+ERROR_PATCH_PACKAGE_INVALID
+1636 (0x664)
+This update package could not be opened.  Contact the application vendor to verify that this is a valid Windows Installer update package.
+ERROR_PATCH_PACKAGE_UNSUPPORTED
+1637 (0x665)
+This update package cannot be processed by the Windows Installer service.  You must install a Windows service pack that contains a newer version of the Windows Installer service.
+ERROR_PRODUCT_VERSION
+1638 (0x666)
+Another version of this product is already installed.  Installation of this version cannot continue.  To configure or remove the existing version of this product, use AddRemove Programs on the Control Panel.
+ERROR_INVALID_COMMAND_LINE
+1639 (0x667)
+Invalid command line argument.  Consult the Windows Installer SDK for detailed command line help.
+ERROR_INSTALL_REMOTE_DISALLOWED
+1640 (0x668)
+Only administrators have permission to add, remove, or configure server software during a Terminal services remote session. If you want to install or configure software on the server, contact your network administrator.
+ERROR_SUCCESS_REBOOT_INITIATED
+1641 (0x669)
+The requested operation completed successfully.  The system will be restarted so the changes can take effect.
+ERROR_PATCH_TARGET_NOT_FOUND
+1642 (0x66A)
+The upgrade cannot be installed by the Windows Installer service because the program to be upgraded may be missing, or the upgrade may update a different version of the program. Verify that the program to be upgraded exists on your computer and that you have the correct upgrade.
+ERROR_PATCH_PACKAGE_REJECTED
+1643 (0x66B)
+The update package is not permitted by software restriction policy.
+ERROR_INSTALL_TRANSFORM_REJECTED
+1644 (0x66C)
+One or more customizations are not permitted by software restriction policy.
+ERROR_INSTALL_REMOTE_PROHIBITED
+1645 (0x66D)
+The Windows Installer does not permit installation from a Remote Desktop Connection.
+ERROR_PATCH_REMOVAL_UNSUPPORTED
+1646 (0x66E)
+Uninstallation of the update package is not supported.
+ERROR_UNKNOWN_PATCH
+1647 (0x66F)
+The update is not applied to this product.
+ERROR_PATCH_NO_SEQUENCE
+1648 (0x670)
+No valid sequence could be found for the set of updates.
+ERROR_PATCH_REMOVAL_DISALLOWED
+1649 (0x671)
+Update removal was disallowed by policy.
+ERROR_INVALID_PATCH_XML
+1650 (0x672)
+The XML update data is invalid.
+ERROR_PATCH_MANAGED_ADVERTISED_PRODUCT
+1651 (0x673)
+Windows Installer does not permit updating of managed advertised products. At least one feature of the product must be installed before applying the update.
+ERROR_INSTALL_SERVICE_SAFEBOOT
+1652 (0x674)
+The Windows Installer service is not accessible in Safe Mode. Please try again when your computer is not in Safe Mode or you can use System Restore to return your machine to a previous good state.
+ERROR_FAIL_FAST_EXCEPTION
+1653 (0x675)
+A fail fast exception occurred. Exception handlers will not be invoked and the process will be terminated immediately.
+
+Minimum supported client
+Minimum supported server
+Header
+
+
+ 
+ 
+
+Build date: 2102011

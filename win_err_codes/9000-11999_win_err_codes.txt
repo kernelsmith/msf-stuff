@@ -1,0 +1,586 @@
+
+
+
+The System Error Codes are very broad.  Each one can occur in one of many hundreds of locations in the system.  Consequently the descriptions of these codes cannot be very specific.  Use of these codes requires some amount of investigation and analysis.  You need to note both the programmatic and the run-time context in which these errors occur.  Because these codes are defined in winerror.h for anyone to use, sometimes the codes are returned by non-system software.  Sometimes the code is returned by a function deep in the stack and far removed from your code that is handling the error.
+The following table provides a list of 
+
+DNS_ERROR_RCODE_FORMAT_ERROR
+9001 (0x2329)
+DNS server unable to interpret format.
+DNS_ERROR_RCODE_SERVER_FAILURE
+9002 (0x232A)
+DNS server failure.
+DNS_ERROR_RCODE_NAME_ERROR
+9003 (0x232B)
+DNS name does not exist.
+DNS_ERROR_RCODE_NOT_IMPLEMENTED
+9004 (0x232C)
+DNS request not supported by name server.
+DNS_ERROR_RCODE_REFUSED
+9005 (0x232D)
+DNS operation refused.
+DNS_ERROR_RCODE_YXDOMAIN
+9006 (0x232E)
+DNS name that ought not exist, does exist.
+DNS_ERROR_RCODE_YXRRSET
+9007 (0x232F)
+DNS RR set that ought not exist, does exist.
+DNS_ERROR_RCODE_NXRRSET
+9008 (0x2330)
+DNS RR set that ought to exist, does not exist.
+DNS_ERROR_RCODE_NOTAUTH
+9009 (0x2331)
+DNS server not authoritative for zone.
+DNS_ERROR_RCODE_NOTZONE
+9010 (0x2332)
+DNS name in update or prereq is not in zone.
+DNS_ERROR_RCODE_BADSIG
+9016 (0x2338)
+DNS signature failed to verify.
+DNS_ERROR_RCODE_BADKEY
+9017 (0x2339)
+DNS bad key.
+DNS_ERROR_RCODE_BADTIME
+9018 (0x233A)
+DNS signature validity expired.
+DNS_INFO_NO_RECORDS
+9501 (0x251D)
+No records found for given DNS query.
+DNS_ERROR_BAD_PACKET
+9502 (0x251E)
+Bad DNS packet.
+DNS_ERROR_NO_PACKET
+9503 (0x251F)
+No DNS packet.
+DNS_ERROR_RCODE
+9504 (0x2520)
+DNS error, check rcode.
+DNS_ERROR_UNSECURE_PACKET
+9505 (0x2521)
+Unsecured DNS packet.
+DNS_ERROR_INVALID_TYPE
+9551 (0x254F)
+Invalid DNS type.
+DNS_ERROR_INVALID_IP_ADDRESS
+9552 (0x2550)
+Invalid IP address.
+DNS_ERROR_INVALID_PROPERTY
+9553 (0x2551)
+Invalid property.
+DNS_ERROR_TRY_AGAIN_LATER
+9554 (0x2552)
+Try DNS operation again later.
+DNS_ERROR_NOT_UNIQUE
+9555 (0x2553)
+Record for given name and type is not unique.
+DNS_ERROR_NON_RFC_NAME
+9556 (0x2554)
+DNS name does not comply with RFC specifications.
+DNS_STATUS_FQDN
+9557 (0x2555)
+DNS name is a fully-qualified DNS name.
+DNS_STATUS_DOTTED_NAME
+9558 (0x2556)
+DNS name is dotted (multi-label).
+DNS_STATUS_SINGLE_PART_NAME
+9559 (0x2557)
+DNS name is a single-part name.
+DNS_ERROR_INVALID_NAME_CHAR
+9560 (0x2558)
+DNS name contains an invalid character.
+DNS_ERROR_NUMERIC_NAME
+9561 (0x2559)
+DNS name is entirely numeric.
+DNS_ERROR_NOT_ALLOWED_ON_ROOT_SERVER
+9562 (0x255A)
+The operation requested is not permitted on a DNS root server.
+DNS_ERROR_NOT_ALLOWED_UNDER_DELEGATION
+9563 (0x255B)
+The record could not be created because this part of the DNS namespace has been delegated to another server.
+DNS_ERROR_CANNOT_FIND_ROOT_HINTS
+9564 (0x255C)
+The DNS server could not find a set of root hints.
+DNS_ERROR_INCONSISTENT_ROOT_HINTS
+9565 (0x255D)
+The DNS server found root hints but they were not consistent across all adapters.
+DNS_ERROR_DWORD_VALUE_TOO_SMALL
+9566 (0x255E)
+The specified value is too small for this parameter.
+DNS_ERROR_DWORD_VALUE_TOO_LARGE
+9567 (0x255F)
+The specified value is too large for this parameter.
+DNS_ERROR_BACKGROUND_LOADING
+9568 (0x2560)
+This operation is not allowed while the DNS server is loading zones in the background. Please try again later.
+DNS_ERROR_NOT_ALLOWED_ON_RODC
+9569 (0x2561)
+The operation requested is not permitted on against a DNS server running on a read-only DC.
+DNS_ERROR_NOT_ALLOWED_UNDER_DNAME
+9570 (0x2562)
+ No data is allowed to exist underneath a DNAME record.
+DNS_ERROR_DELEGATION_REQUIRED
+9571 (0x2563)
+This operation requires credentials delegation.
+DNS_ERROR_ZONE_DOES_NOT_EXIST
+9601 (0x2581)
+DNS zone does not exist.
+DNS_ERROR_NO_ZONE_INFO
+9602 (0x2582)
+DNS zone information not available.
+DNS_ERROR_INVALID_ZONE_OPERATION
+9603 (0x2583)
+Invalid operation for DNS zone.
+DNS_ERROR_ZONE_CONFIGURATION_ERROR
+9604 (0x2584)
+Invalid DNS zone configuration.
+DNS_ERROR_ZONE_HAS_NO_SOA_RECORD
+9605 (0x2585)
+DNS zone has no start of authority (SOA) record.
+DNS_ERROR_ZONE_HAS_NO_NS_RECORDS
+9606 (0x2586)
+DNS zone has no Name Server (NS) record.
+DNS_ERROR_ZONE_LOCKED
+9607 (0x2587)
+DNS zone is locked.
+DNS_ERROR_ZONE_CREATION_FAILED
+9608 (0x2588)
+DNS zone creation failed.
+DNS_ERROR_ZONE_ALREADY_EXISTS
+9609 (0x2589)
+DNS zone already exists.
+DNS_ERROR_AUTOZONE_ALREADY_EXISTS
+9610 (0x258A)
+DNS automatic zone already exists.
+DNS_ERROR_INVALID_ZONE_TYPE
+9611 (0x258B)
+Invalid DNS zone type.
+DNS_ERROR_SECONDARY_REQUIRES_MASTER_IP
+9612 (0x258C)
+Secondary DNS zone requires master IP address.
+DNS_ERROR_ZONE_NOT_SECONDARY
+9613 (0x258D)
+DNS zone not secondary.
+DNS_ERROR_NEED_SECONDARY_ADDRESSES
+9614 (0x258E)
+Need secondary IP address.
+DNS_ERROR_WINS_INIT_FAILED
+9615 (0x258F)
+WINS initialization failed.
+DNS_ERROR_NEED_WINS_SERVERS
+9616 (0x2590)
+Need WINS servers.
+DNS_ERROR_NBSTAT_INIT_FAILED
+9617 (0x2591)
+NBTSTAT initialization call failed.
+DNS_ERROR_SOA_DELETE_INVALID
+9618 (0x2592)
+Invalid delete of start of authority (SOA)
+DNS_ERROR_FORWARDER_ALREADY_EXISTS
+9619 (0x2593)
+A conditional forwarding zone already exists for that name.
+DNS_ERROR_ZONE_REQUIRES_MASTER_IP
+9620 (0x2594)
+This zone must be configured with one or more master DNS server IP addresses.
+DNS_ERROR_ZONE_IS_SHUTDOWN
+9621 (0x2595)
+The operation cannot be performed because this zone is shutdown.
+DNS_ERROR_PRIMARY_REQUIRES_DATAFILE
+9651 (0x25B3)
+Primary DNS zone requires datafile.
+DNS_ERROR_INVALID_DATAFILE_NAME
+9652 (0x25B4)
+Invalid datafile name for DNS zone.
+DNS_ERROR_DATAFILE_OPEN_FAILURE
+9653 (0x25B5)
+Failed to open datafile for DNS zone.
+DNS_ERROR_FILE_WRITEBACK_FAILED
+9654 (0x25B6)
+Failed to write datafile for DNS zone.
+DNS_ERROR_DATAFILE_PARSING
+9655 (0x25B7)
+Failure while reading datafile for DNS zone.
+DNS_ERROR_RECORD_DOES_NOT_EXIST
+9701 (0x25E5)
+DNS record does not exist.
+DNS_ERROR_RECORD_FORMAT
+9702 (0x25E6)
+DNS record format error.
+DNS_ERROR_NODE_CREATION_FAILED
+9703 (0x25E7)
+Node creation failure in DNS.
+DNS_ERROR_UNKNOWN_RECORD_TYPE
+9704 (0x25E8)
+Unknown DNS record type.
+DNS_ERROR_RECORD_TIMED_OUT
+9705 (0x25E9)
+DNS record timed out.
+DNS_ERROR_NAME_NOT_IN_ZONE
+9706 (0x25EA)
+Name not in DNS zone.
+DNS_ERROR_CNAME_LOOP
+9707 (0x25EB)
+CNAME loop detected.
+DNS_ERROR_NODE_IS_CNAME
+9708 (0x25EC)
+Node is a CNAME DNS record.
+DNS_ERROR_CNAME_COLLISION
+9709 (0x25ED)
+A CNAME record already exists for given name.
+DNS_ERROR_RECORD_ONLY_AT_ZONE_ROOT
+9710 (0x25EE)
+Record only at DNS zone root.
+DNS_ERROR_RECORD_ALREADY_EXISTS
+9711 (0x25EF)
+DNS record already exists.
+DNS_ERROR_SECONDARY_DATA
+9712 (0x25F0)
+Secondary DNS zone data error.
+DNS_ERROR_NO_CREATE_CACHE_DATA
+9713 (0x25F1)
+Could not create DNS cache data.
+DNS_ERROR_NAME_DOES_NOT_EXIST
+9714 (0x25F2)
+DNS name does not exist.
+DNS_WARNING_PTR_CREATE_FAILED
+9715 (0x25F3)
+Could not create pointer (PTR) record.
+DNS_WARNING_DOMAIN_UNDELETED
+9716 (0x25F4)
+DNS domain was undeleted.
+DNS_ERROR_DS_UNAVAILABLE
+9717 (0x25F5)
+The directory service is unavailable.
+DNS_ERROR_DS_ZONE_ALREADY_EXISTS
+9718 (0x25F6)
+DNS zone already exists in the directory service.
+DNS_ERROR_NO_BOOTFILE_IF_DS_ZONE
+9719 (0x25F7)
+DNS server not creating or reading the boot file for the directory service integrated DNS zone.
+DNS_ERROR_NODE_IS_DNAME
+9720 (0x25F8)
+Node is a DNAME DNS record.
+DNS_ERROR_DNAME_COLLISION
+9721 (0x25F9)
+A DNAME record already exists for given name.
+DNS_ERROR_ALIAS_LOOP
+9722 (0x25FA)
+An alias loop has been detected with either CNAME or DNAME records.
+DNS_INFO_AXFR_COMPLETE
+9751 (0x2617)
+DNS AXFR (zone transfer) complete.
+DNS_ERROR_AXFR
+9752 (0x2618)
+DNS zone transfer failed.
+DNS_INFO_ADDED_LOCAL_WINS
+9753 (0x2619)
+Added local WINS server.
+DNS_STATUS_CONTINUE_NEEDED
+9801 (0x2649)
+Secure update call needs to continue update request.
+DNS_ERROR_NO_TCPIP
+9851 (0x267B)
+TCPIP network protocol not installed.
+DNS_ERROR_NO_DNS_SERVERS
+9852 (0x267C)
+No DNS servers configured for local system.
+DNS_ERROR_DP_DOES_NOT_EXIST
+9901 (0x26AD)
+The specified directory partition does not exist.
+DNS_ERROR_DP_ALREADY_EXISTS
+9902 (0x26AE)
+The specified directory partition already exists.
+DNS_ERROR_DP_NOT_ENLISTED
+9903 (0x26AF)
+This DNS server is not enlisted in the specified directory partition.
+DNS_ERROR_DP_ALREADY_ENLISTED
+9904 (0x26B0)
+This DNS server is already enlisted in the specified directory partition.
+DNS_ERROR_DP_NOT_AVAILABLE
+9905 (0x26B1)
+The directory partition is not available at this time. Please wait a few minutes and try again.
+DNS_ERROR_DP_FSMO_ERROR
+9906 (0x26B2)
+The application directory partition operation failed. The domain controller holding the domain naming master role is down or unable to service the request or is not running Windows Server 2003.
+WSAEINTR
+10004 (0x2714)
+A blocking operation was interrupted by a call to WSACancelBlockingCall.
+WSAEBADF
+10009 (0x2719)
+The file handle supplied is not valid.
+WSAEACCES
+10013 (0x271D)
+An attempt was made to access a socket in a way forbidden by its access permissions.
+WSAEFAULT
+10014 (0x271E)
+The system detected an invalid pointer address in attempting to use a pointer argument in a call.
+WSAEINVAL
+10022 (0x2726)
+An invalid argument was supplied.
+WSAEMFILE
+10024 (0x2728)
+Too many open sockets.
+WSAEWOULDBLOCK
+10035 (0x2733)
+A non-blocking socket operation could not be completed immediately.
+WSAEINPROGRESS
+10036 (0x2734)
+A blocking operation is currently executing.
+WSAEALREADY
+10037 (0x2735)
+An operation was attempted on a non-blocking socket that already had an operation in progress.
+WSAENOTSOCK
+10038 (0x2736)
+An operation was attempted on something that is not a socket.
+WSAEDESTADDRREQ
+10039 (0x2737)
+A required address was omitted from an operation on a socket.
+WSAEMSGSIZE
+10040 (0x2738)
+A message sent on a datagram socket was larger than the internal message buffer or some other network limit, or the buffer used to receive a datagram into was smaller than the datagram itself.
+WSAEPROTOTYPE
+10041 (0x2739)
+A protocol was specified in the socket function call that does not support the semantics of the socket type requested.
+WSAENOPROTOOPT
+10042 (0x273A)
+An unknown, invalid, or unsupported option or level was specified in a getsockopt or setsockopt call.
+WSAEPROTONOSUPPORT
+10043 (0x273B)
+The requested protocol has not been configured into the system, or no implementation for it exists.
+WSAESOCKTNOSUPPORT
+10044 (0x273C)
+The support for the specified socket type does not exist in this address family.
+WSAEOPNOTSUPP
+10045 (0x273D)
+The attempted operation is not supported for the type of object referenced.
+WSAEPFNOSUPPORT
+10046 (0x273E)
+The protocol family has not been configured into the system or no implementation for it exists.
+WSAEAFNOSUPPORT
+10047 (0x273F)
+An address incompatible with the requested protocol was used.
+WSAEADDRINUSE
+10048 (0x2740)
+Only one usage of each socket address (protocolnetwork addressport) is normally permitted.
+WSAEADDRNOTAVAIL
+10049 (0x2741)
+The requested address is not valid in its context.
+WSAENETDOWN
+10050 (0x2742)
+A socket operation encountered a dead network.
+WSAENETUNREACH
+10051 (0x2743)
+A socket operation was attempted to an unreachable network.
+WSAENETRESET
+10052 (0x2744)
+The connection has been broken due to keep-alive activity detecting a failure while the operation was in progress.
+WSAECONNABORTED
+10053 (0x2745)
+An established connection was aborted by the software in your host machine.
+WSAECONNRESET
+10054 (0x2746)
+An existing connection was forcibly closed by the remote host.
+WSAENOBUFS
+10055 (0x2747)
+An operation on a socket could not be performed because the system lacked sufficient buffer space or because a queue was full.
+WSAEISCONN
+10056 (0x2748)
+A connect request was made on an already connected socket.
+WSAENOTCONN
+10057 (0x2749)
+A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied.
+WSAESHUTDOWN
+10058 (0x274A)
+A request to send or receive data was disallowed because the socket had already been shut down in that direction with a previous shutdown call.
+WSAETOOMANYREFS
+10059 (0x274B)
+Too many references to some kernel object.
+WSAETIMEDOUT
+10060 (0x274C)
+A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+WSAECONNREFUSED
+10061 (0x274D)
+No connection could be made because the target machine actively refused it.
+WSAELOOP
+10062 (0x274E)
+Cannot translate name.
+WSAENAMETOOLONG
+10063 (0x274F)
+Name component or name was too long.
+WSAEHOSTDOWN
+10064 (0x2750)
+A socket operation failed because the destination host was down.
+WSAEHOSTUNREACH
+10065 (0x2751)
+A socket operation was attempted to an unreachable host.
+WSAENOTEMPTY
+10066 (0x2752)
+Cannot remove a directory that is not empty.
+WSAEPROCLIM
+10067 (0x2753)
+A Windows Sockets implementation may have a limit on the number of applications that may use it simultaneously.
+WSAEUSERS
+10068 (0x2754)
+Ran out of quota.
+WSAEDQUOT
+10069 (0x2755)
+Ran out of disk quota.
+WSAESTALE
+10070 (0x2756)
+File handle reference is no longer available.
+WSAEREMOTE
+10071 (0x2757)
+Item is not available locally.
+WSASYSNOTREADY
+10091 (0x276B)
+WSAStartup cannot function at this time because the underlying system it uses to provide network services is currently unavailable.
+WSAVERNOTSUPPORTED
+10092 (0x276C)
+The Windows Sockets version requested is not supported.
+WSANOTINITIALISED
+10093 (0x276D)
+Either the application has not called WSAStartup, or WSAStartup failed.
+WSAEDISCON
+10101 (0x2775)
+Returned by WSARecv or WSARecvFrom to indicate the remote party has initiated a graceful shutdown sequence.
+WSAENOMORE
+10102 (0x2776)
+No more results can be returned by WSALookupServiceNext.
+WSAECANCELLED
+10103 (0x2777)
+A call to WSALookupServiceEnd was made while this call was still processing. The call has been canceled.
+WSAEINVALIDPROCTABLE
+10104 (0x2778)
+The procedure call table is invalid.
+WSAEINVALIDPROVIDER
+10105 (0x2779)
+The requested service provider is invalid.
+WSAEPROVIDERFAILEDINIT
+10106 (0x277A)
+The requested service provider could not be loaded or initialized.
+WSASYSCALLFAILURE
+10107 (0x277B)
+A system call has failed.
+WSASERVICE_NOT_FOUND
+10108 (0x277C)
+No such service is known. The service cannot be found in the specified name space.
+WSATYPE_NOT_FOUND
+10109 (0x277D)
+The specified class was not found.
+WSA_E_NO_MORE
+10110 (0x277E)
+No more results can be returned by WSALookupServiceNext.
+WSA_E_CANCELLED
+10111 (0x277F)
+A call to WSALookupServiceEnd was made while this call was still processing. The call has been canceled.
+WSAEREFUSED
+10112 (0x2780)
+A database query failed because it was actively refused.
+WSAHOST_NOT_FOUND
+11001 (0x2AF9)
+No such host is known.
+WSATRY_AGAIN
+11002 (0x2AFA)
+This is usually a temporary error during hostname resolution and means that the local server did not receive a response from an authoritative server.
+WSANO_RECOVERY
+11003 (0x2AFB)
+A non-recoverable error occurred during a database lookup.
+WSANO_DATA
+11004 (0x2AFC)
+The requested name is valid, but no data of the requested type was found.
+WSA_QOS_RECEIVERS
+11005 (0x2AFD)
+At least one reserve has arrived.
+WSA_QOS_SENDERS
+11006 (0x2AFE)
+At least one path has arrived.
+WSA_QOS_NO_SENDERS
+11007 (0x2AFF)
+There are no senders.
+WSA_QOS_NO_RECEIVERS
+11008 (0x2B00)
+There are no receivers.
+WSA_QOS_REQUEST_CONFIRMED
+11009 (0x2B01)
+Reserve has been confirmed.
+WSA_QOS_ADMISSION_FAILURE
+11010 (0x2B02)
+Error due to lack of resources.
+WSA_QOS_POLICY_FAILURE
+11011 (0x2B03)
+Rejected for administrative reasons - bad credentials.
+WSA_QOS_BAD_STYLE
+11012 (0x2B04)
+Unknown or conflicting style.
+WSA_QOS_BAD_OBJECT
+11013 (0x2B05)
+Problem with some part of the filterspec or providerspecific buffer in general.
+WSA_QOS_TRAFFIC_CTRL_ERROR
+11014 (0x2B06)
+Problem with some part of the flowspec.
+WSA_QOS_GENERIC_ERROR
+11015 (0x2B07)
+General QOS error.
+WSA_QOS_ESERVICETYPE
+11016 (0x2B08)
+An invalid or unrecognized service type was found in the flowspec.
+WSA_QOS_EFLOWSPEC
+11017 (0x2B09)
+An invalid or inconsistent flowspec was found in the QOS structure.
+WSA_QOS_EPROVSPECBUF
+11018 (0x2B0A)
+Invalid QOS provider-specific buffer.
+WSA_QOS_EFILTERSTYLE
+11019 (0x2B0B)
+An invalid QOS filter style was used.
+WSA_QOS_EFILTERTYPE
+11020 (0x2B0C)
+An invalid QOS filter type was used.
+WSA_QOS_EFILTERCOUNT
+11021 (0x2B0D)
+An incorrect number of QOS FILTERSPECs were specified in the FLOWDESCRIPTOR.
+WSA_QOS_EOBJLENGTH
+11022 (0x2B0E)
+An object with an invalid ObjectLength field was specified in the QOS provider-specific buffer.
+WSA_QOS_EFLOWCOUNT
+11023 (0x2B0F)
+An incorrect number of flow descriptors was specified in the QOS structure.
+WSA_QOS_EUNKOWNPSOBJ
+11024 (0x2B10)
+An unrecognized object was found in the QOS provider-specific buffer.
+WSA_QOS_EPOLICYOBJ
+11025 (0x2B11)
+An invalid policy object was found in the QOS provider-specific buffer.
+WSA_QOS_EFLOWDESC
+11026 (0x2B12)
+An invalid QOS flow descriptor was found in the flow descriptor list.
+WSA_QOS_EPSFLOWSPEC
+11027 (0x2B13)
+An invalid or inconsistent flowspec was found in the QOS provider specific buffer.
+WSA_QOS_EPSFILTERSPEC
+11028 (0x2B14)
+An invalid FILTERSPEC was found in the QOS provider-specific buffer.
+WSA_QOS_ESDMODEOBJ
+11029 (0x2B15)
+An invalid shape discard mode object was found in the QOS provider specific buffer.
+WSA_QOS_ESHAPERATEOBJ
+11030 (0x2B16)
+An invalid shaping rate object was found in the QOS provider-specific buffer.
+WSA_QOS_RESERVED_PETYPE
+11031 (0x2B17)
+A reserved policy element was found in the QOS provider-specific buffer.
+WSA_SECURE_HOST_NOT_FOUND
+11032 (0x2B18)
+No such host is known securely.
+WSA_IPSEC_NAME_POLICY_ERROR
+11033 (0x2B19)
+Name based IPSEC policy could not be added.
+
+Minimum supported client
+Minimum supported server
+Header
+
+
+ 
+ 
+
+Build date: 2102011

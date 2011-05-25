@@ -1,0 +1,694 @@
+
+
+
+The System Error Codes are very broad.  Each one can occur in one of many hundreds of locations in the system.  Consequently the descriptions of these codes cannot be very specific.  Use of these codes requires some amount of investigation and analysis.  You need to note both the programmatic and the run-time context in which these errors occur.  Because these codes are defined in winerror.h for anyone to use, sometimes the codes are returned by non-system software.  Sometimes the code is returned by a function deep in the stack and far removed from your code that is handling the error.
+The following table provides a list of 
+
+ERROR_ENCRYPTION_FAILED
+6000 (0x1770)
+The specified file could not be encrypted.
+ERROR_DECRYPTION_FAILED
+6001 (0x1771)
+The specified file could not be decrypted.
+ERROR_FILE_ENCRYPTED
+6002 (0x1772)
+The specified file is encrypted and the user does not have the ability to decrypt it.
+ERROR_NO_RECOVERY_POLICY
+6003 (0x1773)
+There is no valid encryption recovery policy configured for this system.
+ERROR_NO_EFS
+6004 (0x1774)
+The required encryption driver is not loaded for this system.
+ERROR_WRONG_EFS
+6005 (0x1775)
+The file was encrypted with a different encryption driver than is currently loaded.
+ERROR_NO_USER_KEYS
+6006 (0x1776)
+There are no EFS keys defined for the user.
+ERROR_FILE_NOT_ENCRYPTED
+6007 (0x1777)
+The specified file is not encrypted.
+ERROR_NOT_EXPORT_FORMAT
+6008 (0x1778)
+The specified file is not in the defined EFS export format.
+ERROR_FILE_READ_ONLY
+6009 (0x1779)
+The specified file is read only.
+ERROR_DIR_EFS_DISALLOWED
+6010 (0x177A)
+The directory has been disabled for encryption.
+ERROR_EFS_SERVER_NOT_TRUSTED
+6011 (0x177B)
+The server is not trusted for remote encryption operation.
+ERROR_BAD_RECOVERY_POLICY
+6012 (0x177C)
+Recovery policy configured for this system contains invalid recovery certificate.
+ERROR_EFS_ALG_BLOB_TOO_BIG
+6013 (0x177D)
+The encryption algorithm used on the source file needs a bigger key buffer than the one on the destination file.
+ERROR_VOLUME_NOT_SUPPORT_EFS
+6014 (0x177E)
+The disk partition does not support file encryption.
+ERROR_EFS_DISABLED
+6015 (0x177F)
+This machine is disabled for file encryption.
+ERROR_EFS_VERSION_NOT_SUPPORT
+6016 (0x1780)
+A newer system is required to decrypt this encrypted file.
+ERROR_CS_ENCRYPTION_INVALID_SERVER_RESPONSE
+6017 (0x1781)
+The remote server sent an invalid response for a file being opened with Client Side Encryption.
+ERROR_CS_ENCRYPTION_UNSUPPORTED_SERVER
+6018 (0x1782)
+Client Side Encryption is not supported by the remote server even though it claims to support it.
+ERROR_CS_ENCRYPTION_EXISTING_ENCRYPTED_FILE
+6019 (0x1783)
+File is encrypted and should be opened in Client Side Encryption mode.
+ERROR_CS_ENCRYPTION_NEW_ENCRYPTED_FILE
+6020 (0x1784)
+A new encrypted file is being created and a $EFS needs to be provided.
+ERROR_CS_ENCRYPTION_FILE_NOT_CSE
+6021 (0x1785)
+The SMB client requested a CSE FSCTL on a non-CSE file.
+ERROR_ENCRYPTION_POLICY_DENIES_OPERATION
+6022 (0x1786)
+The requested operation was blocked by policy. For more information, contact your system administrator.
+ERROR_NO_BROWSER_SERVERS_FOUND
+6118 (0x17E6)
+The list of servers for this workgroup is not currently available
+SCHED_E_SERVICE_NOT_LOCALSYSTEM
+6200 (0x1838)
+The Task Scheduler service must be configured to run in the System account to function properly.  Individual tasks may be configured to run in other accounts.
+ERROR_LOG_SECTOR_INVALID
+6600 (0x19C8)
+Log service encountered an invalid log sector.
+ERROR_LOG_SECTOR_PARITY_INVALID
+6601 (0x19C9)
+Log service encountered a log sector with invalid block parity.
+ERROR_LOG_SECTOR_REMAPPED
+6602 (0x19CA)
+Log service encountered a remapped log sector.
+ERROR_LOG_BLOCK_INCOMPLETE
+6603 (0x19CB)
+Log service encountered a partial or incomplete log block.
+ERROR_LOG_INVALID_RANGE
+6604 (0x19CC)
+Log service encountered an attempt access data outside the active log range.
+ERROR_LOG_BLOCKS_EXHAUSTED
+6605 (0x19CD)
+Log service user marshalling buffers are exhausted.
+ERROR_LOG_READ_CONTEXT_INVALID
+6606 (0x19CE)
+Log service encountered an attempt read from a marshalling area with an invalid read context.
+ERROR_LOG_RESTART_INVALID
+6607 (0x19CF)
+Log service encountered an invalid log restart area.
+ERROR_LOG_BLOCK_VERSION
+6608 (0x19D0)
+Log service encountered an invalid log block version.
+ERROR_LOG_BLOCK_INVALID
+6609 (0x19D1)
+Log service encountered an invalid log block.
+ERROR_LOG_READ_MODE_INVALID
+6610 (0x19D2)
+Log service encountered an attempt to read the log with an invalid read mode.
+ERROR_LOG_NO_RESTART
+6611 (0x19D3)
+Log service encountered a log stream with no restart area.
+ERROR_LOG_METADATA_CORRUPT
+6612 (0x19D4)
+Log service encountered a corrupted metadata file.
+ERROR_LOG_METADATA_INVALID
+6613 (0x19D5)
+Log service encountered a metadata file that could not be created by the log file system.
+ERROR_LOG_METADATA_INCONSISTENT
+6614 (0x19D6)
+Log service encountered a metadata file with inconsistent data.
+ERROR_LOG_RESERVATION_INVALID
+6615 (0x19D7)
+Log service encountered an attempt to erroneous allocate or dispose reservation space.
+ERROR_LOG_CANT_DELETE
+6616 (0x19D8)
+Log service cannot delete log file or file system container.
+ERROR_LOG_CONTAINER_LIMIT_EXCEEDED
+6617 (0x19D9)
+Log service has reached the maximum allowable containers allocated to a log file.
+ERROR_LOG_START_OF_LOG
+6618 (0x19DA)
+Log service has attempted to read or write backward past the start of the log.
+ERROR_LOG_POLICY_ALREADY_INSTALLED
+6619 (0x19DB)
+Log policy could not be installed because a policy of the same type is already present.
+ERROR_LOG_POLICY_NOT_INSTALLED
+6620 (0x19DC)
+Log policy in question was not installed at the time of the request.
+ERROR_LOG_POLICY_INVALID
+6621 (0x19DD)
+The installed set of policies on the log is invalid.
+ERROR_LOG_POLICY_CONFLICT
+6622 (0x19DE)
+A policy on the log in question prevented the operation from completing.
+ERROR_LOG_PINNED_ARCHIVE_TAIL
+6623 (0x19DF)
+Log space cannot be reclaimed because the log is pinned by the archive tail.
+ERROR_LOG_RECORD_NONEXISTENT
+6624 (0x19E0)
+Log record is not a record in the log file.
+ERROR_LOG_RECORDS_RESERVED_INVALID
+6625 (0x19E1)
+The number of reserved log records or the adjustment of the number of reserved log records is invalid.
+ERROR_LOG_SPACE_RESERVED_INVALID
+6626 (0x19E2)
+Reserved log space or the adjustment of the log space is invalid.
+ERROR_LOG_TAIL_INVALID
+6627 (0x19E3)
+An new or existing archive tail or base of the active log is invalid.
+ERROR_LOG_FULL
+6628 (0x19E4)
+Log space is exhausted.
+ERROR_COULD_NOT_RESIZE_LOG
+6629 (0x19E5)
+The log could not be set to the requested size.
+ERROR_LOG_MULTIPLEXED
+6630 (0x19E6)
+Log is multiplexed, no direct writes to the physical log is allowed.
+ERROR_LOG_DEDICATED
+6631 (0x19E7)
+The operation failed because the log is a dedicated log.
+ERROR_LOG_ARCHIVE_NOT_IN_PROGRESS
+6632 (0x19E8)
+The operation requires an archive context.
+ERROR_LOG_ARCHIVE_IN_PROGRESS
+6633 (0x19E9)
+Log archival is in progress.
+ERROR_LOG_EPHEMERAL
+6634 (0x19EA)
+The operation requires a non-ephemeral log, but the log is ephemeral.
+ERROR_LOG_NOT_ENOUGH_CONTAINERS
+6635 (0x19EB)
+The log must have at least two containers before it can be read from or written to.
+ERROR_LOG_CLIENT_ALREADY_REGISTERED
+6636 (0x19EC)
+A log client has already registered on the stream.
+ERROR_LOG_CLIENT_NOT_REGISTERED
+6637 (0x19ED)
+A log client has not been registered on the stream.
+ERROR_LOG_FULL_HANDLER_IN_PROGRESS
+6638 (0x19EE)
+A request has already been made to handle the log full condition.
+ERROR_LOG_CONTAINER_READ_FAILED
+6639 (0x19EF)
+Log service encountered an error when attempting to read from a log container.
+ERROR_LOG_CONTAINER_WRITE_FAILED
+6640 (0x19F0)
+Log service encountered an error when attempting to write to a log container.
+ERROR_LOG_CONTAINER_OPEN_FAILED
+6641 (0x19F1)
+Log service encountered an error when attempting open a log container.
+ERROR_LOG_CONTAINER_STATE_INVALID
+6642 (0x19F2)
+Log service encountered an invalid container state when attempting a requested action.
+ERROR_LOG_STATE_INVALID
+6643 (0x19F3)
+Log service is not in the correct state to perform a requested action.
+ERROR_LOG_PINNED
+6644 (0x19F4)
+Log space cannot be reclaimed because the log is pinned.
+ERROR_LOG_METADATA_FLUSH_FAILED
+6645 (0x19F5)
+Log metadata flush failed.
+ERROR_LOG_INCONSISTENT_SECURITY
+6646 (0x19F6)
+Security on the log and its containers is inconsistent.
+ERROR_LOG_APPENDED_FLUSH_FAILED
+6647 (0x19F7)
+Records were appended to the log or reservation changes were made, but the log could not be flushed.
+ERROR_LOG_PINNED_RESERVATION
+6648 (0x19F8)
+The log is pinned due to reservation consuming most of the log space.  Free some reserved records to make space available.
+ERROR_INVALID_TRANSACTION
+6700 (0x1A2C)
+The transaction handle associated with this operation is not valid.
+ERROR_TRANSACTION_NOT_ACTIVE
+6701 (0x1A2D)
+The requested operation was made in the context of a transaction that is no longer active.
+ERROR_TRANSACTION_REQUEST_NOT_VALID
+6702 (0x1A2E)
+The requested operation is not valid on the Transaction object in its current state.
+ERROR_TRANSACTION_NOT_REQUESTED
+6703 (0x1A2F)
+The caller has called a response API, but the response is not expected because the TM did not issue the corresponding request to the caller.
+ERROR_TRANSACTION_ALREADY_ABORTED
+6704 (0x1A30)
+It is too late to perform the requested operation, since the Transaction has already been aborted.
+ERROR_TRANSACTION_ALREADY_COMMITTED
+6705 (0x1A31)
+It is too late to perform the requested operation, since the Transaction has already been committed.
+ERROR_TM_INITIALIZATION_FAILED
+6706 (0x1A32)
+The Transaction Manager was unable to be successfully initialized.  Transacted operations are not supported.
+ERROR_RESOURCEMANAGER_READ_ONLY
+6707 (0x1A33)
+The specified ResourceManager made no changes or updates to the resource under this transaction.
+ERROR_TRANSACTION_NOT_JOINED
+6708 (0x1A34)
+The resource manager has attempted to prepare a transaction that it has not successfully joined.
+ERROR_TRANSACTION_SUPERIOR_EXISTS
+6709 (0x1A35)
+The Transaction object already has a superior enlistment, and the caller attempted an operation that would have created a new superior.  Only a single superior enlistment is allow.
+ERROR_CRM_PROTOCOL_ALREADY_EXISTS
+6710 (0x1A36)
+The RM tried to register a protocol that already exists.
+ERROR_TRANSACTION_PROPAGATION_FAILED
+6711 (0x1A37)
+The attempt to propagate the Transaction failed.
+ERROR_CRM_PROTOCOL_NOT_FOUND
+6712 (0x1A38)
+The requested propagation protocol was not registered as a CRM.
+ERROR_TRANSACTION_INVALID_MARSHALL_BUFFER
+6713 (0x1A39)
+The buffer passed in to PushTransaction or PullTransaction is not in a valid format.
+ERROR_CURRENT_TRANSACTION_NOT_VALID
+6714 (0x1A3A)
+The current transaction context associated with the thread is not a valid handle to a transaction object.
+ERROR_TRANSACTION_NOT_FOUND
+6715 (0x1A3B)
+ The specified Transaction object could not be opened, because it was not found.
+ERROR_RESOURCEMANAGER_NOT_FOUND
+6716 (0x1A3C)
+The specified ResourceManager object could not be opened, because it was not found.
+ERROR_ENLISTMENT_NOT_FOUND
+6717 (0x1A3D)
+The specified Enlistment object could not be opened, because it was not found.
+ERROR_TRANSACTIONMANAGER_NOT_FOUND
+6718 (0x1A3E)
+ The specified TransactionManager object could not be opened, because it was not found.
+ERROR_TRANSACTIONMANAGER_NOT_ONLINE
+6719 (0x1A3F)
+The object specified could not be created or opened, because its associated TransactionManager is not online.
+ERROR_TRANSACTIONMANAGER_RECOVERY_NAME_COLLISION
+6720 (0x1A40)
+The specified TransactionManager was unable to create the objects contained in its logfile in the Ob namespace. Therefore, the TransactionManager was unable to recover.
+ERROR_TRANSACTION_NOT_ROOT
+6721 (0x1A41)
+ The call to create a superior Enlistment on this Transaction object could not be completed, because the Transaction object specified for the enlistment is a subordinate branch of the Transaction.  Only the root of the Transaction can be enlisted on as a superior.
+ERROR_TRANSACTION_OBJECT_EXPIRED
+6722 (0x1A42)
+Because the associated transaction manager or resource manager has been closed, the handle is no longer valid.
+ERROR_TRANSACTION_RESPONSE_NOT_ENLISTED
+6723 (0x1A43)
+The specified operation could not be performed on this Superior enlistment, because the enlistment was not created with the corresponding completion response in the NotificationMask.
+ERROR_TRANSACTION_RECORD_TOO_LONG
+6724 (0x1A44)
+The specified operation could not be performed, because the record that would be logged was too long.  This can occur because of two conditions:  either there are too many Enlistments on this Transaction, or the combined RecoveryInformation being logged on behalf of those Enlistments is too long.
+ERROR_IMPLICIT_TRANSACTION_NOT_SUPPORTED
+6725 (0x1A45)
+Implicit transactions are not supported.
+ERROR_TRANSACTION_INTEGRITY_VIOLATED
+6726 (0x1A46)
+The kernel transaction manager had to abort or forget the transaction because it blocked forward progress.
+ERROR_TRANSACTIONMANAGER_IDENTITY_MISMATCH
+6727 (0x1A47)
+The TransactionManager identity that was supplied did not match the one recorded in the TransactionManager's log file.
+ERROR_RM_CANNOT_BE_FROZEN_FOR_SNAPSHOT
+6728 (0x1A48)
+This snapshot operation cannot continue because a transactional resource manager cannot be frozen in its current state. Please try again.
+ERROR_TRANSACTION_MUST_WRITETHROUGH
+6729 (0x1A49)
+The transaction cannot be enlisted on with the specified EnlistmentMask, because the transaction has already completed the PrePrepare phase. In order to ensure correctness, the ResourceManager must switch to a write-through mode and cease caching data within this transaction. Enlisting for only subsequent transaction phases may still succeed.
+ERROR_TRANSACTION_NO_SUPERIOR
+6730 (0x1A4A)
+The transaction does not have a superior enlistment.
+ERROR_TRANSACTIONAL_CONFLICT
+6800 (0x1A90)
+The function attempted to use a name that is reserved for use by another transaction.
+ERROR_RM_NOT_ACTIVE
+6801 (0x1A91)
+Transaction support within the specified resource manager is not started or was shut down due to an error.
+ERROR_RM_METADATA_CORRUPT
+6802 (0x1A92)
+The metadata of the RM has been corrupted.  The RM will not function.
+ERROR_DIRECTORY_NOT_RM
+6803 (0x1A93)
+The specified directory does not contain a resource manager.
+ERROR_TRANSACTIONS_UNSUPPORTED_REMOTE
+6805 (0x1A95)
+The remote server or share does not support transacted file operations.
+ERROR_LOG_RESIZE_INVALID_SIZE
+6806 (0x1A96)
+The requested log size is invalid.
+ERROR_OBJECT_NO_LONGER_EXISTS
+6807 (0x1A97)
+The object (file, stream, link) corresponding to the handle has been deleted by a Transaction Savepoint Rollback.
+ERROR_STREAM_MINIVERSION_NOT_FOUND
+6808 (0x1A98)
+The specified file miniversion was not found for this transacted file open.
+ERROR_STREAM_MINIVERSION_NOT_VALID
+6809 (0x1A99)
+The specified file miniversion was found but has been invalidated. Most likely cause is a transaction savepoint rollback.
+ERROR_MINIVERSION_INACCESSIBLE_FROM_SPECIFIED_TRANSACTION
+6810 (0x1A9A)
+A miniversion may only be opened in the context of the transaction that created it.
+ERROR_CANT_OPEN_MINIVERSION_WITH_MODIFY_INTENT
+6811 (0x1A9B)
+It is not possible to open a miniversion with modify access.
+ERROR_CANT_CREATE_MORE_STREAM_MINIVERSIONS
+6812 (0x1A9C)
+It is not possible to create any more miniversions for this stream.
+ERROR_REMOTE_FILE_VERSION_MISMATCH
+6814 (0x1A9E)
+The remote server sent mismatching version number or Fid for a file opened with transactions.
+ERROR_HANDLE_NO_LONGER_VALID
+6815 (0x1A9F)
+The handle has been invalidated by a transaction. The most likely cause is the presence of memory mapping on a file or an open handle when the transaction ended or rolled back to savepoint.
+ERROR_NO_TXF_METADATA
+6816 (0x1AA0)
+There is no transaction metadata on the file.
+ERROR_LOG_CORRUPTION_DETECTED
+6817 (0x1AA1)
+The log data is corrupt.
+ERROR_CANT_RECOVER_WITH_HANDLE_OPEN
+6818 (0x1AA2)
+The file can't be recovered because there is a handle still open on it.
+ERROR_RM_DISCONNECTED
+6819 (0x1AA3)
+The transaction outcome is unavailable because the resource manager responsible for it has disconnected.
+ERROR_ENLISTMENT_NOT_SUPERIOR
+6820 (0x1AA4)
+The request was rejected because the enlistment in question is not a superior enlistment.
+ERROR_RECOVERY_NOT_NEEDED
+6821 (0x1AA5)
+The transactional resource manager is already consistent.  Recovery is not needed.
+ERROR_RM_ALREADY_STARTED
+6822 (0x1AA6)
+The transactional resource manager has already been started.
+ERROR_FILE_IDENTITY_NOT_PERSISTENT
+6823 (0x1AA7)
+The file cannot be opened transactionally, because its identity depends on the outcome of an unresolved transaction.
+ERROR_CANT_BREAK_TRANSACTIONAL_DEPENDENCY
+6824 (0x1AA8)
+The operation cannot be performed because another transaction is depending on the fact that this property will not change.
+ERROR_CANT_CROSS_RM_BOUNDARY
+6825 (0x1AA9)
+The operation would involve a single file with two transactional resource managers and is therefore not allowed.
+ERROR_TXF_DIR_NOT_EMPTY
+6826 (0x1AAA)
+The $Txf directory must be empty for this operation to succeed.
+ERROR_INDOUBT_TRANSACTIONS_EXIST
+6827 (0x1AAB)
+The operation would leave a transactional resource manager in an inconsistent state and is therefore not allowed.
+ERROR_TM_VOLATILE
+6828 (0x1AAC)
+The operation could not be completed because the transaction manager does not have a log.
+ERROR_ROLLBACK_TIMER_EXPIRED
+6829 (0x1AAD)
+A rollback could not be scheduled because a previously scheduled rollback has already executed or been queued for execution.
+ERROR_TXF_ATTRIBUTE_CORRUPT
+6830 (0x1AAE)
+The transactional metadata attribute on the file or directory is corrupt and unreadable.
+ERROR_EFS_NOT_ALLOWED_IN_TRANSACTION
+6831 (0x1AAF)
+The encryption operation could not be completed because a transaction is active.
+ERROR_TRANSACTIONAL_OPEN_NOT_ALLOWED
+6832 (0x1AB0)
+This object is not allowed to be opened in a transaction.
+ERROR_LOG_GROWTH_FAILED
+6833 (0x1AB1)
+An attempt to create space in the transactional resource manager's log failed.  The failure status has been recorded in the event log.
+ERROR_TRANSACTED_MAPPING_UNSUPPORTED_REMOTE
+6834 (0x1AB2)
+Memory mapping (creating a mapped section) a remote file under a transaction is not supported.
+ERROR_TXF_METADATA_ALREADY_PRESENT
+6835 (0x1AB3)
+Transaction metadata is already present on this file and cannot be superseded.
+ERROR_TRANSACTION_SCOPE_CALLBACKS_NOT_SET
+6836 (0x1AB4)
+A transaction scope could not be entered because the scope handler has not been initialized.
+ERROR_TRANSACTION_REQUIRED_PROMOTION
+6837 (0x1AB5)
+Promotion was required in order to allow the resource manager to enlist, but the transaction was set to disallow it.
+ERROR_CANNOT_EXECUTE_FILE_IN_TRANSACTION
+6838 (0x1AB6)
+This file is open for modification in an unresolved transaction and may be opened for execute only by a transacted reader.
+ERROR_TRANSACTIONS_NOT_FROZEN
+6839 (0x1AB7)
+The request to thaw frozen transactions was ignored because transactions had not previously been frozen.
+ERROR_TRANSACTION_FREEZE_IN_PROGRESS
+6840 (0x1AB8)
+Transactions cannot be frozen because a freeze is already in progress.
+ERROR_NOT_SNAPSHOT_VOLUME
+6841 (0x1AB9)
+The target volume is not a snapshot volume.  This operation is only valid on a volume mounted as a snapshot.
+ERROR_NO_SAVEPOINT_WITH_OPEN_FILES
+6842 (0x1ABA)
+The savepoint operation failed because files are open on the transaction.  This is not permitted.
+ERROR_DATA_LOST_REPAIR
+6843 (0x1ABB)
+Windows has discovered corruption in a file, and that file has since been repaired.  Data loss may have occurred.
+ERROR_SPARSE_NOT_ALLOWED_IN_TRANSACTION
+6844 (0x1ABC)
+The sparse operation could not be completed because a transaction is active on the file.
+ERROR_TM_IDENTITY_MISMATCH
+6845 (0x1ABD)
+The call to create a TransactionManager object failed because the Tm Identity stored in the logfile does not match the Tm Identity that was passed in as an argument.
+ERROR_FLOATED_SECTION
+6846 (0x1ABE)
+IO was attempted on a section object that has been floated as a result of a transaction ending.  There is no valid data.
+ERROR_CANNOT_ACCEPT_TRANSACTED_WORK
+6847 (0x1ABF)
+The transactional resource manager cannot currently accept transacted work due to a transient condition such as low resources.
+ERROR_CANNOT_ABORT_TRANSACTIONS
+6848 (0x1AC0)
+The transactional resource manager  had too many transactions outstanding that could not be aborted. The transactional resource manager has been shut down.
+ERROR_BAD_CLUSTERS
+6849 (0x1AC1)
+The operation could not be completed due to bad clusters on disk.
+ERROR_COMPRESSION_NOT_ALLOWED_IN_TRANSACTION
+6850 (0x1AC2)
+The compression operation could not be completed because a transaction is active on the file.
+ERROR_VOLUME_DIRTY
+6851 (0x1AC3)
+The operation could not be completed because the volume is dirty.  Please run chkdsk and try again.
+ERROR_NO_LINK_TRACKING_IN_TRANSACTION
+6852 (0x1AC4)
+The link tracking operation could not be completed because a transaction is active.
+ERROR_OPERATION_NOT_SUPPORTED_IN_TRANSACTION
+6853 (0x1AC5)
+This operation cannot be performed in a transaction.
+ERROR_EXPIRED_HANDLE
+6854 (0x1AC6)
+The handle is no longer properly associated with its transaction.  It may have been opened in a transactional resource manager that was subsequently forced to restart.  Please close the handle and open a new one.
+ERROR_TRANSACTION_NOT_ENLISTED
+6855 (0x1AC7)
+The specified operation could not be performed because the resource manager is not enlisted in the transaction.
+ERROR_CTX_WINSTATION_NAME_INVALID
+7001 (0x1B59)
+The specified session name is invalid.
+ERROR_CTX_INVALID_PD
+7002 (0x1B5A)
+The specified protocol driver is invalid.
+ERROR_CTX_PD_NOT_FOUND
+7003 (0x1B5B)
+The specified protocol driver was not found in the system path.
+ERROR_CTX_WD_NOT_FOUND
+7004 (0x1B5C)
+The specified terminal connection driver was not found in the system path.
+ERROR_CTX_CANNOT_MAKE_EVENTLOG_ENTRY
+7005 (0x1B5D)
+A registry key for event logging could not be created for this session.
+ERROR_CTX_SERVICE_NAME_COLLISION
+7006 (0x1B5E)
+A service with the same name already exists on the system.
+ERROR_CTX_CLOSE_PENDING
+7007 (0x1B5F)
+A close operation is pending on the session.
+ERROR_CTX_NO_OUTBUF
+7008 (0x1B60)
+There are no free output buffers available.
+ERROR_CTX_MODEM_INF_NOT_FOUND
+7009 (0x1B61)
+The MODEM.INF file was not found.
+ERROR_CTX_INVALID_MODEMNAME
+7010 (0x1B62)
+The modem name was not found in MODEM.INF.
+ERROR_CTX_MODEM_RESPONSE_ERROR
+7011 (0x1B63)
+The modem did not accept the command sent to it. Verify that the configured modem name matches the attached modem.
+ERROR_CTX_MODEM_RESPONSE_TIMEOUT
+7012 (0x1B64)
+The modem did not respond to the command sent to it. Verify that the modem is properly cabled and powered on.
+ERROR_CTX_MODEM_RESPONSE_NO_CARRIER
+7013 (0x1B65)
+Carrier detect has failed or carrier has been dropped due to disconnect.
+ERROR_CTX_MODEM_RESPONSE_NO_DIALTONE
+7014 (0x1B66)
+Dial tone not detected within the required time. Verify that the phone cable is properly attached and functional.
+ERROR_CTX_MODEM_RESPONSE_BUSY
+7015 (0x1B67)
+Busy signal detected at remote site on callback.
+ERROR_CTX_MODEM_RESPONSE_VOICE
+7016 (0x1B68)
+Voice detected at remote site on callback.
+ERROR_CTX_TD_ERROR
+7017 (0x1B69)
+Transport driver error
+ERROR_CTX_WINSTATION_NOT_FOUND
+7022 (0x1B6E)
+The specified session cannot be found.
+ERROR_CTX_WINSTATION_ALREADY_EXISTS
+7023 (0x1B6F)
+The specified session name is already in use.
+ERROR_CTX_WINSTATION_BUSY
+7024 (0x1B70)
+The requested operation cannot be completed because the terminal connection is currently busy processing a connect, disconnect, reset, or delete operation.
+ERROR_CTX_BAD_VIDEO_MODE
+7025 (0x1B71)
+An attempt has been made to connect to a session whose video mode is not supported by the current client.
+ERROR_CTX_GRAPHICS_INVALID
+7035 (0x1B7B)
+The application attempted to enable DOS graphics mode. DOS graphics mode is not supported.
+ERROR_CTX_LOGON_DISABLED
+7037 (0x1B7D)
+Your interactive logon privilege has been disabled. Please contact your administrator.
+ERROR_CTX_NOT_CONSOLE
+7038 (0x1B7E)
+The requested operation can be performed only on the system console. This is most often the result of a driver or system DLL requiring direct console access.
+ERROR_CTX_CLIENT_QUERY_TIMEOUT
+7040 (0x1B80)
+The client failed to respond to the server connect message.
+ERROR_CTX_CONSOLE_DISCONNECT
+7041 (0x1B81)
+Disconnecting the console session is not supported.
+ERROR_CTX_CONSOLE_CONNECT
+7042 (0x1B82)
+Reconnecting a disconnected session to the console is not supported.
+ERROR_CTX_SHADOW_DENIED
+7044 (0x1B84)
+The request to control another session remotely was denied.
+ERROR_CTX_WINSTATION_ACCESS_DENIED
+7045 (0x1B85)
+The requested session access is denied.
+ERROR_CTX_INVALID_WD
+7049 (0x1B89)
+The specified terminal connection driver is invalid.
+ERROR_CTX_SHADOW_INVALID
+7050 (0x1B8A)
+The requested session cannot be controlled remotely. This may be because the session is disconnected or does not currently have a user logged on.
+ERROR_CTX_SHADOW_DISABLED
+7051 (0x1B8B)
+The requested session is not configured to allow remote control.
+ERROR_CTX_CLIENT_LICENSE_IN_USE
+7052 (0x1B8C)
+Your request to connect to this Terminal Server has been rejected. Your Terminal Server client license number is currently being used by another user. Please call your system administrator to obtain a unique license number.
+ERROR_CTX_CLIENT_LICENSE_NOT_SET
+7053 (0x1B8D)
+Your request to connect to this Terminal Server has been rejected. Your Terminal Server client license number has not been entered for this copy of the Terminal Server client. Please contact your system administrator.
+ERROR_CTX_LICENSE_NOT_AVAILABLE
+7054 (0x1B8E)
+The number of connections to this computer is limited and all connections are in use right now. Try connecting later or contact your system administrator.
+ERROR_CTX_LICENSE_CLIENT_INVALID
+7055 (0x1B8F)
+The client you are using is not licensed to use this system.  Your logon request is denied.
+ERROR_CTX_LICENSE_EXPIRED
+7056 (0x1B90)
+The system license has expired.  Your logon request is denied.
+ERROR_CTX_SHADOW_NOT_RUNNING
+7057 (0x1B91)
+Remote control could not be terminated because the specified session is not currently being remotely controlled.
+ERROR_CTX_SHADOW_ENDED_BY_MODE_CHANGE
+7058 (0x1B92)
+The remote control of the console was terminated because the display mode was changed. Changing the display mode in a remote control session is not supported.
+ERROR_ACTIVATION_COUNT_EXCEEDED
+7059 (0x1B93)
+Activation has already been reset the maximum number of times for this installation. Your activation timer will not be cleared.
+ERROR_CTX_WINSTATIONS_DISABLED
+7060 (0x1B94)
+Remote logins are currently disabled.
+ERROR_CTX_ENCRYPTION_LEVEL_REQUIRED
+7061 (0x1B95)
+You do not have the proper encryption level to access this Session.
+ERROR_CTX_SESSION_IN_USE
+7062 (0x1B96)
+The user %s\\%s is currently logged on to this computer. Only the current user or an administrator can log on to this computer.
+ERROR_CTX_NO_FORCE_LOGOFF
+7063 (0x1B97)
+The user %s\\%s is already logged on to the console of this computer. You do not have permission to log in at this time. To resolve this issue, contact %s\\%s and have them log off.
+ERROR_CTX_ACCOUNT_RESTRICTION
+7064 (0x1B98)
+Unable to log you on because of an account restriction.
+ERROR_RDP_PROTOCOL_ERROR
+7065 (0x1B99)
+The RDP protocol component %2 detected an error in the protocol stream and has disconnected the client.
+ERROR_CTX_CDM_CONNECT
+7066 (0x1B9A)
+The Client Drive Mapping Service Has Connected on Terminal Connection.
+ERROR_CTX_CDM_DISCONNECT
+7067 (0x1B9B)
+The Client Drive Mapping Service Has Disconnected on Terminal Connection.
+ERROR_CTX_SECURITY_LAYER_ERROR
+7068 (0x1B9C)
+The Terminal Server security layer detected an error in the protocol stream and has disconnected the client.
+ERROR_TS_INCOMPATIBLE_SESSIONS
+7069 (0x1B9D)
+The target session is incompatible with the current session.
+FRS_ERR_INVALID_API_SEQUENCE
+8001 (0x1F41)
+The file replication service API was called incorrectly.
+FRS_ERR_STARTING_SERVICE
+8002 (0x1F42)
+The file replication service cannot be started.
+FRS_ERR_STOPPING_SERVICE
+8003 (0x1F43)
+The file replication service cannot be stopped.
+FRS_ERR_INTERNAL_API
+8004 (0x1F44)
+The file replication service API terminated the request. The event log may have more information.
+FRS_ERR_INTERNAL
+8005 (0x1F45)
+The file replication service terminated the request. The event log may have more information.
+FRS_ERR_SERVICE_COMM
+8006 (0x1F46)
+The file replication service cannot be contacted. The event log may have more information.
+FRS_ERR_INSUFFICIENT_PRIV
+8007 (0x1F47)
+The file replication service cannot satisfy the request because the user has insufficient privileges. The event log may have more information.
+FRS_ERR_AUTHENTICATION
+8008 (0x1F48)
+The file replication service cannot satisfy the request because authenticated RPC is not available. The event log may have more information.
+FRS_ERR_PARENT_INSUFFICIENT_PRIV
+8009 (0x1F49)
+The file replication service cannot satisfy the request because the user has insufficient privileges on the domain controller. The event log may have more information.
+FRS_ERR_PARENT_AUTHENTICATION
+8010 (0x1F4A)
+The file replication service cannot satisfy the request because authenticated RPC is not available on the domain controller. The event log may have more information.
+FRS_ERR_CHILD_TO_PARENT_COMM
+8011 (0x1F4B)
+The file replication service cannot communicate with the file replication service on the domain controller. The event log may have more information.
+FRS_ERR_PARENT_TO_CHILD_COMM
+8012 (0x1F4C)
+The file replication service on the domain controller cannot communicate with the file replication service on this computer. The event log may have more information.
+FRS_ERR_SYSVOL_POPULATE
+8013 (0x1F4D)
+The file replication service cannot populate the system volume because of an internal error. The event log may have more information.
+FRS_ERR_SYSVOL_POPULATE_TIMEOUT
+8014 (0x1F4E)
+The file replication service cannot populate the system volume because of an internal timeout. The event log may have more information.
+FRS_ERR_SYSVOL_IS_BUSY
+8015 (0x1F4F)
+The file replication service cannot process the request. The system volume is busy with a previous request.
+FRS_ERR_SYSVOL_DEMOTE
+8016 (0x1F50)
+The file replication service cannot stop replicating the system volume because of an internal error. The event log may have more information.
+FRS_ERR_INVALID_SERVICE_PARAMETER
+8017 (0x1F51)
+The file replication service detected an invalid parameter.
+
+Minimum supported client
+Minimum supported server
+Header
+
+
+ 
+ 
+
+Build date: 2102011

@@ -1,0 +1,677 @@
+
+
+
+The System Error Codes are very broad.  Each one can occur in one of many hundreds of locations in the system.  Consequently the descriptions of these codes cannot be very specific.  Use of these codes requires some amount of investigation and analysis.  You need to note both the programmatic and the run-time context in which these errors occur.  Because these codes are defined in winerror.h for anyone to use, sometimes the codes are returned by non-system software.  Sometimes the code is returned by a function deep in the stack and far removed from your code that is handling the error.
+The table in this topic provides a list of 
+
+ERROR_WINS_INTERNAL
+4000 (0xFA0)
+WINS encountered an error while processing the command.
+ERROR_CAN_NOT_DEL_LOCAL_WINS
+4001 (0xFA1)
+The local WINS cannot be deleted.
+ERROR_STATIC_INIT
+4002 (0xFA2)
+The importation from the file failed.
+ERROR_INC_BACKUP
+4003 (0xFA3)
+The backup failed. Was a full backup done before?
+ERROR_FULL_BACKUP
+4004 (0xFA4)
+The backup failed. Check the directory to which you are backing the database.
+ERROR_REC_NON_EXISTENT
+4005 (0xFA5)
+The name does not exist in the WINS database.
+ERROR_RPL_NOT_ALLOWED
+4006 (0xFA6)
+Replication with a nonconfigured partner is not allowed.
+ERROR_DHCP_ADDRESS_CONFLICT
+4100 (0x1004)
+The DHCP client has obtained an IP address that is already in use on the network. The local interface will be disabled until the DHCP client can obtain a new address.
+ERROR_WMI_GUID_NOT_FOUND
+4200 (0x1068)
+The GUID passed was not recognized as valid by a WMI data provider.
+ERROR_WMI_INSTANCE_NOT_FOUND
+4201 (0x1069)
+The instance name passed was not recognized as valid by a WMI data provider.
+ERROR_WMI_ITEMID_NOT_FOUND
+4202 (0x106A)
+The data item ID passed was not recognized as valid by a WMI data provider.
+ERROR_WMI_TRY_AGAIN
+4203 (0x106B)
+The WMI request could not be completed and should be retried.
+ERROR_WMI_DP_NOT_FOUND
+4204 (0x106C)
+The WMI data provider could not be located.
+ERROR_WMI_UNRESOLVED_INSTANCE_REF
+4205 (0x106D)
+The WMI data provider references an instance set that has not been registered.
+ERROR_WMI_ALREADY_ENABLED
+4206 (0x106E)
+The WMI data block or event notification has already been enabled.
+ERROR_WMI_GUID_DISCONNECTED
+4207 (0x106F)
+The WMI data block is no longer available.
+ERROR_WMI_SERVER_UNAVAILABLE
+4208 (0x1070)
+The WMI data service is not available.
+ERROR_WMI_DP_FAILED
+4209 (0x1071)
+The WMI data provider failed to carry out the request.
+ERROR_WMI_INVALID_MOF
+4210 (0x1072)
+The WMI MOF information is not valid.
+ERROR_WMI_INVALID_REGINFO
+4211 (0x1073)
+The WMI registration information is not valid.
+ERROR_WMI_ALREADY_DISABLED
+4212 (0x1074)
+The WMI data block or event notification has already been disabled.
+ERROR_WMI_READ_ONLY
+4213 (0x1075)
+The WMI data item or data block is read only.
+ERROR_WMI_SET_FAILURE
+4214 (0x1076)
+The WMI data item or data block could not be changed.
+ERROR_INVALID_MEDIA
+4300 (0x10CC)
+The media identifier does not represent a valid medium.
+ERROR_INVALID_LIBRARY
+4301 (0x10CD)
+The library identifier does not represent a valid library.
+ERROR_INVALID_MEDIA_POOL
+4302 (0x10CE)
+The media pool identifier does not represent a valid media pool.
+ERROR_DRIVE_MEDIA_MISMATCH
+4303 (0x10CF)
+The drive and medium are not compatible or exist in different libraries.
+ERROR_MEDIA_OFFLINE
+4304 (0x10D0)
+The medium currently exists in an offline library and must be online to perform this operation.
+ERROR_LIBRARY_OFFLINE
+4305 (0x10D1)
+The operation cannot be performed on an offline library.
+ERROR_EMPTY
+4306 (0x10D2)
+The library, drive, or media pool is empty.
+ERROR_NOT_EMPTY
+4307 (0x10D3)
+The library, drive, or media pool must be empty to perform this operation.
+ERROR_MEDIA_UNAVAILABLE
+4308 (0x10D4)
+No media is currently available in this media pool or library.
+ERROR_RESOURCE_DISABLED
+4309 (0x10D5)
+A resource required for this operation is disabled.
+ERROR_INVALID_CLEANER
+4310 (0x10D6)
+The media identifier does not represent a valid cleaner.
+ERROR_UNABLE_TO_CLEAN
+4311 (0x10D7)
+The drive cannot be cleaned or does not support cleaning.
+ERROR_OBJECT_NOT_FOUND
+4312 (0x10D8)
+The object identifier does not represent a valid object.
+ERROR_DATABASE_FAILURE
+4313 (0x10D9)
+Unable to read from or write to the database.
+ERROR_DATABASE_FULL
+4314 (0x10DA)
+The database is full.
+ERROR_MEDIA_INCOMPATIBLE
+4315 (0x10DB)
+The medium is not compatible with the device or media pool.
+ERROR_RESOURCE_NOT_PRESENT
+4316 (0x10DC)
+The resource required for this operation does not exist.
+ERROR_INVALID_OPERATION
+4317 (0x10DD)
+The operation identifier is not valid.
+ERROR_MEDIA_NOT_AVAILABLE
+4318 (0x10DE)
+The media is not mounted or ready for use.
+ERROR_DEVICE_NOT_AVAILABLE
+4319 (0x10DF)
+The device is not ready for use.
+ERROR_REQUEST_REFUSED
+4320 (0x10E0)
+The operator or administrator has refused the request.
+ERROR_INVALID_DRIVE_OBJECT
+4321 (0x10E1)
+The drive identifier does not represent a valid drive.
+ERROR_LIBRARY_FULL
+4322 (0x10E2)
+Library is full.  No slot is available for use.
+ERROR_MEDIUM_NOT_ACCESSIBLE
+4323 (0x10E3)
+The transport cannot access the medium.
+ERROR_UNABLE_TO_LOAD_MEDIUM
+4324 (0x10E4)
+Unable to load the medium into the drive.
+ERROR_UNABLE_TO_INVENTORY_DRIVE
+4325 (0x10E5)
+Unable to retrieve the drive status.
+ERROR_UNABLE_TO_INVENTORY_SLOT
+4326 (0x10E6)
+Unable to retrieve the slot status.
+ERROR_UNABLE_TO_INVENTORY_TRANSPORT
+4327 (0x10E7)
+Unable to retrieve status about the transport.
+ERROR_TRANSPORT_FULL
+4328 (0x10E8)
+Cannot use the transport because it is already in use.
+ERROR_CONTROLLING_IEPORT
+4329 (0x10E9)
+Unable to open or close the injecteject port.
+ERROR_UNABLE_TO_EJECT_MOUNTED_MEDIA
+4330 (0x10EA)
+Unable to eject the medium because it is in a drive.
+ERROR_CLEANER_SLOT_SET
+4331 (0x10EB)
+A cleaner slot is already reserved.
+ERROR_CLEANER_SLOT_NOT_SET
+4332 (0x10EC)
+A cleaner slot is not reserved.
+ERROR_CLEANER_CARTRIDGE_SPENT
+4333 (0x10ED)
+The cleaner cartridge has performed the maximum number of drive cleanings.
+ERROR_UNEXPECTED_OMID
+4334 (0x10EE)
+Unexpected on-medium identifier.
+ERROR_CANT_DELETE_LAST_ITEM
+4335 (0x10EF)
+The last remaining item in this group or resource cannot be deleted.
+ERROR_MESSAGE_EXCEEDS_MAX_SIZE
+4336 (0x10F0)
+The message provided exceeds the maximum size allowed for this parameter.
+ERROR_VOLUME_CONTAINS_SYS_FILES
+4337 (0x10F1)
+The volume contains system or paging files.
+ERROR_INDIGENOUS_TYPE
+4338 (0x10F2)
+The media type cannot be removed from this library since at least one drive in the library reports it can support this media type.
+ERROR_NO_SUPPORTING_DRIVES
+4339 (0x10F3)
+This offline media cannot be mounted on this system since no enabled drives are present which can be used.
+ERROR_CLEANER_CARTRIDGE_INSTALLED
+4340 (0x10F4)
+A cleaner cartridge is present in the tape library.
+ERROR_IEPORT_FULL
+4341 (0x10F5)
+Cannot use the injecteject port because it is not empty.
+ERROR_FILE_OFFLINE
+4350 (0x10FE)
+The file is currently not available for use on this computer.
+ERROR_REMOTE_STORAGE_NOT_ACTIVE
+4351 (0x10FF)
+The remote storage service is not operational at this time.
+ERROR_REMOTE_STORAGE_MEDIA_ERROR
+4352 (0x1100)
+The remote storage service encountered a media error.
+ERROR_NOT_A_REPARSE_POINT
+4390 (0x1126)
+The file or directory is not a reparse point.
+ERROR_REPARSE_ATTRIBUTE_CONFLICT
+4391 (0x1127)
+The reparse point attribute cannot be set because it conflicts with an existing attribute.
+ERROR_INVALID_REPARSE_DATA
+4392 (0x1128)
+The data present in the reparse point buffer is invalid.
+ERROR_REPARSE_TAG_INVALID
+4393 (0x1129)
+The tag present in the reparse point buffer is invalid.
+ERROR_REPARSE_TAG_MISMATCH
+4394 (0x112A)
+There is a mismatch between the tag specified in the request and the tag present in the reparse point.
+ERROR_VOLUME_NOT_SIS_ENABLED
+4500 (0x1194)
+Single Instance Storage is not available on this volume.
+ERROR_DEPENDENT_RESOURCE_EXISTS
+5001 (0x1389)
+The operation cannot be completed because other resources are dependent on this resource.
+ERROR_DEPENDENCY_NOT_FOUND
+5002 (0x138A)
+The cluster resource dependency cannot be found.
+ERROR_DEPENDENCY_ALREADY_EXISTS
+5003 (0x138B)
+The cluster resource cannot be made dependent on the specified resource because it is already dependent.
+ERROR_RESOURCE_NOT_ONLINE
+5004 (0x138C)
+The cluster resource is not online.
+ERROR_HOST_NODE_NOT_AVAILABLE
+5005 (0x138D)
+A cluster node is not available for this operation.
+ERROR_RESOURCE_NOT_AVAILABLE
+5006 (0x138E)
+The cluster resource is not available.
+ERROR_RESOURCE_NOT_FOUND
+5007 (0x138F)
+The cluster resource could not be found.
+ERROR_SHUTDOWN_CLUSTER
+5008 (0x1390)
+The cluster is being shut down.
+ERROR_CANT_EVICT_ACTIVE_NODE
+5009 (0x1391)
+A cluster node cannot be evicted from the cluster unless the node is down or it is the last node.
+ERROR_OBJECT_ALREADY_EXISTS
+5010 (0x1392)
+The object already exists.
+ERROR_OBJECT_IN_LIST
+5011 (0x1393)
+The object is already in the list.
+ERROR_GROUP_NOT_AVAILABLE
+5012 (0x1394)
+The cluster group is not available for any new requests.
+ERROR_GROUP_NOT_FOUND
+5013 (0x1395)
+The cluster group could not be found.
+ERROR_GROUP_NOT_ONLINE
+5014 (0x1396)
+The operation could not be completed because the cluster group is not online.
+ERROR_HOST_NODE_NOT_RESOURCE_OWNER
+5015 (0x1397)
+The operation failed because either the specified cluster node is not the owner of the resource, or the node is not a possible owner of the resource.
+ERROR_HOST_NODE_NOT_GROUP_OWNER
+5016 (0x1398)
+The operation failed because either the specified cluster node is not the owner of the group, or the node is not a possible owner of the group.
+ERROR_RESMON_CREATE_FAILED
+5017 (0x1399)
+The cluster resource could not be created in the specified resource monitor.
+ERROR_RESMON_ONLINE_FAILED
+5018 (0x139A)
+The cluster resource could not be brought online by the resource monitor.
+ERROR_RESOURCE_ONLINE
+5019 (0x139B)
+The operation could not be completed because the cluster resource is online.
+ERROR_QUORUM_RESOURCE
+5020 (0x139C)
+The cluster resource could not be deleted or brought offline because it is the quorum resource.
+ERROR_NOT_QUORUM_CAPABLE
+5021 (0x139D)
+The cluster could not make the specified resource a quorum resource because it is not capable of being a quorum resource.
+ERROR_CLUSTER_SHUTTING_DOWN
+5022 (0x139E)
+The cluster software is shutting down.
+ERROR_INVALID_STATE
+5023 (0x139F)
+The group or resource is not in the correct state to perform the requested operation.
+ERROR_RESOURCE_PROPERTIES_STORED
+5024 (0x13A0)
+The properties were stored but not all changes will take effect until the next time the resource is brought online.
+ERROR_NOT_QUORUM_CLASS
+5025 (0x13A1)
+The cluster could not make the specified resource a quorum resource because it does not belong to a shared storage class.
+ERROR_CORE_RESOURCE
+5026 (0x13A2)
+The cluster resource could not be deleted since it is a core resource.
+ERROR_QUORUM_RESOURCE_ONLINE_FAILED
+5027 (0x13A3)
+The quorum resource failed to come online.
+ERROR_QUORUMLOG_OPEN_FAILED
+5028 (0x13A4)
+The quorum log could not be created or mounted successfully.
+ERROR_CLUSTERLOG_CORRUPT
+5029 (0x13A5)
+The cluster log is corrupt.
+ERROR_CLUSTERLOG_RECORD_EXCEEDS_MAXSIZE
+5030 (0x13A6)
+The record could not be written to the cluster log since it exceeds the maximum size.
+ERROR_CLUSTERLOG_EXCEEDS_MAXSIZE
+5031 (0x13A7)
+The cluster log exceeds its maximum size.
+ERROR_CLUSTERLOG_CHKPOINT_NOT_FOUND
+5032 (0x13A8)
+No checkpoint record was found in the cluster log.
+ERROR_CLUSTERLOG_NOT_ENOUGH_SPACE
+5033 (0x13A9)
+The minimum required disk space needed for logging is not available.
+ERROR_QUORUM_OWNER_ALIVE
+5034 (0x13AA)
+The cluster node failed to take control of the quorum resource because the resource is owned by another active node.
+ERROR_NETWORK_NOT_AVAILABLE
+5035 (0x13AB)
+A cluster network is not available for this operation.
+ERROR_NODE_NOT_AVAILABLE
+5036 (0x13AC)
+A cluster node is not available for this operation.
+ERROR_ALL_NODES_NOT_AVAILABLE
+5037 (0x13AD)
+All cluster nodes must be running to perform this operation.
+ERROR_RESOURCE_FAILED
+5038 (0x13AE)
+A cluster resource failed.
+ERROR_CLUSTER_INVALID_NODE
+5039 (0x13AF)
+The cluster node is not valid.
+ERROR_CLUSTER_NODE_EXISTS
+5040 (0x13B0)
+The cluster node already exists.
+ERROR_CLUSTER_JOIN_IN_PROGRESS
+5041 (0x13B1)
+A node is in the process of joining the cluster.
+ERROR_CLUSTER_NODE_NOT_FOUND
+5042 (0x13B2)
+The cluster node was not found.
+ERROR_CLUSTER_LOCAL_NODE_NOT_FOUND
+5043 (0x13B3)
+The cluster local node information was not found.
+ERROR_CLUSTER_NETWORK_EXISTS
+5044 (0x13B4)
+The cluster network already exists.
+ERROR_CLUSTER_NETWORK_NOT_FOUND
+5045 (0x13B5)
+The cluster network was not found.
+ERROR_CLUSTER_NETINTERFACE_EXISTS
+5046 (0x13B6)
+The cluster network interface already exists.
+ERROR_CLUSTER_NETINTERFACE_NOT_FOUND
+5047 (0x13B7)
+The cluster network interface was not found.
+ERROR_CLUSTER_INVALID_REQUEST
+5048 (0x13B8)
+The cluster request is not valid for this object.
+ERROR_CLUSTER_INVALID_NETWORK_PROVIDER
+5049 (0x13B9)
+The cluster network provider is not valid.
+ERROR_CLUSTER_NODE_DOWN
+5050 (0x13BA)
+The cluster node is down.
+ERROR_CLUSTER_NODE_UNREACHABLE
+5051 (0x13BB)
+The cluster node is not reachable.
+ERROR_CLUSTER_NODE_NOT_MEMBER
+5052 (0x13BC)
+The cluster node is not a member of the cluster.
+ERROR_CLUSTER_JOIN_NOT_IN_PROGRESS
+5053 (0x13BD)
+A cluster join operation is not in progress.
+ERROR_CLUSTER_INVALID_NETWORK
+5054 (0x13BE)
+The cluster network is not valid.
+ERROR_CLUSTER_NODE_UP
+5056 (0x13C0)
+The cluster node is up.
+ERROR_CLUSTER_IPADDR_IN_USE
+5057 (0x13C1)
+The cluster IP address is already in use.
+ERROR_CLUSTER_NODE_NOT_PAUSED
+5058 (0x13C2)
+The cluster node is not paused.
+ERROR_CLUSTER_NO_SECURITY_CONTEXT
+5059 (0x13C3)
+No cluster security context is available.
+ERROR_CLUSTER_NETWORK_NOT_INTERNAL
+5060 (0x13C4)
+The cluster network is not configured for internal cluster communication.
+ERROR_CLUSTER_NODE_ALREADY_UP
+5061 (0x13C5)
+The cluster node is already up.
+ERROR_CLUSTER_NODE_ALREADY_DOWN
+5062 (0x13C6)
+The cluster node is already down.
+ERROR_CLUSTER_NETWORK_ALREADY_ONLINE
+5063 (0x13C7)
+The cluster network is already online.
+ERROR_CLUSTER_NETWORK_ALREADY_OFFLINE
+5064 (0x13C8)
+The cluster network is already offline.
+ERROR_CLUSTER_NODE_ALREADY_MEMBER
+5065 (0x13C9)
+The cluster node is already a member of the cluster.
+ERROR_CLUSTER_LAST_INTERNAL_NETWORK
+5066 (0x13CA)
+The cluster network is the only one configured for internal cluster communication between two or more active cluster nodes. The internal communication capability cannot be removed from the network.
+ERROR_CLUSTER_NETWORK_HAS_DEPENDENTS
+5067 (0x13CB)
+One or more cluster resources depend on the network to provide service to clients. The client access capability cannot be removed from the network.
+ERROR_INVALID_OPERATION_ON_QUORUM
+5068 (0x13CC)
+This operation cannot be performed on the cluster resource as it the quorum resource. You may not bring the quorum resource offline or modify its possible owners list.
+ERROR_DEPENDENCY_NOT_ALLOWED
+5069 (0x13CD)
+The cluster quorum resource is not allowed to have any dependencies.
+ERROR_CLUSTER_NODE_PAUSED
+5070 (0x13CE)
+The cluster node is paused.
+ERROR_NODE_CANT_HOST_RESOURCE
+5071 (0x13CF)
+The cluster resource cannot be brought online. The owner node cannot run this resource.
+ERROR_CLUSTER_NODE_NOT_READY
+5072 (0x13D0)
+The cluster node is not ready to perform the requested operation.
+ERROR_CLUSTER_NODE_SHUTTING_DOWN
+5073 (0x13D1)
+The cluster node is shutting down.
+ERROR_CLUSTER_JOIN_ABORTED
+5074 (0x13D2)
+The cluster join operation was aborted.
+ERROR_CLUSTER_INCOMPATIBLE_VERSIONS
+5075 (0x13D3)
+The cluster join operation failed due to incompatible software versions between the joining node and its sponsor.
+ERROR_CLUSTER_MAXNUM_OF_RESOURCES_EXCEEDED
+5076 (0x13D4)
+This resource cannot be created because the cluster has reached the limit on the number of resources it can monitor.
+ERROR_CLUSTER_SYSTEM_CONFIG_CHANGED
+5077 (0x13D5)
+The system configuration changed during the cluster join or form operation. The join or form operation was aborted.
+ERROR_CLUSTER_RESOURCE_TYPE_NOT_FOUND
+5078 (0x13D6)
+The specified resource type was not found.
+ERROR_CLUSTER_RESTYPE_NOT_SUPPORTED
+5079 (0x13D7)
+The specified node does not support a resource of this type.  This may be due to version inconsistencies or due to the absence of the resource DLL on this node.
+ERROR_CLUSTER_RESNAME_NOT_FOUND
+5080 (0x13D8)
+The specified resource name is not supported by this resource DLL. This may be due to a bad (or changed) name supplied to the resource DLL.
+ERROR_CLUSTER_NO_RPC_PACKAGES_REGISTERED
+5081 (0x13D9)
+No authentication package could be registered with the RPC server.
+ERROR_CLUSTER_OWNER_NOT_IN_PREFLIST
+5082 (0x13DA)
+You cannot bring the group online because the owner of the group is not in the preferred list for the group. To change the owner node for the group, move the group.
+ERROR_CLUSTER_DATABASE_SEQMISMATCH
+5083 (0x13DB)
+The join operation failed because the cluster database sequence number has changed or is incompatible with the locker node. This may happen during a join operation if the cluster database was changing during the join.
+ERROR_RESMON_INVALID_STATE
+5084 (0x13DC)
+The resource monitor will not allow the fail operation to be performed while the resource is in its current state. This may happen if the resource is in a pending state.
+ERROR_CLUSTER_GUM_NOT_LOCKER
+5085 (0x13DD)
+A non locker code got a request to reserve the lock for making global updates.
+ERROR_QUORUM_DISK_NOT_FOUND
+5086 (0x13DE)
+The quorum disk could not be located by the cluster service.
+ERROR_DATABASE_BACKUP_CORRUPT
+5087 (0x13DF)
+The backed up cluster database is possibly corrupt.
+ERROR_CLUSTER_NODE_ALREADY_HAS_DFS_ROOT
+5088 (0x13E0)
+A DFS root already exists in this cluster node.
+ERROR_RESOURCE_PROPERTY_UNCHANGEABLE
+5089 (0x13E1)
+An attempt to modify a resource property failed because it conflicts with another existing property.
+ERROR_CLUSTER_MEMBERSHIP_INVALID_STATE
+5890 (0x1702)
+An operation was attempted that is incompatible with the current membership state of the node.
+ERROR_CLUSTER_QUORUMLOG_NOT_FOUND
+5891 (0x1703)
+The quorum resource does not contain the quorum log.
+ERROR_CLUSTER_MEMBERSHIP_HALT
+5892 (0x1704)
+The membership engine requested shutdown of the cluster service on this node.
+ERROR_CLUSTER_INSTANCE_ID_MISMATCH
+5893 (0x1705)
+The join operation failed because the cluster instance ID of the joining node does not match the cluster instance ID of the sponsor node.
+ERROR_CLUSTER_NETWORK_NOT_FOUND_FOR_IP
+5894 (0x1706)
+A matching cluster network for the specified IP address could not be found.
+ERROR_CLUSTER_PROPERTY_DATA_TYPE_MISMATCH
+5895 (0x1707)
+The actual data type of the property did not match the expected data type of the property.
+ERROR_CLUSTER_EVICT_WITHOUT_CLEANUP
+5896 (0x1708)
+The cluster node was evicted from the cluster successfully, but the node was not cleaned up.  To determine what cleanup steps failed and how to recover, see the Failover Clustering application event log using Event Viewer.
+ERROR_CLUSTER_PARAMETER_MISMATCH
+5897 (0x1709)
+Two or more parameter values specified for a resource's properties are in conflict.
+ERROR_NODE_CANNOT_BE_CLUSTERED
+5898 (0x170A)
+This computer cannot be made a member of a cluster.
+ERROR_CLUSTER_WRONG_OS_VERSION
+5899 (0x170B)
+This computer cannot be made a member of a cluster because it does not have the correct version of Windows installed.
+ERROR_CLUSTER_CANT_CREATE_DUP_CLUSTER_NAME
+5900 (0x170C)
+A cluster cannot be created with the specified cluster name because that cluster name is already in use. Specify a different name for the cluster.
+ERROR_CLUSCFG_ALREADY_COMMITTED
+5901 (0x170D)
+The cluster configuration action has already been committed.
+ERROR_CLUSCFG_ROLLBACK_FAILED
+5902 (0x170E)
+The cluster configuration action could not be rolled back.
+ERROR_CLUSCFG_SYSTEM_DISK_DRIVE_LETTER_CONFLICT
+5903 (0x170F)
+The drive letter assigned to a system disk on one node conflicted with the drive letter assigned to a disk on another node.
+ERROR_CLUSTER_OLD_VERSION
+5904 (0x1710)
+One or more nodes in the cluster are running a version of Windows that does not support this operation.
+ERROR_CLUSTER_MISMATCHED_COMPUTER_ACCT_NAME
+5905 (0x1711)
+The name of the corresponding computer account doesn't match the Network Name for this resource.
+ERROR_CLUSTER_NO_NET_ADAPTERS
+5906 (0x1712)
+No network adapters are available.
+ERROR_CLUSTER_POISONED
+5907 (0x1713)
+The cluster node has been poisoned.
+ERROR_CLUSTER_GROUP_MOVING
+5908 (0x1714)
+The group is unable to accept the request since it is moving to another node.
+ERROR_CLUSTER_RESOURCE_TYPE_BUSY
+5909 (0x1715)
+The resource type cannot accept the request since is too busy performing another operation.
+ERROR_RESOURCE_CALL_TIMED_OUT
+5910 (0x1716)
+The call to the cluster resource DLL timed out.
+ERROR_INVALID_CLUSTER_IPV6_ADDRESS
+5911 (0x1717)
+The address is not valid for an IPv6 Address resource. A global IPv6 address is required, and it must match a cluster network. Compatibility addresses are not permitted.
+ERROR_CLUSTER_INTERNAL_INVALID_FUNCTION
+5912 (0x1718)
+An internal cluster error occurred. A call to an invalid function was attempted.
+ERROR_CLUSTER_PARAMETER_OUT_OF_BOUNDS
+5913 (0x1719)
+A parameter value is out of acceptable range.
+ERROR_CLUSTER_PARTIAL_SEND
+5914 (0x171A)
+A network error occurred while sending data to another node in the cluster. The number of bytes transmitted was less than required.
+ERROR_CLUSTER_REGISTRY_INVALID_FUNCTION
+5915 (0x171B)
+An invalid cluster registry operation was attempted.
+--
+ERROR_CLUSTER_DATABASE_TRANSACTION_IN_PROGRESS
+5918 (0x171E)
+An internal cluster error occurred. A cluster database transaction was attempted while a transaction was already in progress.
+ERROR_CLUSTER_DATABASE_TRANSACTION_NOT_IN_PROGRESS
+5919 (0x171F)
+An internal cluster error occurred. There was an attempt to commit a cluster database transaction while no transaction was in progress.
+ERROR_CLUSTER_NULL_DATA
+5920 (0x1720)
+An internal cluster error occurred. Data was not properly initialized.
+ERROR_CLUSTER_PARTIAL_READ
+5921 (0x1721)
+An error occurred while reading from a stream of data. An unexpected number of bytes was returned.
+ERROR_CLUSTER_PARTIAL_WRITE
+5922 (0x1722)
+An error occurred while writing to a stream of data. The required number of bytes could not be written.
+ERROR_CLUSTER_CANT_DESERIALIZE_DATA
+5923 (0x1723)
+An error occurred while deserializing a stream of cluster data.
+ERROR_DEPENDENT_RESOURCE_PROPERTY_CONFLICT
+5924 (0x1724)
+One or more property values for this resource are in conflict with one or more property values associated with its dependent resource(s).
+ERROR_CLUSTER_NO_QUORUM
+5925 (0x1725)
+An quorum of cluster nodes was not present to form a cluster.
+ERROR_CLUSTER_INVALID_IPV6_NETWORK
+5926 (0x1726)
+The cluster network is not valid for an IPv6 Address resource, or it does not match the configured address.
+ERROR_CLUSTER_INVALID_IPV6_TUNNEL_NETWORK
+5927 (0x1727)
+The cluster network is not valid for an IPv6 Tunnel resource. Check the configuration of the IP Address resource on which the IPv6 Tunnel resource depends.
+ERROR_QUORUM_NOT_ALLOWED_IN_THIS_GROUP
+5928 (0x1728)
+Quorum resource cannot reside in the Available Storage group.
+ERROR_DEPENDENCY_TREE_TOO_COMPLEX
+5929 (0x1729)
+The dependencies for this resource are nested too deeply.
+ERROR_EXCEPTION_IN_RESOURCE_CALL
+5930 (0x172A)
+The call into the resource DLL raised an unhandled exception.
+ERROR_CLUSTER_RHS_FAILED_INITIALIZATION
+5931 (0x172B)
+The RHS process failed to initialize.
+ERROR_CLUSTER_NOT_INSTALLED
+5932 (0x172C)
+The Failover Clustering feature is not installed on this node.
+ERROR_CLUSTER_RESOURCES_MUST_BE_ONLINE_ON_THE_SAME_NODE
+5933 (0x172D)
+The resources must be online on the same node for this operation.
+ERROR_CLUSTER_MAX_NODES_IN_CLUSTER
+5934 (0x172E)
+A new node cannot be added since this cluster is already at its maximum number of nodes.
+ERROR_CLUSTER_TOO_MANY_NODES
+5935 (0x172F)
+This cluster cannot be created since the specified number of nodes exceeds the maximum allowed limit.
+ERROR_CLUSTER_OBJECT_ALREADY_USED
+5936 (0x1730)
+An attempt to use the specified cluster name failed because an enabled computer object with the given name already exists in the domain.
+ERROR_NONCORE_GROUPS_FOUND
+5937 (0x1731)
+This cluster cannot be destroyed. It has non-core application groups which must be deleted before the cluster can be destroyed.
+ERROR_FILE_SHARE_RESOURCE_CONFLICT
+5938 (0x1732)
+File share associated with file share witness resource cannot be hosted by this cluster or any of its nodes.
+ERROR_CLUSTER_EVICT_INVALID_REQUEST
+5939 (0x1733)
+Eviction of this node is invalid at this time. Due to quorum requirements node eviction will result in cluster shutdown. If it is the last node in the cluster, destroy cluster command should be used.
+ERROR_CLUSTER_SINGLETON_RESOURCE
+5940 (0x1734)
+Only one instance of this resource type is allowed in the cluster.
+ERROR_CLUSTER_GROUP_SINGLETON_RESOURCE
+5941 (0x1735)
+Only one instance of this resource type is allowed per resource group.
+ERROR_CLUSTER_RESOURCE_PROVIDER_FAILED
+5942 (0x1736)
+The resource failed to come online due to the failure of one or more provider resources.
+ERROR_CLUSTER_RESOURCE_CONFIGURATION_ERROR
+5943 (0x1737)
+The resource has indicated that it cannot come online on any node.
+ERROR_CLUSTER_GROUP_BUSY
+5944 (0x1738)
+The current operation cannot be performed on this group at this time.
+ERROR_CLUSTER_NOT_SHARED_VOLUME
+5945 (0x1739)
+The directory or file is not located on a cluster shared volume.
+ERROR_CLUSTER_INVALID_SECURITY_DESCRIPTOR
+5946 (0x173A)
+The Security Descriptor must explicitly grant full control to the Builtin Administrators group.
+ERROR_CLUSTER_SHARED_VOLUMES_IN_USE
+5947 (0x173B)
+There is one or more shared volumes resources configured in the cluster. Those resources needs to be moved to available storage in order for operation to succeed.
+ERROR_CLUSTER_USE_SHARED_VOLUMES_API
+5948 (0x173C)
+This group or resource cannot be directly manipulated. Use shared volume APIs to perform desired operation.
+ERROR_CLUSTER_BACKUP_IN_PROGRESS
+5949 (0x173D)
+Back up is in progress. Please wait for backup completion before trying this operation again.
+
+Minimum supported client
+Minimum supported server
+Header
+
+
+ 
+ 
+
+Build date: 2102011

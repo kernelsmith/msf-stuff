@@ -1,0 +1,17 @@
+
+results = win_parse(runcmd('systeminfo | findstr "Name: type: Locale: Version:"'))
+Host Name:                 XP-LAB-00
+OS Name:                   Microsoft Windows XP Professional
+OS Version:                5.1.2600 Service Pack 2 Build 2600
+System type:               X86-based PC
+System Locale:             en-us;English (United States)
+Input Locale:              en-us;English (United States)
+                                 Connection Name: Local Area Connection 2
+
+{
+                        'Computer'        => results[:Host_Name] ,
+                        'OS'              => "#{results[:OS_Name]} #{results[:OS_Version]}" ,
+                        'Architecture'    => results[:System_type] ,
+                        'System Language' => results[:System_Locale] ,
+                        }
+{"System Language"=>"en_US", "OS"=>"Windows XP (Build 2600, Service Pack 2).", "Computer"=>"XP-LAB-00", "Architecture"=>"x86"}

@@ -1,0 +1,1213 @@
+
+
+
+The System Error Codes are very broad.  Each one can occur in one of many hundreds of locations in the system.  Consequently the descriptions of these codes cannot be very specific.  Use of these codes requires some amount of investigation and analysis.  You need to note both the programmatic and the run-time context in which these errors occur.  Because these codes are defined in winerror.h for anyone to use, sometimes the codes are returned by non-system software.  Sometimes the code is returned by a function deep in the stack and far removed from your code that is handling the error.
+The table in this topic provides a list of 
+
+ERROR_DS_NOT_INSTALLED
+8200 (0x2008)
+An error occurred while installing the directory service. For more information, see the event log.
+ERROR_DS_MEMBERSHIP_EVALUATED_LOCALLY
+8201 (0x2009)
+The directory service evaluated group memberships locally.
+ERROR_DS_NO_ATTRIBUTE_OR_VALUE
+8202 (0x200A)
+The specified directory service attribute or value does not exist.
+ERROR_DS_INVALID_ATTRIBUTE_SYNTAX
+8203 (0x200B)
+The attribute syntax specified to the directory service is invalid.
+ERROR_DS_ATTRIBUTE_TYPE_UNDEFINED
+8204 (0x200C)
+The attribute type specified to the directory service is not defined.
+ERROR_DS_ATTRIBUTE_OR_VALUE_EXISTS
+8205 (0x200D)
+The specified directory service attribute or value already exists.
+ERROR_DS_BUSY
+8206 (0x200E)
+The directory service is busy.
+ERROR_DS_UNAVAILABLE
+8207 (0x200F)
+The directory service is unavailable.
+ERROR_DS_NO_RIDS_ALLOCATED
+8208 (0x2010)
+The directory service was unable to allocate a relative identifier.
+ERROR_DS_NO_MORE_RIDS
+8209 (0x2011)
+The directory service has exhausted the pool of relative identifiers.
+ERROR_DS_INCORRECT_ROLE_OWNER
+8210 (0x2012)
+The requested operation could not be performed because the directory service is not the master for that type of operation.
+ERROR_DS_RIDMGR_INIT_ERROR
+8211 (0x2013)
+The directory service was unable to initialize the subsystem that allocates relative identifiers.
+ERROR_DS_OBJ_CLASS_VIOLATION
+8212 (0x2014)
+The requested operation did not satisfy one or more constraints associated with the class of the object.
+ERROR_DS_CANT_ON_NON_LEAF
+8213 (0x2015)
+The directory service can perform the requested operation only on a leaf object.
+ERROR_DS_CANT_ON_RDN
+8214 (0x2016)
+The directory service cannot perform the requested operation on the RDN attribute of an object.
+ERROR_DS_CANT_MOD_OBJ_CLASS
+8215 (0x2017)
+The directory service detected an attempt to modify the object class of an object.
+ERROR_DS_CROSS_DOM_MOVE_ERROR
+8216 (0x2018)
+The requested cross-domain move operation could not be performed.
+ERROR_DS_GC_NOT_AVAILABLE
+8217 (0x2019)
+Unable to contact the global catalog server.
+ERROR_SHARED_POLICY
+8218 (0x201A)
+The policy object is shared and can only be modified at the root.
+ERROR_POLICY_OBJECT_NOT_FOUND
+8219 (0x201B)
+The policy object does not exist.
+ERROR_POLICY_ONLY_IN_DS
+8220 (0x201C)
+The requested policy information is only in the directory service.
+ERROR_PROMOTION_ACTIVE
+8221 (0x201D)
+A domain controller promotion is currently active.
+ERROR_NO_PROMOTION_ACTIVE
+8222 (0x201E)
+A domain controller promotion is not currently active
+ERROR_DS_OPERATIONS_ERROR
+8224 (0x2020)
+An operations error occurred.
+ERROR_DS_PROTOCOL_ERROR
+8225 (0x2021)
+A protocol error occurred.
+ERROR_DS_TIMELIMIT_EXCEEDED
+8226 (0x2022)
+The time limit for this request was exceeded.
+ERROR_DS_SIZELIMIT_EXCEEDED
+8227 (0x2023)
+The size limit for this request was exceeded.
+ERROR_DS_ADMIN_LIMIT_EXCEEDED
+8228 (0x2024)
+The administrative limit for this request was exceeded.
+ERROR_DS_COMPARE_FALSE
+8229 (0x2025)
+The compare response was false.
+ERROR_DS_COMPARE_TRUE
+8230 (0x2026)
+The compare response was true.
+ERROR_DS_AUTH_METHOD_NOT_SUPPORTED
+8231 (0x2027)
+The requested authentication method is not supported by the server.
+ERROR_DS_STRONG_AUTH_REQUIRED
+8232 (0x2028)
+A more secure authentication method is required for this server.
+ERROR_DS_INAPPROPRIATE_AUTH
+8233 (0x2029)
+Inappropriate authentication.
+ERROR_DS_AUTH_UNKNOWN
+8234 (0x202A)
+The authentication mechanism is unknown.
+ERROR_DS_REFERRAL
+8235 (0x202B)
+A referral was returned from the server.
+ERROR_DS_UNAVAILABLE_CRIT_EXTENSION
+8236 (0x202C)
+The server does not support the requested critical extension.
+ERROR_DS_CONFIDENTIALITY_REQUIRED
+8237 (0x202D)
+This request requires a secure connection.
+ERROR_DS_INAPPROPRIATE_MATCHING
+8238 (0x202E)
+Inappropriate matching.
+ERROR_DS_CONSTRAINT_VIOLATION
+8239 (0x202F)
+A constraint violation occurred.
+ERROR_DS_NO_SUCH_OBJECT
+8240 (0x2030)
+There is no such object on the server.
+ERROR_DS_ALIAS_PROBLEM
+8241 (0x2031)
+There is an alias problem.
+ERROR_DS_INVALID_DN_SYNTAX
+8242 (0x2032)
+An invalid dn syntax has been specified.
+ERROR_DS_IS_LEAF
+8243 (0x2033)
+The object is a leaf object.
+ERROR_DS_ALIAS_DEREF_PROBLEM
+8244 (0x2034)
+There is an alias dereferencing problem.
+ERROR_DS_UNWILLING_TO_PERFORM
+8245 (0x2035)
+The server is unwilling to process the request.
+ERROR_DS_LOOP_DETECT
+8246 (0x2036)
+A loop has been detected.
+ERROR_DS_NAMING_VIOLATION
+8247 (0x2037)
+There is a naming violation.
+ERROR_DS_OBJECT_RESULTS_TOO_LARGE
+8248 (0x2038)
+The result set is too large.
+ERROR_DS_AFFECTS_MULTIPLE_DSAS
+8249 (0x2039)
+The operation affects multiple DSAs
+ERROR_DS_SERVER_DOWN
+8250 (0x203A)
+The server is not operational.
+ERROR_DS_LOCAL_ERROR
+8251 (0x203B)
+A local error has occurred.
+ERROR_DS_ENCODING_ERROR
+8252 (0x203C)
+An encoding error has occurred.
+ERROR_DS_DECODING_ERROR
+8253 (0x203D)
+A decoding error has occurred.
+ERROR_DS_FILTER_UNKNOWN
+8254 (0x203E)
+The search filter cannot be recognized.
+ERROR_DS_PARAM_ERROR
+8255 (0x203F)
+One or more parameters are illegal.
+ERROR_DS_NOT_SUPPORTED
+8256 (0x2040)
+The specified method is not supported.
+ERROR_DS_NO_RESULTS_RETURNED
+8257 (0x2041)
+No results were returned.
+ERROR_DS_CONTROL_NOT_FOUND
+8258 (0x2042)
+The specified control is not supported by the server.
+ERROR_DS_CLIENT_LOOP
+8259 (0x2043)
+A referral loop was detected by the client.
+ERROR_DS_REFERRAL_LIMIT_EXCEEDED
+8260 (0x2044)
+The preset referral limit was exceeded.
+ERROR_DS_SORT_CONTROL_MISSING
+8261 (0x2045)
+The search requires a SORT control.
+ERROR_DS_OFFSET_RANGE_ERROR
+8262 (0x2046)
+The search results exceed the offset range specified.
+ERROR_DS_ROOT_MUST_BE_NC
+8301 (0x206D)
+The root object must be the head of a naming context. The root object cannot have an instantiated parent.
+ERROR_DS_ADD_REPLICA_INHIBITED
+8302 (0x206E)
+The add replica operation cannot be performed. The naming context must be writeable in order to create the replica.
+ERROR_DS_ATT_NOT_DEF_IN_SCHEMA
+8303 (0x206F)
+A reference to an attribute that is not defined in the schema occurred.
+ERROR_DS_MAX_OBJ_SIZE_EXCEEDED
+8304 (0x2070)
+The maximum size of an object has been exceeded.
+ERROR_DS_OBJ_STRING_NAME_EXISTS
+8305 (0x2071)
+An attempt was made to add an object to the directory with a name that is already in use.
+ERROR_DS_NO_RDN_DEFINED_IN_SCHEMA
+8306 (0x2072)
+An attempt was made to add an object of a class that does not have an RDN defined in the schema.
+ERROR_DS_RDN_DOESNT_MATCH_SCHEMA
+8307 (0x2073)
+An attempt was made to add an object using an RDN that is not the RDN defined in the schema.
+ERROR_DS_NO_REQUESTED_ATTS_FOUND
+8308 (0x2074)
+None of the requested attributes were found on the objects.
+ERROR_DS_USER_BUFFER_TO_SMALL
+8309 (0x2075)
+The user buffer is too small.
+ERROR_DS_ATT_IS_NOT_ON_OBJ
+8310 (0x2076)
+The attribute specified in the operation is not present on the object.
+ERROR_DS_ILLEGAL_MOD_OPERATION
+8311 (0x2077)
+Illegal modify operation. Some aspect of the modification is not permitted.
+ERROR_DS_OBJ_TOO_LARGE
+8312 (0x2078)
+The specified object is too large.
+ERROR_DS_BAD_INSTANCE_TYPE
+8313 (0x2079)
+The specified instance type is not valid.
+ERROR_DS_MASTERDSA_REQUIRED
+8314 (0x207A)
+The operation must be performed at a master DSA.
+ERROR_DS_OBJECT_CLASS_REQUIRED
+8315 (0x207B)
+The object class attribute must be specified.
+ERROR_DS_MISSING_REQUIRED_ATT
+8316 (0x207C)
+A required attribute is missing.
+ERROR_DS_ATT_NOT_DEF_FOR_CLASS
+8317 (0x207D)
+An attempt was made to modify an object to include an attribute that is not legal for its class.
+ERROR_DS_ATT_ALREADY_EXISTS
+8318 (0x207E)
+The specified attribute is already present on the object.
+ERROR_DS_CANT_ADD_ATT_VALUES
+8320 (0x2080)
+The specified attribute is not present, or has no values.
+ERROR_DS_SINGLE_VALUE_CONSTRAINT
+8321 (0x2081)
+Multiple values were specified for an attribute that can have only one value.
+ERROR_DS_RANGE_CONSTRAINT
+8322 (0x2082)
+A value for the attribute was not in the acceptable range of values.
+ERROR_DS_ATT_VAL_ALREADY_EXISTS
+8323 (0x2083)
+The specified value already exists.
+ERROR_DS_CANT_REM_MISSING_ATT
+8324 (0x2084)
+The attribute cannot be removed because it is not present on the object.
+ERROR_DS_CANT_REM_MISSING_ATT_VAL
+8325 (0x2085)
+The attribute value cannot be removed because it is not present on the object.
+ERROR_DS_ROOT_CANT_BE_SUBREF
+8326 (0x2086)
+The specified root object cannot be a subreference.
+ERROR_DS_NO_CHAINING
+8327 (0x2087)
+Chaining is not permitted.
+ERROR_DS_NO_CHAINED_EVAL
+8328 (0x2088)
+Chained evaluation is not permitted.
+ERROR_DS_NO_PARENT_OBJECT
+8329 (0x2089)
+The operation could not be performed because the object's parent is either uninstantiated or deleted.
+ERROR_DS_PARENT_IS_AN_ALIAS
+8330 (0x208A)
+Having a parent that is an alias is not permitted. Aliases are leaf objects.
+ERROR_DS_CANT_MIX_MASTER_AND_REPS
+8331 (0x208B)
+The object and parent must be of the same type, either both masters or both replicas.
+ERROR_DS_CHILDREN_EXIST
+8332 (0x208C)
+The operation cannot be performed because child objects exist. This operation can only be performed on a leaf object.
+ERROR_DS_OBJ_NOT_FOUND
+8333 (0x208D)
+Directory object not found.
+ERROR_DS_ALIASED_OBJ_MISSING
+8334 (0x208E)
+The aliased object is missing.
+ERROR_DS_BAD_NAME_SYNTAX
+8335 (0x208F)
+The object name has bad syntax.
+ERROR_DS_ALIAS_POINTS_TO_ALIAS
+8336 (0x2090)
+It is not permitted for an alias to refer to another alias.
+ERROR_DS_CANT_DEREF_ALIAS
+8337 (0x2091)
+The alias cannot be dereferenced.
+ERROR_DS_OUT_OF_SCOPE
+8338 (0x2092)
+The operation is out of scope.
+ERROR_DS_OBJECT_BEING_REMOVED
+8339 (0x2093)
+The operation cannot continue because the object is in the process of being removed.
+ERROR_DS_CANT_DELETE_DSA_OBJ
+8340 (0x2094)
+The DSA object cannot be deleted.
+ERROR_DS_GENERIC_ERROR
+8341 (0x2095)
+A directory service error has occurred.
+ERROR_DS_DSA_MUST_BE_INT_MASTER
+8342 (0x2096)
+The operation can only be performed on an internal master DSA object.
+ERROR_DS_CLASS_NOT_DSA
+8343 (0x2097)
+The object must be of class DSA.
+ERROR_DS_INSUFF_ACCESS_RIGHTS
+8344 (0x2098)
+Insufficient access rights to perform the operation.
+ERROR_DS_ILLEGAL_SUPERIOR
+8345 (0x2099)
+The object cannot be added because the parent is not on the list of possible superiors.
+ERROR_DS_ATTRIBUTE_OWNED_BY_SAM
+8346 (0x209A)
+Access to the attribute is not permitted because the attribute is owned by the Security Accounts Manager (SAM).
+ERROR_DS_NAME_TOO_MANY_PARTS
+8347 (0x209B)
+The name has too many parts.
+ERROR_DS_NAME_TOO_LONG
+8348 (0x209C)
+The name is too long.
+ERROR_DS_NAME_VALUE_TOO_LONG
+8349 (0x209D)
+The name value is too long.
+ERROR_DS_NAME_UNPARSEABLE
+8350 (0x209E)
+The directory service encountered an error parsing a name.
+ERROR_DS_NAME_TYPE_UNKNOWN
+8351 (0x209F)
+The directory service cannot get the attribute type for a name.
+ERROR_DS_NOT_AN_OBJECT
+8352 (0x20A0)
+The name does not identify an object; the name identifies a phantom.
+ERROR_DS_SEC_DESC_TOO_SHORT
+8353 (0x20A1)
+The security descriptor is too short.
+ERROR_DS_SEC_DESC_INVALID
+8354 (0x20A2)
+The security descriptor is invalid.
+ERROR_DS_NO_DELETED_NAME
+8355 (0x20A3)
+Failed to create name for deleted object.
+ERROR_DS_SUBREF_MUST_HAVE_PARENT
+8356 (0x20A4)
+The parent of a new subref must exist.
+ERROR_DS_NCNAME_MUST_BE_NC
+8357 (0x20A5)
+The object must be a naming context.
+ERROR_DS_CANT_ADD_SYSTEM_ONLY
+8358 (0x20A6)
+It is not permitted to add an attribute which is owned by the system.
+ERROR_DS_CLASS_MUST_BE_CONCRETE
+8359 (0x20A7)
+The class of the object must be structural; you cannot instantiate an abstract class.
+ERROR_DS_INVALID_DMD
+8360 (0x20A8)
+The schema object could not be found.
+ERROR_DS_OBJ_GUID_EXISTS
+8361 (0x20A9)
+A local object with this GUID (dead or alive) already exists.
+ERROR_DS_NOT_ON_BACKLINK
+8362 (0x20AA)
+The operation cannot be performed on a back link.
+ERROR_DS_NO_CROSSREF_FOR_NC
+8363 (0x20AB)
+The cross reference for the specified naming context could not be found.
+ERROR_DS_SHUTTING_DOWN
+8364 (0x20AC)
+The operation could not be performed because the directory service is shutting down.
+ERROR_DS_UNKNOWN_OPERATION
+8365 (0x20AD)
+The directory service request is invalid.
+ERROR_DS_INVALID_ROLE_OWNER
+8366 (0x20AE)
+The role owner attribute could not be read.
+ERROR_DS_COULDNT_CONTACT_FSMO
+8367 (0x20AF)
+The requested FSMO operation failed. The current FSMO holder could not be contacted.
+ERROR_DS_CROSS_NC_DN_RENAME
+8368 (0x20B0)
+Modification of a DN across a naming context is not permitted.
+ERROR_DS_CANT_MOD_SYSTEM_ONLY
+8369 (0x20B1)
+The attribute cannot be modified because it is owned by the system.
+ERROR_DS_REPLICATOR_ONLY
+8370 (0x20B2)
+Only the replicator can perform this function.
+ERROR_DS_OBJ_CLASS_NOT_DEFINED
+8371 (0x20B3)
+The specified class is not defined.
+ERROR_DS_OBJ_CLASS_NOT_SUBCLASS
+8372 (0x20B4)
+The specified class is not a subclass.
+ERROR_DS_NAME_REFERENCE_INVALID
+8373 (0x20B5)
+The name reference is invalid.
+ERROR_DS_CROSS_REF_EXISTS
+8374 (0x20B6)
+A cross reference already exists.
+ERROR_DS_CANT_DEL_MASTER_CROSSREF
+8375 (0x20B7)
+It is not permitted to delete a master cross reference.
+ERROR_DS_SUBTREE_NOTIFY_NOT_NC_HEAD
+8376 (0x20B8)
+Subtree notifications are only supported on NC heads.
+ERROR_DS_NOTIFY_FILTER_TOO_COMPLEX
+8377 (0x20B9)
+Notification filter is too complex.
+ERROR_DS_DUP_RDN
+8378 (0x20BA)
+Schema update failed: duplicate RDN.
+ERROR_DS_DUP_OID
+8379 (0x20BB)
+Schema update failed: duplicate OID.
+ERROR_DS_DUP_MAPI_ID
+8380 (0x20BC)
+Schema update failed: duplicate MAPI identifier.
+ERROR_DS_DUP_SCHEMA_ID_GUID
+8381 (0x20BD)
+Schema update failed: duplicate schema-id GUID.
+ERROR_DS_DUP_LDAP_DISPLAY_NAME
+8382 (0x20BE)
+Schema update failed: duplicate LDAP display name.
+ERROR_DS_SEMANTIC_ATT_TEST
+8383 (0x20BF)
+Schema update failed: range-lower less than range upper.
+ERROR_DS_SYNTAX_MISMATCH
+8384 (0x20C0)
+Schema update failed: syntax mismatch.
+ERROR_DS_EXISTS_IN_MUST_HAVE
+8385 (0x20C1)
+Schema deletion failed: attribute is used in must-contain.
+ERROR_DS_EXISTS_IN_MAY_HAVE
+8386 (0x20C2)
+Schema deletion failed: attribute is used in may-contain.
+ERROR_DS_NONEXISTENT_MAY_HAVE
+8387 (0x20C3)
+Schema update failed: attribute in may-contain does not exist.
+ERROR_DS_NONEXISTENT_MUST_HAVE
+8388 (0x20C4)
+Schema update failed: attribute in must-contain does not exist.
+ERROR_DS_AUX_CLS_TEST_FAIL
+8389 (0x20C5)
+Schema update failed: class in aux-class list does not exist or is not an auxiliary class.
+ERROR_DS_NONEXISTENT_POSS_SUP
+8390 (0x20C6)
+Schema update failed: class in poss-superiors does not exist.
+ERROR_DS_SUB_CLS_TEST_FAIL
+8391 (0x20C7)
+Schema update failed: class in subclassof list does not exist or does not satisfy hierarchy rules.
+ERROR_DS_BAD_RDN_ATT_ID_SYNTAX
+8392 (0x20C8)
+Schema update failed: Rdn-Att-Id has wrong syntax.
+ERROR_DS_EXISTS_IN_AUX_CLS
+8393 (0x20C9)
+Schema deletion failed: class is used as auxiliary class.
+ERROR_DS_EXISTS_IN_SUB_CLS
+8394 (0x20CA)
+Schema deletion failed: class is used as sub class.
+ERROR_DS_EXISTS_IN_POSS_SUP
+8395 (0x20CB)
+Schema deletion failed: class is used as poss superior.
+ERROR_DS_RECALCSCHEMA_FAILED
+8396 (0x20CC)
+Schema update failed in recalculating validation cache.
+ERROR_DS_TREE_DELETE_NOT_FINISHED
+8397 (0x20CD)
+The tree deletion is not finished.  The request must be made again to continue deleting the tree.
+ERROR_DS_CANT_DELETE
+8398 (0x20CE)
+The requested delete operation could not be performed.
+ERROR_DS_ATT_SCHEMA_REQ_ID
+8399 (0x20CF)
+Cannot read the governs class identifier for the schema record.
+ERROR_DS_BAD_ATT_SCHEMA_SYNTAX
+8400 (0x20D0)
+The attribute schema has bad syntax.
+ERROR_DS_CANT_CACHE_ATT
+8401 (0x20D1)
+The attribute could not be cached.
+ERROR_DS_CANT_CACHE_CLASS
+8402 (0x20D2)
+The class could not be cached.
+ERROR_DS_CANT_REMOVE_ATT_CACHE
+8403 (0x20D3)
+The attribute could not be removed from the cache.
+ERROR_DS_CANT_REMOVE_CLASS_CACHE
+8404 (0x20D4)
+The class could not be removed from the cache.
+ERROR_DS_CANT_RETRIEVE_DN
+8405 (0x20D5)
+The distinguished name attribute could not be read.
+ERROR_DS_MISSING_SUPREF
+8406 (0x20D6)
+No superior reference has been configured for the directory service. The directory service is therefore unable to issue referrals to objects outside this forest.
+ERROR_DS_CANT_RETRIEVE_INSTANCE
+8407 (0x20D7)
+The instance type attribute could not be retrieved.
+ERROR_DS_CODE_INCONSISTENCY
+8408 (0x20D8)
+An internal error has occurred.
+ERROR_DS_DATABASE_ERROR
+8409 (0x20D9)
+A database error has occurred.
+ERROR_DS_GOVERNSID_MISSING
+8410 (0x20DA)
+The attribute GOVERNSID is missing.
+ERROR_DS_MISSING_EXPECTED_ATT
+8411 (0x20DB)
+An expected attribute is missing.
+ERROR_DS_NCNAME_MISSING_CR_REF
+8412 (0x20DC)
+The specified naming context is missing a cross reference.
+ERROR_DS_SECURITY_CHECKING_ERROR
+8413 (0x20DD)
+A security checking error has occurred.
+ERROR_DS_SCHEMA_NOT_LOADED
+8414 (0x20DE)
+The schema is not loaded.
+ERROR_DS_SCHEMA_ALLOC_FAILED
+8415 (0x20DF)
+Schema allocation failed. Please check if the machine is running low on memory.
+ERROR_DS_ATT_SCHEMA_REQ_SYNTAX
+8416 (0x20E0)
+Failed to obtain the required syntax for the attribute schema.
+ERROR_DS_GCVERIFY_ERROR
+8417 (0x20E1)
+The global catalog verification failed. The global catalog is not available or does not support the operation. Some part of the directory is currently not available.
+ERROR_DS_DRA_SCHEMA_MISMATCH
+8418 (0x20E2)
+The replication operation failed because of a schema mismatch between the servers involved.
+ERROR_DS_CANT_FIND_DSA_OBJ
+8419 (0x20E3)
+The DSA object could not be found.
+ERROR_DS_CANT_FIND_EXPECTED_NC
+8420 (0x20E4)
+The naming context could not be found.
+ERROR_DS_CANT_FIND_NC_IN_CACHE
+8421 (0x20E5)
+The naming context could not be found in the cache.
+ERROR_DS_CANT_RETRIEVE_CHILD
+8422 (0x20E6)
+The child object could not be retrieved.
+ERROR_DS_SECURITY_ILLEGAL_MODIFY
+8423 (0x20E7)
+The modification was not permitted for security reasons.
+ERROR_DS_CANT_REPLACE_HIDDEN_REC
+8424 (0x20E8)
+The operation cannot replace the hidden record.
+ERROR_DS_BAD_HIERARCHY_FILE
+8425 (0x20E9)
+The hierarchy file is invalid.
+ERROR_DS_BUILD_HIERARCHY_TABLE_FAILED
+8426 (0x20EA)
+The attempt to build the hierarchy table failed.
+ERROR_DS_CONFIG_PARAM_MISSING
+8427 (0x20EB)
+The directory configuration parameter is missing from the registry.
+ERROR_DS_COUNTING_AB_INDICES_FAILED
+8428 (0x20EC)
+The attempt to count the address book indices failed.
+ERROR_DS_HIERARCHY_TABLE_MALLOC_FAILED
+8429 (0x20ED)
+The allocation of the hierarchy table failed.
+ERROR_DS_INTERNAL_FAILURE
+8430 (0x20EE)
+The directory service encountered an internal failure.
+ERROR_DS_UNKNOWN_ERROR
+8431 (0x20EF)
+The directory service encountered an unknown failure.
+ERROR_DS_ROOT_REQUIRES_CLASS_TOP
+8432 (0x20F0)
+A root object requires a class of 'top'.
+ERROR_DS_REFUSING_FSMO_ROLES
+8433 (0x20F1)
+This directory server is shutting down, and cannot take ownership of new floating single-master operation roles.
+ERROR_DS_MISSING_FSMO_SETTINGS
+8434 (0x20F2)
+The directory service is missing mandatory configuration information, and is unable to determine the ownership of floating single-master operation roles.
+ERROR_DS_UNABLE_TO_SURRENDER_ROLES
+8435 (0x20F3)
+The directory service was unable to transfer ownership of one or more floating single-master operation roles to other servers.
+ERROR_DS_DRA_GENERIC
+8436 (0x20F4)
+The replication operation failed.
+ERROR_DS_DRA_INVALID_PARAMETER
+8437 (0x20F5)
+An invalid parameter was specified for this replication operation.
+ERROR_DS_DRA_BUSY
+8438 (0x20F6)
+The directory service is too busy to complete the replication operation at this time.
+ERROR_DS_DRA_BAD_DN
+8439 (0x20F7)
+The distinguished name specified for this replication operation is invalid.
+ERROR_DS_DRA_BAD_NC
+8440 (0x20F8)
+The naming context specified for this replication operation is invalid.
+ERROR_DS_DRA_DN_EXISTS
+8441 (0x20F9)
+The distinguished name specified for this replication operation already exists.
+ERROR_DS_DRA_INTERNAL_ERROR
+8442 (0x20FA)
+The replication system encountered an internal error.
+ERROR_DS_DRA_INCONSISTENT_DIT
+8443 (0x20FB)
+The replication operation encountered a database inconsistency.
+ERROR_DS_DRA_CONNECTION_FAILED
+8444 (0x20FC)
+The server specified for this replication operation could not be contacted.
+ERROR_DS_DRA_BAD_INSTANCE_TYPE
+8445 (0x20FD)
+The replication operation encountered an object with an invalid instance type.
+ERROR_DS_DRA_OUT_OF_MEM
+8446 (0x20FE)
+The replication operation failed to allocate memory.
+ERROR_DS_DRA_MAIL_PROBLEM
+8447 (0x20FF)
+The replication operation encountered an error with the mail system.
+ERROR_DS_DRA_REF_ALREADY_EXISTS
+8448 (0x2100)
+The replication reference information for the target server already exists.
+ERROR_DS_DRA_REF_NOT_FOUND
+8449 (0x2101)
+The replication reference information for the target server does not exist.
+ERROR_DS_DRA_OBJ_IS_REP_SOURCE
+8450 (0x2102)
+The naming context cannot be removed because it is replicated to another server.
+ERROR_DS_DRA_DB_ERROR
+8451 (0x2103)
+The replication operation encountered a database error.
+ERROR_DS_DRA_NO_REPLICA
+8452 (0x2104)
+The naming context is in the process of being removed or is not replicated from the specified server.
+ERROR_DS_DRA_ACCESS_DENIED
+8453 (0x2105)
+Replication access was denied.
+ERROR_DS_DRA_NOT_SUPPORTED
+8454 (0x2106)
+The requested operation is not supported by this version of the directory service.
+ERROR_DS_DRA_RPC_CANCELLED
+8455 (0x2107)
+The replication remote procedure call was canceled.
+ERROR_DS_DRA_SOURCE_DISABLED
+8456 (0x2108)
+The source server is currently rejecting replication requests.
+ERROR_DS_DRA_SINK_DISABLED
+8457 (0x2109)
+The destination server is currently rejecting replication requests.
+ERROR_DS_DRA_NAME_COLLISION
+8458 (0x210A)
+The replication operation failed due to a collision of object names.
+ERROR_DS_DRA_SOURCE_REINSTALLED
+8459 (0x210B)
+The replication source has been reinstalled.
+ERROR_DS_DRA_MISSING_PARENT
+8460 (0x210C)
+The replication operation failed because a required parent object is missing.
+ERROR_DS_DRA_PREEMPTED
+8461 (0x210D)
+The replication operation was preempted.
+ERROR_DS_DRA_ABANDON_SYNC
+8462 (0x210E)
+The replication synchronization attempt was abandoned because of a lack of updates.
+ERROR_DS_DRA_SHUTDOWN
+8463 (0x210F)
+The replication operation was terminated because the system is shutting down.
+ERROR_DS_DRA_INCOMPATIBLE_PARTIAL_SET
+8464 (0x2110)
+Synchronization attempt failed because the destination DC is currently waiting to synchronize new partial attributes from source. This condition is normal if a recent schema change modified the partial attribute set. The destination partial attribute set is not a subset of source partial attribute set.
+ERROR_DS_DRA_SOURCE_IS_PARTIAL_REPLICA
+8465 (0x2111)
+The replication synchronization attempt failed because a master replica attempted to sync from a partial replica.
+ERROR_DS_DRA_EXTN_CONNECTION_FAILED
+8466 (0x2112)
+The server specified for this replication operation was contacted, but that server was unable to contact an additional server needed to complete the operation.
+ERROR_DS_INSTALL_SCHEMA_MISMATCH
+8467 (0x2113)
+The version of the directory service schema of the source forest is not compatible with the version of the directory service on this computer.
+ERROR_DS_DUP_LINK_ID
+8468 (0x2114)
+Schema update failed: An attribute with the same link identifier already exists.
+ERROR_DS_NAME_ERROR_RESOLVING
+8469 (0x2115)
+Name translation: Generic processing error.
+ERROR_DS_NAME_ERROR_NOT_FOUND
+8470 (0x2116)
+Name translation: Could not find the name or insufficient right to see name.
+ERROR_DS_NAME_ERROR_NOT_UNIQUE
+8471 (0x2117)
+Name translation: Input name mapped to more than one output name.
+ERROR_DS_NAME_ERROR_NO_MAPPING
+8472 (0x2118)
+Name translation: Input name found, but not the associated output format.
+ERROR_DS_NAME_ERROR_DOMAIN_ONLY
+8473 (0x2119)
+Name translation: Unable to resolve completely, only the domain was found.
+ERROR_DS_NAME_ERROR_NO_SYNTACTICAL_MAPPING
+8474 (0x211A)
+Name translation: Unable to perform purely syntactical mapping at the client without going out to the wire.
+ERROR_DS_CONSTRUCTED_ATT_MOD
+8475 (0x211B)
+Modification of a constructed attribute is not allowed.
+ERROR_DS_WRONG_OM_OBJ_CLASS
+8476 (0x211C)
+The OM-Object-Class specified is incorrect for an attribute with the specified syntax.
+ERROR_DS_DRA_REPL_PENDING
+8477 (0x211D)
+The replication request has been posted; waiting for reply.
+ERROR_DS_DS_REQUIRED
+8478 (0x211E)
+The requested operation requires a directory service, and none was available.
+ERROR_DS_INVALID_LDAP_DISPLAY_NAME
+8479 (0x211F)
+The LDAP display name of the class or attribute contains non-ASCII characters.
+ERROR_DS_NON_BASE_SEARCH
+8480 (0x2120)
+The requested search operation is only supported for base searches.
+ERROR_DS_CANT_RETRIEVE_ATTS
+8481 (0x2121)
+The search failed to retrieve attributes from the database.
+ERROR_DS_BACKLINK_WITHOUT_LINK
+8482 (0x2122)
+The schema update operation tried to add a backward link attribute that has no corresponding forward link.
+ERROR_DS_EPOCH_MISMATCH
+8483 (0x2123)
+Source and destination of a cross-domain move do not agree on the object's epoch number.  Either source or destination does not have the latest version of the object.
+ERROR_DS_SRC_NAME_MISMATCH
+8484 (0x2124)
+Source and destination of a cross-domain move do not agree on the object's current name.  Either source or destination does not have the latest version of the object.
+ERROR_DS_SRC_AND_DST_NC_IDENTICAL
+8485 (0x2125)
+Source and destination for the cross-domain move operation are identical.  Caller should use local move operation instead of cross-domain move operation.
+ERROR_DS_DST_NC_MISMATCH
+8486 (0x2126)
+Source and destination for a cross-domain move are not in agreement on the naming contexts in the forest.  Either source or destination does not have the latest version of the Partitions container.
+ERROR_DS_NOT_AUTHORITIVE_FOR_DST_NC
+8487 (0x2127)
+Destination of a cross-domain move is not authoritative for the destination naming context.
+ERROR_DS_SRC_GUID_MISMATCH
+8488 (0x2128)
+Source and destination of a cross-domain move do not agree on the identity of the source object.  Either source or destination does not have the latest version of the source object.
+ERROR_DS_CANT_MOVE_DELETED_OBJECT
+8489 (0x2129)
+Object being moved across-domains is already known to be deleted by the destination server.  The source server does not have the latest version of the source object.
+ERROR_DS_PDC_OPERATION_IN_PROGRESS
+8490 (0x212A)
+Another operation which requires exclusive access to the PDC FSMO is already in progress.
+ERROR_DS_CROSS_DOMAIN_CLEANUP_REQD
+8491 (0x212B)
+A cross-domain move operation failed such that two versions of the moved object exist - one each in the source and destination domains.  The destination object needs to be removed to restore the system to a consistent state.
+ERROR_DS_ILLEGAL_XDOM_MOVE_OPERATION
+8492 (0x212C)
+This object may not be moved across domain boundaries either because cross-domain moves for this class are disallowed, or the object has some special characteristics, e.g.: trust account or restricted RID, which prevent its move.
+ERROR_DS_CANT_WITH_ACCT_GROUP_MEMBERSHPS
+8493 (0x212D)
+Can't move objects with memberships across domain boundaries as once moved, this would violate the membership conditions of the account group.  Remove the object from any account group memberships and retry.
+ERROR_DS_NC_MUST_HAVE_NC_PARENT
+8494 (0x212E)
+A naming context head must be the immediate child of another naming context head, not of an interior node.
+ERROR_DS_CR_IMPOSSIBLE_TO_VALIDATE
+8495 (0x212F)
+The directory cannot validate the proposed naming context name because it does not hold a replica of the naming context above the proposed naming context.  Please ensure that the domain naming master role is held by a server that is configured as a global catalog server, and that the server is up to date with its replication partners. (Applies only to Windows 2000 Domain Naming masters)
+ERROR_DS_DST_DOMAIN_NOT_NATIVE
+8496 (0x2130)
+Destination domain must be in native mode.
+ERROR_DS_MISSING_INFRASTRUCTURE_CONTAINER
+8497 (0x2131)
+The operation cannot be performed because the server does not have an infrastructure container in the domain of interest.
+ERROR_DS_CANT_MOVE_ACCOUNT_GROUP
+8498 (0x2132)
+Cross-domain move of non-empty account groups is not allowed.
+ERROR_DS_CANT_MOVE_RESOURCE_GROUP
+8499 (0x2133)
+Cross-domain move of non-empty resource groups is not allowed.
+ERROR_DS_INVALID_SEARCH_FLAG
+8500 (0x2134)
+The search flags for the attribute are invalid. The ANR bit is valid only on attributes of Unicode or Teletex strings.
+ERROR_DS_NO_TREE_DELETE_ABOVE_NC
+8501 (0x2135)
+Tree deletions starting at an object which has an NC head as a descendant are not allowed.
+ERROR_DS_COULDNT_LOCK_TREE_FOR_DELETE
+8502 (0x2136)
+The directory service failed to lock a tree in preparation for a tree deletion because the tree was in use.
+ERROR_DS_COULDNT_IDENTIFY_OBJECTS_FOR_TREE_DELETE
+8503 (0x2137)
+The directory service failed to identify the list of objects to delete while attempting a tree deletion.
+ERROR_DS_SAM_INIT_FAILURE
+8504 (0x2138)
+Security Accounts Manager initialization failed because of the following error: %1. Error Status: 0x%2. Please shut down this system and reboot into Directory Services Restore Mode. Check the event log for more detailed information.
+ERROR_DS_SENSITIVE_GROUP_VIOLATION
+8505 (0x2139)
+Only an administrator can modify the membership list of an administrative group.
+ERROR_DS_CANT_MOD_PRIMARYGROUPID
+8506 (0x213A)
+Cannot change the primary group ID of a domain controller account.
+ERROR_DS_ILLEGAL_BASE_SCHEMA_MOD
+8507 (0x213B)
+An attempt is made to modify the base schema.
+ERROR_DS_NONSAFE_SCHEMA_CHANGE
+8508 (0x213C)
+Adding a new mandatory attribute to an existing class, deleting a mandatory attribute from an existing class, or adding an optional attribute to the special class Top that is not a backlink attribute (directly or through inheritance, for example, by adding or deleting an auxiliary class) is not allowed.
+ERROR_DS_SCHEMA_UPDATE_DISALLOWED
+8509 (0x213D)
+Schema update is not allowed on this DC because the DC is not the schema FSMO Role Owner.
+ERROR_DS_CANT_CREATE_UNDER_SCHEMA
+8510 (0x213E)
+An object of this class cannot be created under the schema container. You can only create attribute-schema and class-schema objects under the schema container.
+ERROR_DS_INSTALL_NO_SRC_SCH_VERSION
+8511 (0x213F)
+The replicachild install failed to get the objectVersion attribute on the schema container on the source DC. Either the attribute is missing on the schema container or the credentials supplied do not have permission to read it.
+ERROR_DS_INSTALL_NO_SCH_VERSION_IN_INIFILE
+8512 (0x2140)
+The replicachild install failed to read the objectVersion attribute in the SCHEMA section of the file schema.ini in the system32 directory.
+ERROR_DS_INVALID_GROUP_TYPE
+8513 (0x2141)
+The specified group type is invalid.
+ERROR_DS_NO_NEST_GLOBALGROUP_IN_MIXEDDOMAIN
+8514 (0x2142)
+You cannot nest global groups in a mixed domain if the group is security-enabled.
+ERROR_DS_NO_NEST_LOCALGROUP_IN_MIXEDDOMAIN
+8515 (0x2143)
+You cannot nest local groups in a mixed domain if the group is security-enabled.
+ERROR_DS_GLOBAL_CANT_HAVE_LOCAL_MEMBER
+8516 (0x2144)
+A global group cannot have a local group as a member.
+ERROR_DS_GLOBAL_CANT_HAVE_UNIVERSAL_MEMBER
+8517 (0x2145)
+A global group cannot have a universal group as a member.
+ERROR_DS_UNIVERSAL_CANT_HAVE_LOCAL_MEMBER
+8518 (0x2146)
+A universal group cannot have a local group as a member.
+ERROR_DS_GLOBAL_CANT_HAVE_CROSSDOMAIN_MEMBER
+8519 (0x2147)
+A global group cannot have a cross-domain member.
+ERROR_DS_LOCAL_CANT_HAVE_CROSSDOMAIN_LOCAL_MEMBER
+8520 (0x2148)
+A local group cannot have another cross domain local group as a member.
+ERROR_DS_HAVE_PRIMARY_MEMBERS
+8521 (0x2149)
+A group with primary members cannot change to a security-disabled group.
+ERROR_DS_STRING_SD_CONVERSION_FAILED
+8522 (0x214A)
+The schema cache load failed to convert the string default SD on a class-schema object.
+ERROR_DS_NAMING_MASTER_GC
+8523 (0x214B)
+Only DSAs configured to be Global Catalog servers should be allowed to hold the Domain Naming Master FSMO role. (Applies only to Windows 2000 servers)
+ERROR_DS_DNS_LOOKUP_FAILURE
+8524 (0x214C)
+The DSA operation is unable to proceed because of a DNS lookup failure.
+ERROR_DS_COULDNT_UPDATE_SPNS
+8525 (0x214D)
+While processing a change to the DNS Host Name for an object, the Service Principal Name values could not be kept in sync.
+ERROR_DS_CANT_RETRIEVE_SD
+8526 (0x214E)
+The Security Descriptor attribute could not be read.
+ERROR_DS_KEY_NOT_UNIQUE
+8527 (0x214F)
+The object requested was not found, but an object with that key was found.
+ERROR_DS_WRONG_LINKED_ATT_SYNTAX
+8528 (0x2150)
+The syntax of the linked attribute being added is incorrect. Forward links can only have syntax 2.5.5.1, 2.5.5.7, and 2.5.5.14, and backlinks can only have syntax 2.5.5.1
+ERROR_DS_SAM_NEED_BOOTKEY_PASSWORD
+8529 (0x2151)
+Security Account Manager needs to get the boot password.
+ERROR_DS_SAM_NEED_BOOTKEY_FLOPPY
+8530 (0x2152)
+Security Account Manager needs to get the boot key from floppy disk.
+ERROR_DS_CANT_START
+8531 (0x2153)
+Directory Service cannot start.
+ERROR_DS_INIT_FAILURE
+8532 (0x2154)
+Directory Services could not start.
+ERROR_DS_NO_PKT_PRIVACY_ON_CONNECTION
+8533 (0x2155)
+The connection between client and server requires packet privacy or better.
+ERROR_DS_SOURCE_DOMAIN_IN_FOREST
+8534 (0x2156)
+The source domain may not be in the same forest as destination.
+ERROR_DS_DESTINATION_DOMAIN_NOT_IN_FOREST
+8535 (0x2157)
+The destination domain must be in the forest.
+ERROR_DS_DESTINATION_AUDITING_NOT_ENABLED
+8536 (0x2158)
+The operation requires that destination domain auditing be enabled.
+ERROR_DS_CANT_FIND_DC_FOR_SRC_DOMAIN
+8537 (0x2159)
+The operation couldn't locate a DC for the source domain.
+ERROR_DS_SRC_OBJ_NOT_GROUP_OR_USER
+8538 (0x215A)
+The source object must be a group or user.
+ERROR_DS_SRC_SID_EXISTS_IN_FOREST
+8539 (0x215B)
+The source object's SID already exists in destination forest.
+ERROR_DS_SRC_AND_DST_OBJECT_CLASS_MISMATCH
+8540 (0x215C)
+The source and destination object must be of the same type.
+ERROR_SAM_INIT_FAILURE
+8541 (0x215D)
+Security Accounts Manager initialization failed because of the following error: %1. Error Status: 0x%2. Click OK to shut down the system and reboot into Safe Mode. Check the event log for detailed information.
+ERROR_DS_DRA_SCHEMA_INFO_SHIP
+8542 (0x215E)
+Schema information could not be included in the replication request.
+ERROR_DS_DRA_SCHEMA_CONFLICT
+8543 (0x215F)
+The replication operation could not be completed due to a schema incompatibility.
+ERROR_DS_DRA_EARLIER_SCHEMA_CONFLICT
+8544 (0x2160)
+The replication operation could not be completed due to a previous schema incompatibility.
+ERROR_DS_DRA_OBJ_NC_MISMATCH
+8545 (0x2161)
+The replication update could not be applied because either the source or the destination has not yet received information regarding a recent cross-domain move operation.
+ERROR_DS_NC_STILL_HAS_DSAS
+8546 (0x2162)
+The requested domain could not be deleted because there exist domain controllers that still host this domain.
+ERROR_DS_GC_REQUIRED
+8547 (0x2163)
+The requested operation can be performed only on a global catalog server.
+ERROR_DS_LOCAL_MEMBER_OF_LOCAL_ONLY
+8548 (0x2164)
+A local group can only be a member of other local groups in the same domain.
+ERROR_DS_NO_FPO_IN_UNIVERSAL_GROUPS
+8549 (0x2165)
+Foreign security principals cannot be members of universal groups.
+ERROR_DS_CANT_ADD_TO_GC
+8550 (0x2166)
+The attribute is not allowed to be replicated to the GC because of security reasons.
+ERROR_DS_NO_CHECKPOINT_WITH_PDC
+8551 (0x2167)
+The checkpoint with the PDC could not be taken because there too many modifications being processed currently.
+ERROR_DS_SOURCE_AUDITING_NOT_ENABLED
+8552 (0x2168)
+The operation requires that source domain auditing be enabled.
+ERROR_DS_CANT_CREATE_IN_NONDOMAIN_NC
+8553 (0x2169)
+Security principal objects can only be created inside domain naming contexts.
+ERROR_DS_INVALID_NAME_FOR_SPN
+8554 (0x216A)
+A Service Principal Name (SPN) could not be constructed because the provided hostname is not in the necessary format.
+ERROR_DS_FILTER_USES_CONTRUCTED_ATTRS
+8555 (0x216B)
+A Filter was passed that uses constructed attributes.
+ERROR_DS_UNICODEPWD_NOT_IN_QUOTES
+8556 (0x216C)
+The unicodePwd attribute value must be enclosed in double quotes.
+ERROR_DS_MACHINE_ACCOUNT_QUOTA_EXCEEDED
+8557 (0x216D)
+Your computer could not be joined to the domain. You have exceeded the maximum number of computer accounts you are allowed to create in this domain. Contact your system administrator to have this limit reset or increased.
+ERROR_DS_MUST_BE_RUN_ON_DST_DC
+8558 (0x216E)
+For security reasons, the operation must be run on the destination DC.
+ERROR_DS_SRC_DC_MUST_BE_SP4_OR_GREATER
+8559 (0x216F)
+For security reasons, the source DC must be NT4SP4 or greater.
+ERROR_DS_CANT_TREE_DELETE_CRITICAL_OBJ
+8560 (0x2170)
+Critical Directory Service System objects cannot be deleted during tree delete operations.  The tree delete may have been partially performed.
+ERROR_DS_INIT_FAILURE_CONSOLE
+8561 (0x2171)
+Directory Services could not start because of the following error: %1. Error Status: 0x%2. Please click OK to shutdown the system. You can use the recovery console to diagnose the system further.
+ERROR_DS_SAM_INIT_FAILURE_CONSOLE
+8562 (0x2172)
+Security Accounts Manager initialization failed because of the following error: %1. Error Status: 0x%2. Please click OK to shutdown the system. You can use the recovery console to diagnose the system further.
+ERROR_DS_FOREST_VERSION_TOO_HIGH
+8563 (0x2173)
+The version of the operating system is incompatible with the current AD DS forest functional level or AD LDS Configuration Set functional level. You must upgrade to a new version of the operating system before this server can become an AD DS Domain Controller or add an AD LDS Instance in this AD DS forest or AD LDS Configuration Set.
+ERROR_DS_DOMAIN_VERSION_TOO_HIGH
+8564 (0x2174)
+The version of the operating system installed is incompatible with the current domain functional level. You must upgrade to a new version of the operating system before this server can become a domain controller in this domain.
+ERROR_DS_FOREST_VERSION_TOO_LOW
+8565 (0x2175)
+The version of the operating system installed on this server no longer supports the current AD DS Forest functional level or AD LDS Configuration Set functional level. You must raise the AD DS Forest functional level or AD LDS Configuration Set functional level before this server can become an AD DS Domain Controller or an AD LDS Instance in this Forest or Configuration Set.
+ERROR_DS_DOMAIN_VERSION_TOO_LOW
+8566 (0x2176)
+The version of the operating system installed on this server no longer supports the current domain functional level. You must raise the domain functional level before this server can become a domain controller in this domain.
+ERROR_DS_INCOMPATIBLE_VERSION
+8567 (0x2177)
+The version of the operating system installed on this server is incompatible with the functional level of the domain or forest.
+ERROR_DS_LOW_DSA_VERSION
+8568 (0x2178)
+The functional level of the domain (or forest) cannot be raised to the requested value, because there exist one or more domain controllers in the domain (or forest) that are at a lower incompatible functional level.
+ERROR_DS_NO_BEHAVIOR_VERSION_IN_MIXEDDOMAIN
+8569 (0x2179)
+The forest functional level cannot be raised to the requested value since one or more domains are still in mixed domain mode. All domains in the forest must be in native mode, for you to raise the forest functional level.
+ERROR_DS_NOT_SUPPORTED_SORT_ORDER
+8570 (0x217A)
+The sort order requested is not supported.
+ERROR_DS_NAME_NOT_UNIQUE
+8571 (0x217B)
+The requested name already exists as a unique identifier.
+ERROR_DS_MACHINE_ACCOUNT_CREATED_PRENT4
+8572 (0x217C)
+The machine account was created pre-NT4.  The account needs to be recreated.
+ERROR_DS_OUT_OF_VERSION_STORE
+8573 (0x217D)
+The database is out of version store.
+ERROR_DS_INCOMPATIBLE_CONTROLS_USED
+8574 (0x217E)
+Unable to continue operation because multiple conflicting controls were used.
+ERROR_DS_NO_REF_DOMAIN
+8575 (0x217F)
+Unable to find a valid security descriptor reference domain for this partition.
+ERROR_DS_RESERVED_LINK_ID
+8576 (0x2180)
+Schema update failed: The link identifier is reserved.
+ERROR_DS_LINK_ID_NOT_AVAILABLE
+8577 (0x2181)
+Schema update failed: There are no link identifiers available.
+ERROR_DS_AG_CANT_HAVE_UNIVERSAL_MEMBER
+8578 (0x2182)
+An account group cannot have a universal group as a member.
+ERROR_DS_MODIFYDN_DISALLOWED_BY_INSTANCE_TYPE
+8579 (0x2183)
+Rename or move operations on naming context heads or read-only objects are not allowed.
+ERROR_DS_NO_OBJECT_MOVE_IN_SCHEMA_NC
+8580 (0x2184)
+Move operations on objects in the schema naming context are not allowed.
+ERROR_DS_MODIFYDN_DISALLOWED_BY_FLAG
+8581 (0x2185)
+A system flag has been set on the object and does not allow the object to be moved or renamed.
+ERROR_DS_MODIFYDN_WRONG_GRANDPARENT
+8582 (0x2186)
+This object is not allowed to change its grandparent container. Moves are not forbidden on this object, but are restricted to sibling containers.
+ERROR_DS_NAME_ERROR_TRUST_REFERRAL
+8583 (0x2187)
+Unable to resolve completely, a referral to another forest is generated.
+ERROR_NOT_SUPPORTED_ON_STANDARD_SERVER
+8584 (0x2188)
+The requested action is not supported on standard server.
+ERROR_DS_CANT_ACCESS_REMOTE_PART_OF_AD
+8585 (0x2189)
+Could not access a partition of the directory service located on a remote server.  Make sure at least one server is running for the partition in question.
+ERROR_DS_CR_IMPOSSIBLE_TO_VALIDATE_V2
+8586 (0x218A)
+The directory cannot validate the proposed naming context (or partition) name because it does not hold a replica nor can it contact a replica of the naming context above the proposed naming context.  Please ensure that the parent naming context is properly registered in DNS, and at least one replica of this naming context is reachable by the Domain Naming master.
+ERROR_DS_THREAD_LIMIT_EXCEEDED
+8587 (0x218B)
+The thread limit for this request was exceeded.
+ERROR_DS_NOT_CLOSEST
+8588 (0x218C)
+The Global catalog server is not in the closest site.
+ERROR_DS_CANT_DERIVE_SPN_WITHOUT_SERVER_REF
+8589 (0x218D)
+The DS cannot derive a service principal name (SPN) with which to mutually authenticate the target server because the corresponding server object in the local DS database has no serverReference attribute.
+ERROR_DS_SINGLE_USER_MODE_FAILED
+8590 (0x218E)
+The Directory Service failed to enter single user mode.
+ERROR_DS_NTDSCRIPT_SYNTAX_ERROR
+8591 (0x218F)
+The Directory Service cannot parse the script because of a syntax error.
+ERROR_DS_NTDSCRIPT_PROCESS_ERROR
+8592 (0x2190)
+The Directory Service cannot process the script because of an error.
+ERROR_DS_DIFFERENT_REPL_EPOCHS
+8593 (0x2191)
+The directory service cannot perform the requested operation because the servers involved are of different replication epochs (which is usually related to a domain rename that is in progress).
+ERROR_DS_DRS_EXTENSIONS_CHANGED
+8594 (0x2192)
+The directory service binding must be renegotiated due to a change in the server extensions information.
+ERROR_DS_REPLICA_SET_CHANGE_NOT_ALLOWED_ON_DISABLED_CR
+8595 (0x2193)
+Operation not allowed on a disabled cross reference.
+ERROR_DS_NO_MSDS_INTID
+8596 (0x2194)
+Schema update failed: No values for msDS-IntId are available.
+ERROR_DS_DUP_MSDS_INTID
+8597 (0x2195)
+Schema update failed: Duplicate msDS-INtId. Retry the operation.
+ERROR_DS_EXISTS_IN_RDNATTID
+8598 (0x2196)
+Schema deletion failed: attribute is used in rDNAttID.
+ERROR_DS_AUTHORIZATION_FAILED
+8599 (0x2197)
+The directory service failed to authorize the request.
+ERROR_DS_INVALID_SCRIPT
+8600 (0x2198)
+The Directory Service cannot process the script because it is invalid.
+ERROR_DS_REMOTE_CROSSREF_OP_FAILED
+8601 (0x2199)
+The remote create cross reference operation failed on the Domain Naming Master FSMO.  The operation's error is in the extended data.
+ERROR_DS_CROSS_REF_BUSY
+8602 (0x219A)
+A cross reference is in use locally with the same name.
+ERROR_DS_CANT_DERIVE_SPN_FOR_DELETED_DOMAIN
+8603 (0x219B)
+The DS cannot derive a service principal name (SPN) with which to mutually authenticate the target server because the server's domain has been deleted from the forest.
+ERROR_DS_CANT_DEMOTE_WITH_WRITEABLE_NC
+8604 (0x219C)
+Writeable NCs prevent this DC from demoting.
+ERROR_DS_DUPLICATE_ID_FOUND
+8605 (0x219D)
+The requested object has a non-unique identifier and cannot be retrieved.
+ERROR_DS_INSUFFICIENT_ATTR_TO_CREATE_OBJECT
+8606 (0x219E)
+Insufficient attributes were given to create an object.  This object may not exist because it may have been deleted and already garbage collected.
+ERROR_DS_GROUP_CONVERSION_ERROR
+8607 (0x219F)
+The group cannot be converted due to attribute restrictions on the requested group type.
+ERROR_DS_CANT_MOVE_APP_BASIC_GROUP
+8608 (0x21A0)
+Cross-domain move of non-empty basic application groups is not allowed.
+ERROR_DS_CANT_MOVE_APP_QUERY_GROUP
+8609 (0x21A1)
+Cross-domain move of non-empty query based application groups is not allowed.
+ERROR_DS_ROLE_NOT_VERIFIED
+8610 (0x21A2)
+The FSMO role ownership could not be verified because its directory partition has not replicated successfully with at least one replication partner.
+ERROR_DS_WKO_CONTAINER_CANNOT_BE_SPECIAL
+8611 (0x21A3)
+The target container for a redirection of a well known object container cannot already be a special container.
+ERROR_DS_DOMAIN_RENAME_IN_PROGRESS
+8612 (0x21A4)
+The Directory Service cannot perform the requested operation because a domain rename operation is in progress.
+ERROR_DS_EXISTING_AD_CHILD_NC
+8613 (0x21A5)
+The directory service detected a child partition below the requested new partition name.  The partition hierarchy must be created in a top down method.
+ERROR_DS_REPL_LIFETIME_EXCEEDED
+8614 (0x21A6)
+The directory service cannot replicate with this server because the time since the last replication with this server has exceeded the tombstone lifetime.
+ERROR_DS_DISALLOWED_IN_SYSTEM_CONTAINER
+8615 (0x21A7)
+The requested operation is not allowed on an object under the system container.
+ERROR_DS_LDAP_SEND_QUEUE_FULL
+8616 (0x21A8)
+The LDAP servers network send queue has filled up because the client is not processing the results of it's requests fast enough.  No more requests will be processed until the client catches up.  If the client does not catch up then it will be disconnected.
+ERROR_DS_DRA_OUT_SCHEDULE_WINDOW
+8617 (0x21A9)
+The scheduled replication did not take place because the system was too busy to execute the request within the schedule window.  The replication queue is overloaded. Consider reducing the number of partners or decreasing the scheduled replication frequency.
+ERROR_DS_POLICY_NOT_KNOWN
+8618 (0x21AA)
+At this time, it cannot be determined if the branch replication policy is available on the hub domain controller.  Please retry at a later time to account for replication latencies.
+ERROR_NO_SITE_SETTINGS_OBJECT
+8619 (0x21AB)
+The site settings object for the specified site does not exist.
+ERROR_NO_SECRETS
+8620 (0x21AC)
+The local account store does not contain secret material for the specified account.
+ERROR_NO_WRITABLE_DC_FOUND
+8621 (0x21AD)
+Could not find a writable domain controller in the domain.
+ERROR_DS_NO_SERVER_OBJECT
+8622 (0x21AE)
+The server object for the domain controller does not exist.
+ERROR_DS_NO_NTDSA_OBJECT
+8623 (0x21AF)
+The NTDS Settings object for the domain controller does not exist.
+ERROR_DS_NON_ASQ_SEARCH
+8624 (0x21B0)
+The requested search operation is not supported for ASQ searches.
+ERROR_DS_AUDIT_FAILURE
+8625 (0x21B1)
+A required audit event could not be generated for the operation.
+ERROR_DS_INVALID_SEARCH_FLAG_SUBTREE
+8626 (0x21B2)
+The search flags for the attribute are invalid. The subtree index bit is valid only on single valued attributes.
+ERROR_DS_INVALID_SEARCH_FLAG_TUPLE
+8627 (0x21B3)
+The search flags for the attribute are invalid. The tuple index bit is valid only on attributes of Unicode strings.
+ERROR_DS_HIERARCHY_TABLE_TOO_DEEP
+8628 (0x21B4)
+ The address books are nested too deeply. Failed to build the hierarchy table.
+ERROR_DS_DRA_CORRUPT_UTD_VECTOR
+8629 (0x21B5)
+The specified up-to-date-ness vector is corrupt.
+ERROR_DS_DRA_SECRETS_DENIED
+8630 (0x21B6)
+The request to replicate secrets is denied.
+ERROR_DS_RESERVED_MAPI_ID
+8631 (0x21B7)
+Schema update failed: The MAPI identifier is reserved.
+ERROR_DS_MAPI_ID_NOT_AVAILABLE
+8632 (0x21B8)
+Schema update failed: There are no MAPI identifiers available.
+ERROR_DS_DRA_MISSING_KRBTGT_SECRET
+8633 (0x21B9)
+The replication operation failed because the required attributes of the local krbtgt object are missing.
+ERROR_DS_DOMAIN_NAME_EXISTS_IN_FOREST
+8634 (0x21BA)
+The domain name of the trusted domain already exists in the forest.
+ERROR_DS_FLAT_NAME_EXISTS_IN_FOREST
+8635 (0x21BB)
+The flat name of the trusted domain already exists in the forest.
+ERROR_INVALID_USER_PRINCIPAL_NAME
+8636 (0x21BC)
+The User Principal Name (UPN) is invalid.
+ERROR_DS_OID_MAPPED_GROUP_CANT_HAVE_MEMBERS
+8637 (0x21BD)
+OID mapped groups cannot have members.
+ERROR_DS_OID_NOT_FOUND
+8638 (0x21BE)
+The specified OID cannot be found.
+
+Minimum supported client
+Minimum supported server
+Header
+
+
+ 
+ 
+
+Build date: 2102011
