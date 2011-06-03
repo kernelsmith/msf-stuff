@@ -1,0 +1,5 @@
+load lab
+lab_load /msf/data/lab/josh_vms.yml
+lab_start all
+lab_browse_to all 'http://www.google.com'
+

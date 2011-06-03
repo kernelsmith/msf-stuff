@@ -1,0 +1,6 @@
+load lab
+lab_load /msf/data/lab/josh_vms.yml
+lab_start all
+#lab_run_command xpsp2 'C:\test\met_192.168.251.1_443.exe'
+#vmrun -T ws -gu Administrator -gp lab runProgramInGuest "/home/ks/all/resources/vms/win/xp/xp.vmx" 'c:\test\met_192.168.251.1_443.exe' &
+

