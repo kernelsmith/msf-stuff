@@ -3,10 +3,10 @@ module Controllers
 module EsxiVixrController
 
 	def self.running_list
-		vm_list = `vmrun list`.split("\n")
-		vm_list.shift
+		puts("Not implemented yet")
 
-		return vm_list
+		#return vm_list
+		return
 	end
 
 	def self.dir_list(basepath=nil)
