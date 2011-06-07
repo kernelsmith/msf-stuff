@@ -33,7 +33,7 @@ class EsxiVixrDriver < VmDriver
 		#@user = filter_input(user)
 		@user = "root"
 		#@pass = filter_input(pass)
-		@pass = '21N269L@b'
+		@pass = 'password'
 		@host = filter_input(host)
 		@tools = tools	# not used in command lines, no filter
 		#@os = os	# not used in command lines, no filter
