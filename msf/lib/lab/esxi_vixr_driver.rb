@@ -11,17 +11,33 @@ module Drivers
 
 class EsxiVixrDriver < VmDriver
 
+	require 'timeout'
+	
 	attr_accessor :type
 	attr_accessor :location
+	
+        # Checks if vixr is loaded correctly.
+        @vixr_loaded = false
 
-	def initialize(vmid, location, tools=false, user=nil, host=nil, pass=nil, credentials=nil)
+        # vixr is absolutely required to make this work, let's be nice if it's not avail
+        def self.vixr_require
+                begin
+                        require 'vixr'
+                rescue LoadError
+                        return false
+                end
+                @vixr_loaded = true
+        end
+        
+	def initialize(vmid, location, tools=false, user=nil, host=nil, pass=nil, credentials=nil, type=nil)
 
-		begin 
-			require 'vixr'
-		rescue
-			raise "Oops, no vixr installed. Consider using the regular workstation driver.\n" +
+		::EsxiVixrDriver.vixr_require
+        # versioning is not an issue atm, but if becomes one, check it here
+		if not @vixr_loaded
+			raise "Oops, no vixr installed. Consider using another vmware driver such as workstation\n" +
 				"Or install the vixr driver and vix api --\n" +
-				"https://github.com/rhythmx/vixr && http://www.vmware.com/support/developer/vix-api/"
+				"Download vixr at https://github.com/rhythmx/vixr and follow the README\n"
+				"Download and install vix-api at http://www.vmware.com/support/developer/vix-api/"
 		end
 		
 		# TODO - Should proabably check file existence?	but won't be able until Vixr.connect
@@ -30,13 +46,16 @@ class EsxiVixrDriver < VmDriver
 
 		@vmid = filter_input(vmid)
 		@location = filter_input(location)
+		@type = type
 		#@user = filter_input(user)
 		@user = "root"
 		#@pass = filter_input(pass)
+		#hardcode a password for now
 		@pass = 'password'
 		@host = filter_input(host)
 		@tools = tools	# not used in command lines, no filter
 		#@os = os	# not used in command lines, no filter
+		# port will vary if not just used for esxi, vmserver = 8222?, esx = 80?
 		@port = 443
 
 		@credentials = credentials # individually filtered
@@ -58,12 +77,23 @@ class EsxiVixrDriver < VmDriver
 		#:showgui => false,
 		#:fromguest => true, # reset and poweroff will use the guest OS to shutdown
 		#:deletefile => false,
-		puts("DEBUG:  Connecting to remote server with:")
-		puts("DEBUG:  Const=#{VixAPI::Const::Provider::Server2x} site=https://#{@host}:443/sdk u=#{@user} p=#{@pass} ort=#{@port}")
-		#TODO:  Add timeout, otherwise this can hang
-		host = VixR.connect(:hosttype => VixAPI::Const::Provider::Server2x, :hostname => "https://#{@host}", :user => @user, :pass => @pass, :port => @port)
+		# could also use @vm.opt = {}
+		
+		connect_hash = {
+						:hosttype => VixAPI::Const::Provider::Server2x, 
+						:hostname => "https://#{@host}:443/sdk", 
+						:user => @user, 
+						:pass => @pass, 
+						:port => @port
+						}
+		begin
+		Timeout::timeout(10) { host = VixR.connect(connect_hash) }
+		rescue ::Timeout::Error
+		end
+		
+		raise(Exception, "Connection to host failed.  Connection parameters:  connect_hash.to_s") if not host
+		
 		@vm = host.open_vmx("#{@location.to_s}") || nil
-		puts("DEBUG:  vm handle is #{@vm.to_s}")
 	end
 
 	def start
@@ -87,18 +117,28 @@ class EsxiVixrDriver < VmDriver
 	end
 
 	def create_snapshot(snapshot)
-		snapshot = filter_input(snapshot)
-		system_command("ssh #{@user}@#{@host} vmrun -T ws snapshot \\\'#{@location}\\\' #{snapshot} nogui")
+		raise Exception, "Command not currently implemented in Vixr"
+		#snapshot = filter_input(snapshot)
+		#vim-cmd vmsvc/snapshot.create [vmid:int] [snapName] [snapDescription] [inclMemory:bool]
+		# this command requires the vmid as it's known by the server, we'd need vixr to implement a vmid method/property
+		#system_command("ssh #{@user}@#{@host} \"vim-cmd vmsvc/snapshot.create #{@vm.vmid} #{snapshot} #{type} false\"")
 	end
 
 	def revert_snapshot(snapshot)
-		snapshot = filter_input(snapshot)
-		system_command("ssh #{@user}@#{@host} vmrun -T ws revertToSnapshot \\\'#{@location}\\\' #{snapshot} nogui")
+		raise Exception, "Command not currently implemented in Vixr"
+		#snapshot = filter_input(snapshot)
+		#vim-cmd vmsvc/snapshot.revert [vmid:int] [snapLevel] [snapIndex]
+		# this command requires the vmid as it's known by the server, we'd need vixr to implement a vmid method/property
+		# could also use a get_snapshots method for current snapshot levels & indices, assoc w/ snapName & descrip
+		#system_command("ssh #{@user}@#{@host} \"vim-cmd vmsvc/snapshot.revert #{@vm.vmid} 0 0\"")
 	end
 
 	def delete_snapshot(snapshot)
-		snapshot = filter_input(snapshot)
-		system_command("ssh #{@user}@#{@host} vmrun -T ws deleteSnapshot \\\'#{@location}\\\' #{snapshot} nogui" )
+		raise Exception, "Command not currently implemented in Vixr"
+		#snapshot = filter_input(snapshot)
+		# TODO: need to confirm the syntax here
+		# vim-cmd vmsvc/snapshot.remove [vmid:int] [snapLevel:int] [snapIndex:int] [inclDescendents:bool]
+		#system_command("ssh #{@user}@#{@host} \"vim-cmd vmsvc/snapshot.remove #{@vm.vmid} 0 0 true\"")
 	end
 
 
@@ -112,7 +152,7 @@ class EsxiVixrDriver < VmDriver
 	def copy_from(from, to)
 		from = filter_input(from)
 		to = filter_input(to)
-		cp_from_host(from,to)
+		@vm.cp_from_host(from,to)
 	end
 
 	def copy_to(from, to)
@@ -123,11 +163,22 @@ class EsxiVixrDriver < VmDriver
 
 	def check_file_exists(file)
 		file = filter_input(file)
-		file_exists?(file)
+		@vm.file_exists?(file)
+	end
+	
+	def check_dir_exists(directory)
+		directory = filter_input(directory)
+		@vm.dir_exists?(directory)
 	end
 
 	def create_directory(directory)
 		directory = filter_input(directory)
+		@vm.mkdir(directory)
+	end
+	
+	def screendump(file=nil)
+		file = filter_input(file)
+		@vm.screendump(file)
 	end
 
 	def cleanup
