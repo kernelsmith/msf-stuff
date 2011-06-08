@@ -15,29 +15,25 @@ class EsxiVixrDriver < VmDriver
 	
 	attr_accessor :type
 	attr_accessor :location
-	
-        # Checks if vixr is loaded correctly.
-        @vixr_loaded = false
-
-        # vixr is absolutely required to make this work, let's be nice if it's not avail
-        def self.vixr_require
-                begin
-                        require 'vixr'
-                rescue LoadError
-                        return false
-                end
-                @vixr_loaded = true
-        end
         
 	def initialize(vmid, location, tools=false, user=nil, host=nil, pass=nil, credentials=nil, type=nil)
 
-		::EsxiVixrDriver.vixr_require
+		# Checks if vixr is loaded correctly.
+        @vixr_loaded = false
+
+        # vixr is absolutely required to make this work, let's be nice if it's not avail
+        begin
+			require 'vixr'
+			@vixr_loaded = true
+		rescue LoadError
+			@vixr_loaded = false
+		end
         # versioning is not an issue atm, but if becomes one, check it here
 		if not @vixr_loaded
-			raise "Oops, no vixr installed. Consider using another vmware driver such as workstation\n" +
+			raise(Exception, "Oops, no vixr installed. Consider using another vmware driver such as workstation\n" +
 				"Or install the vixr driver and vix api --\n" +
-				"Download vixr at https://github.com/rhythmx/vixr and follow the README\n"
-				"Download and install vix-api at http://www.vmware.com/support/developer/vix-api/"
+				"Download vixr at https://github.com/rhythmx/vixr and follow the README\n" +
+				"Download and install vix-api at http://www.vmware.com/support/developer/vix-api/")
 		end
 		
 		# TODO - Should proabably check file existence?	but won't be able until Vixr.connect
@@ -51,7 +47,7 @@ class EsxiVixrDriver < VmDriver
 		@user = "root"
 		#@pass = filter_input(pass)
 		#hardcode a password for now
-		@pass = 'password'
+		@pass = '21N269L@b'
 		@host = filter_input(host)
 		@tools = tools	# not used in command lines, no filter
 		#@os = os	# not used in command lines, no filter
