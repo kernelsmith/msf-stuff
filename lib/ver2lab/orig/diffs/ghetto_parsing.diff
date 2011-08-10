@@ -1,0 +1,25 @@
+Index: remote_esx_controller.rb
+===================================================================
+--- remote_esx_controller.rb	(revision 13291)
++++ remote_esx_controller.rb	(working copy)
+
+@@ -44,18 +65,31 @@
+ 
+                raw.each do |line|
+                        # So effing ghetto
+-                       id_and_name = line.split('[datastore').first
++                       id_and_name = line.split('[datastore]').first
+                        id = id_and_name.split(' ').first
+        
+                        ## TODO - there's surely a better way to do this.
+-                       name_array = id_and_name.split(' ')
+-                       name_array.shift
+-                       name = name_array.join(' ')
++                       name_array = id_and_name.split(' ',2)
++                       name = name_array.shift.to_s
+                        vms << {:id => id, :name => name}
+                end
+                
+                return vms
+        end
+

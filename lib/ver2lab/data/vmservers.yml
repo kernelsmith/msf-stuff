@@ -1,0 +1,5 @@
+ - uid: worky
+   brand: vmware-workstation
+   host: localhost
+   user: ks
+   type: "local"

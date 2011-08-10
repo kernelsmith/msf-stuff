@@ -1,0 +1,10 @@
+Index: remote_esx_controller.rb
+===================================================================
+--- remote_esx_controller.rb	(revision 13291)
++++ remote_esx_controller.rb	(working copy)
+@@ -6,11 +6,30 @@
+ module RemoteEsxController
+ 		
+ 	# Note that 3.5 was different (vmware-vim-cmd)
+-	VIM_CMD = 'vim-cmd'.freeze
++	VIM_CMD = '/bin/vim-cmd'.freeze

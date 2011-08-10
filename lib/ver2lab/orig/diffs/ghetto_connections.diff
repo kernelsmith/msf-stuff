@@ -1,0 +1,24 @@
+Index: remote_esx_controller.rb
+===================================================================
+--- remote_esx_controller.rb	(revision 13291)
++++ remote_esx_controller.rb	(working copy)
+
+@@ -22,11 +41,13 @@
+                running_vms = []
+ 
+                # now let's see which ones are running
+-               # TODO:  this is ghetto, would be better not to connect repeatedly
++               # this is ghetto, but less ghetto then connecting multiple times
++               script_get_all_power_states = %Q{for item in $(#{VIM_CMD} vmsvc/getallvms | egrep ^[0-9]+ | awk '{print $1}');do echo -en "${item} $(#{VIM_CMD} vmsvc/power.getstate ${item} | grep -v Retrieved) \n";done'}
++               remote_cmd = "ssh #{user}@#{host} #{script_get_all_power_states}"
++               # returns 304 Powered on\n305 Powered off    etc
++               raw = `#{remote_cmd}`
+                registered_vms.each do |vm|
+-                       remote_cmd = "ssh #{user}@#{host} \"#{VIM_CMD} vmsvc/power.getstate #{vm[:id]}\""
+-                       raw = `#{remote_cmd}`
+-                       running_vms << vm if raw =~ /Powered on/                        
++                       running_vms << vm if raw =~ /#{vm[:id]} Powered on/                     
+                end
+ 
+                return running_vms
+

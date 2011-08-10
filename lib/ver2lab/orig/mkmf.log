@@ -1,0 +1,38 @@
+have_library: checking for VixHost_Connect() in -lvixAllProducts... -------------------- yes
+
+"gcc -o conftest -I/usr/include/ruby-1.9.2/i486-linux -I/usr/include/ruby-1.9.2/ruby/backward -I/usr/include/ruby-1.9.2 -I. -I/usr/include/vmware-vix/  -D_FILE_OFFSET_BITS=64  -Wall -I/usr/include/vmware-vix conftest.c  -L. -L/usr/lib -L.  -rdynamic -Wl,-export-dynamic     -lruby-1.9.2-static  -lpthread -lrt -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main() {return 0;}
+/* end */
+
+"gcc -o conftest -I/usr/include/ruby-1.9.2/i486-linux -I/usr/include/ruby-1.9.2/ruby/backward -I/usr/include/ruby-1.9.2 -I. -I/usr/include/vmware-vix/  -D_FILE_OFFSET_BITS=64  -Wall -I/usr/include/vmware-vix conftest.c  -L. -L/usr/lib -L.  -rdynamic -Wl,-export-dynamic     -lruby-1.9.2-static -lvixAllProducts  -lpthread -lrt -ldl -lcrypt -lm   -lc"
+conftest.c: In function ‘t’:
+conftest.c:5: error: ‘VixHost_Connect’ undeclared (first use in this function)
+conftest.c:5: error: (Each undeclared identifier is reported only once
+conftest.c:5: error: for each function it appears in.)
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { void ((*volatile p)()); p = (void ((*)()))VixHost_Connect; return 0; }
+/* end */
+
+"gcc -o conftest -I/usr/include/ruby-1.9.2/i486-linux -I/usr/include/ruby-1.9.2/ruby/backward -I/usr/include/ruby-1.9.2 -I. -I/usr/include/vmware-vix/  -D_FILE_OFFSET_BITS=64  -Wall -I/usr/include/vmware-vix conftest.c  -L. -L/usr/lib -L.  -rdynamic -Wl,-export-dynamic     -lruby-1.9.2-static -lvixAllProducts  -lpthread -lrt -ldl -lcrypt -lm   -lc"
+conftest.c: In function ‘t’:
+conftest.c:5: warning: implicit declaration of function ‘VixHost_Connect’
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { VixHost_Connect(); return 0; }
+/* end */
+
+--------------------
+

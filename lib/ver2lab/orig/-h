@@ -1,0 +1,7 @@
+load lab
+lab_load esx_remote.yml
+lab_load /msf/data/lab/esx_remote.yml
+lab_show
+lab_load_dir "[datastore1]/vms"
+lab_load_dir remote_esx"[datastore1]/vms"
+lab_load_dir remote_esx "[datastore1]/vms"

@@ -1,0 +1,17 @@
+Index: remote_workstation_controller.rb
+===================================================================
+--- remote_workstation_controller.rb	(revision 13291)
++++ remote_workstation_controller.rb	(working copy)
+@@ -13,8 +13,10 @@
+ 		return vm_list
+ 	end
+ 
+-	def self.dir_list(basepath=nil)
+-		vm_list = Find.find(basepath).select { |f| f =~ /\.vmx$/ }
++	def self.dir_list(user, host, basepath=".")
++		remote_cmd = "ssh #{user}@#{host} \"find #{basepath} -name \"*.vmx\"\""
++		vm_list = `#{remote_cmd}`.split("\n")
++#		vm_list = Find.find(basepath).select { |f| f =~ /\.vmx$/ }
+ 		return vm_list
+ 	end
+ end

@@ -1,0 +1,10 @@
+ - vmid: ubuntu
+   driver: remote_esx
+   location: [datastore1] ubuntu-infrastructure-server-10./ubuntu-infrastructure-server-10..vmx
+   type: esxi
+   tools: false
+   os: linux
+   arch: 64
+   user: root
+   host: esxi1
+   credentials:

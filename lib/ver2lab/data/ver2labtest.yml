@@ -1,0 +1,14 @@
+ - uid: worky
+   brand: vmware-workstation
+   host: localhost
+   user: ks
+   type: "local"
+
+ - name: metasploitable
+   os: linux
+   location: /opt/vm/lab/user/Metasploitable/Metasploitable.vmx
+   server_uid: worky
+   tools: false
+   credentials: 
+     - user: msfadmin
+       pass: msfadmin

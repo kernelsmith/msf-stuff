@@ -1,0 +1,104 @@
+Questions for jcran
+<-> shouldn't remote_workstation_controller have an ssh connection:
+	def self.dir_list(user, host, basepath=".")
+		remote_cmd = "ssh #{user}@#{host} \"find #{basepath} -name \"*.vmx\"\""
+		vm_list = `#{remote_cmd}`.split("\n")
+#		vm_list = Find.find(basepath).select { |f| f =~ /\.vmx$/ }
+		return vm_list
+	end
+instead of vm_list = Find.find(basepath).select { |f| f =~ /\.vmx$/ }  ??
+
+I made this change on my end, will try to test, but may have to pass to you
+I applied this to remote_esx_controller too (DONE.  will test Thursday)
+	def self.dir_list(user,host,basepath='[datastore1]')
+		user.gsub!(/(\W)*/, '')
+		host.gsub!(/(\W)*/, '')
+		# basepath must either be a datastore such as [datastore1], or a 
+		# full, absolute path such as /vmfs/volumes/4d8a1e76-74ef4b20-6e11-0019b9cb8915/vms, or a
+		# full path that starts with a datastore such as [datastore1]/vms/
+		# note, you can get away w/o the brackets []
+		# tho we could hard code [datastore1] as /vmfs/volumes/datastore1 and so on, let's be l33t
+		
+		datastore = basepath.scan(/^\[.+\]/).first.to_s # stuff between the brackets, inclusive
+		if datastore and if not datastore.empty?
+			# resolve the datastore to abs path		
+			puts "Resolving datastore (#{datastore}) with server"
+			root_path = self.resolve_datastore(user,host,datastore)
+			basepath.gsub!(/^\[.+\]/,root_path) # replace 
+		end
+		remote_cmd = "ssh #{user}@#{host} \"find #{basepath} -name \"*.vmx\"\""
+		vmx_list = `#{remote_cmd}`.split("\n")
+	end
+	
+<-> added the following to private for remote_esx_controller to allow locations with [datastore]
+	references to be resolved
+	def self.resolve_datastore(user,host,datastore='[datastore1]')
+		datastore.gsub!(/\[]/,'').gsub!(/\]]/,'')
+		remote_cmd = "ssh #{user}@#{host} \"#{VIM_CMD} hostsvc/datastore/info #{datastore} | grep path\""
+		puts "DEBUG:  Running #{remote_cmd}"
+		raw = `#{remote_cmd}`
+		if raw =~ /Datastore not found/ or if raw.empty?
+			raise "#{basepath} not recognized by the server as a valid datastore"
+			return nil
+		else
+			# path = "/vmfs/volumes/uuid"
+			return raw.split('"')[1].to_s
+		end
+	end
+(DONE, will test Thursday)
+
+<-> change for remote_esx_controller to remove multiple ghetto conxns
+	def self.running_list(user, host)
+		user.gsub!(/(\W)*/, '')
+		host.gsub!(/(\W)*/, '')
+
+		# first get all registered vms
+		registered_vms = self.get_vms(user, host) || []
+		running_vms = []
+
+		# now let's see which ones are running
+		# this is ghetto, but less ghetto then connecting multiple times
+		script_get_all_power_states = %Q{for item in $(#{VIM_CMD} vmsvc/getallvms | egrep ^[0-9]+ | awk '{print $1}');do echo -en "${item} $(#{VIM_CMD} vmsvc/power.getstate ${item} | grep -v Retrieved) \n";done'}
+		remote_cmd = "ssh #{user}@#{host} #{script_get_all_power_states}"
+		# returns 304 Powered on\n305 Powered off    etc
+		raw = `#{remote_cmd}`
+		registered_vms.each do |vm|
+			running_vms << vm if raw =~ /#{vm[:id]} Powered on/			
+		end
+
+		return running_vms
+	end
+(DONE, will test Thursday)
+	
+<-> should remote_esx_controller in get_vms method
+id_and_name = line.split('[datastore').first
+be
+id_and_name = line.split('[datastore]').first
+# note the ']'
+(DONE, will test Thursday)
+
+<-> also, is the following change any less ghetto? (same file)
+			name_array = id_and_name.split(' ')
+			name_array.shift
+			name = name_array.join(' ')
+	to
+			name_array = id_and_name.split(' ',2)
+			name = name_array.shift.to_s
+(DONE, will test Thursday)
+			
+<-> esx_vmid or what?  how is vmid intended to be used for remote esx?  vmid != esx_vmid. 
+	Is vmid meant to be a hash or array with :id and :name?  I don't think so, but I thought I would ask
+	I made a change on my end to add esxi_vmid as a yaml attrib and added some validation to the remote_esx_driver
+	to validate esx_vmid and location, of which you must have one or the other (or both I guess)
+	then I replaced vmid with a filtered esx_vmid in all of the methods in remote_esx_driver
+(DONE, will test Thursday)
+
+<-> should vmid be allowed to have numbers?  That would allow vmid to double as esx_vmid if desired.
+	I went ahead and allowed numbers so esxi_vmid would validate
+	added \d to vm_driver.rb filter_command method
+(DONE, will test Thursday)
+
+
+** If you're ok with these changes I will post a diff after testing it
+#----------------------------------------------------------------------#
+

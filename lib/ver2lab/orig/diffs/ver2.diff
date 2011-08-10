@@ -1,0 +1,471 @@
+Index: vm_controller.rb
+===================================================================
+--- vm_controller.rb	(revision 13385)
++++ vm_controller.rb	(working copy)
+@@ -64,8 +64,8 @@
+ 			return nil
+ 		end
+ 
+-		def add_vm(vmid, type,location,credentials=nil,user=nil,host=nil)			
+-			@vms << Vm.new( {	'vmid' => vmid, 
++		def add_vm(vmid,type,location,credentials=nil,user=nil,host=nil)			
++			@vms << Vm.new( {	'vmid' => vmid,
+ 						'driver' => type, 
+ 						'location' => location, 
+ 						'credentials' => credentials,
+@@ -86,7 +86,7 @@
+ 			vms.each do |item|
+ 				begin
+ 					vm = Vm.new(item)
+-					@vms << vm unless includes_vmid? vm.vmid
++					@vms << vm unless includes_vmid?(vm.vmid)
+ 				rescue Exception => e
+ 					# TODO -  this needs to go into a logfile and be raised up to an interface.
+ 					puts "Invalid VM definition"
+@@ -199,9 +199,12 @@
+ 				when :remote_esx
+ 					vm_list = ::Lab::Controllers::RemoteEsxController::running_list(user,host)
+ 					
+-					vm_list.each do |item|
+-						@vms << Vm.new( {	'vmid' => "#{item[:id]}",
+-									'name' => "#{item[:name]}",
++					vm_list.each do |vmh|
++						vmid = "#{vmh[:vmid]}" || "#{vmh[:name]}" #vmh[:vmid] as vmid if avail, else :name
++						@vms << Vm.new( {	'vmid' => vmid,
++									'esx_vmid' => "#{vmh[:esx_vmid]}",
++									'location' => nil, # this will be filled in by the driver
++									'name' => "#{vmh[:name]}", 
+ 									'driver' => driver_type, 
+ 									'user' => user,
+ 									'host' => host } )
+Index: vm_driver.rb
+===================================================================
+--- vm_driver.rb	(revision 13385)
++++ vm_driver.rb	(working copy)
+@@ -153,10 +153,18 @@
+ 		if !(string =~ /^[\w\s\[\]\{\}\/\\\.\-\"\(\)]*$/)
+ 			raise "WARNING! Invalid character in: #{string}"
+ 		end
+-
+ 	string
+ 	end
+ 	
++	def filter_id(str_or_int)
++		return "" unless str_or_int
++		
++		if !(str_or_int.to_s =~ /^[0-9]+$/)  #nothing but numbers
++			raise "WARNING! Invalid character in: #{str_or_int}, should only be numbers"
++		end
++	str_or_int
++	end
++	
+ 	def system_command(command)
+ 		begin
+ 			system(command)
+Index: vm.rb
+===================================================================
+--- vm.rb	(revision 13385)
++++ vm.rb	(working copy)
+@@ -16,6 +16,7 @@
+ class Vm
+ 	
+ 	attr_accessor :vmid
++	attr_accessor :esx_vmid
+ 	attr_accessor :name
+ 	attr_accessor :descripition
+ 	attr_accessor :location
+@@ -30,6 +31,7 @@
+ 
+ 	## Initialize takes a vm configuration hash of the form
+ 	##  - vmid (unique identifier)
++	##    esx_vmid (id given to vm by esx/esxi if applicable, esx_vmid OR location must be provided)
+ 	##    driver (vm technology)
+ 	##    user (if applicable - remote system)
+ 	##    host (if applicable - remote system)
+@@ -37,7 +39,7 @@
+ 	##    location (file / uri)
+ 	##    credentials (of the form [ {'user'=>"user",'pass'=>"pass", 'admin' => false}, ... ])
+ 	##    os (currently only linux / windows)
+-	##    arch (currently only 32 / 64
++	##    arch (currently only 32 / 64)
+ 	def initialize(config = {})	
+ 
+ 		# Mandatory
+@@ -59,10 +61,15 @@
+ 	
+ 		# Optional for virtualbox
+ 		@location = filter_input(config['location'])
++		
++		# Optional for remote_esx, but must have either esxi_vmid or location
++		@esx_vmid = config['esx_vmid'] || nil
+ 
+ 		# Only applicable to remote systems
+ 		@user = filter_input(config['user']) || nil
+ 		@host = filter_input(config['host']) || nil
++		# pass might need to be unfiltered, or filtered less
++		@pass = config['pass'] || nil
+ 
+ 		# pass might need to be unfiltered, or filtered less
+ 		@pass = filter_input(config['pass']) || nil
+@@ -81,7 +88,7 @@
+ 		elsif @driver_type == "dynagen"
+ 			@driver = Lab::Drivers::DynagenDriver.new(@vmid, @location,@platform)	
+ 		elsif @driver_type == "remote_esx"
+-			@driver = Lab::Drivers::RemoteEsxDriver.new(@vmid, @location, @os, @tools, @user, @host, @credentials)
++			@driver = Lab::Drivers::RemoteEsxDriver.new(@vmid, @esx_vmid, @location, @os, @tools, @user, @host, @credentials)
+ 		#elsif @driver_type == "qemu"
+ 		#	@driver = Lab::Drivers::QemuDriver.new	
+ 		#elsif @driver_type == "qemudo"
+@@ -196,6 +203,9 @@
+ 			out += "     - user: #{credential['user']}\n"
+ 			out += "       pass: #{credential['pass']}\n"
+ 		end
++		if @esx_vmid
++			out += "   esx_vmid: #{@esx_vmid}\n"
++		end
+ 		
+ 	 	return out
+ 	end
+@@ -210,5 +220,13 @@
+ 
+ 		string
+ 	end
++	def filter_id(str_or_int)
++		return "" unless str_or_int
++		
++		if !(str_or_int.to_s =~ /^[0-9]+$/)  #nothing but numbers
++			raise "WARNING! Invalid character in: #{str_or_int}, should only be numbers"
++		end
++	str_or_int
++	end
+ end
+ end
+Index: remote_esx_controller.rb
+===================================================================
+--- remote_esx_controller.rb	(revision 13385)
++++ remote_esx_controller.rb	(working copy)
+@@ -6,11 +6,36 @@
+ module RemoteEsxController
+ 		
+ 	# Note that 3.5 was different (vmware-vim-cmd)
+-	VIM_CMD = 'vim-cmd'.freeze
++	VIM_CMD = '/bin/vim-cmd'.freeze
++	$BUGGER = false
++	
++	def self.bugger(msg="")
++		puts "DEBUG:  from #{caller[0].split('`')[1].gsub("'",'')} #{msg}" if $BUGGER	
++	end
+ 
+-	def self.dir_list(basepath=nil)
+-		# Does this method really even make sense for esx?
+-		return "Unsupported :("
++	def self.dir_list(user=nil,host=nil,basepath='[datastore1]')
++		# This can only work if we already know the ssh user and host, which we don't until we
++		#  instantiate a Vm, so this is gonna have to stay as unimplemented until that's worked out
++		
++		raise "#{__method__} not Implemented yet, see comments"
++		user.gsub!(/(\W)*/, '')
++		host.gsub!(/(\W)*/, '')
++		# basepath must either be a datastore such as [datastore1], or a 
++		# full, absolute path such as /vmfs/volumes/4d8a1e76-74ef4b20-6e11-0019b9cb8915/vms, or a
++		# full path that starts with a datastore such as [datastore1]/vms/
++		# note, you can get away w/o the brackets []
++		# tho we could hard code [datastore1] as /vmfs/volumes/datastore1 and so on, let's be l33t
++		
++		datastore = basepath.scan(/^\[.+\]/).first.to_s # stuff between the brackets, inclusive
++		if datastore and not datastore.empty?
++			# resolve the datastore to abs path		
++			puts "Resolving datastore (#{datastore}) with server"
++			root_path = self.resolve_datastore(user,host,datastore)
++			basepath.gsub!(/^\[.+\]/,root_path) # replace 
++		end
++		remote_cmd = "ssh #{user}@#{host} \"find #{basepath} -name \"*.vmx\"\""
++		self.bugger("running remote command:  #{remote_cmd}")
++		vmx_list = `#{remote_cmd}`.split("\n")
+ 	end
+ 
+ 	def self.running_list(user, host)
+@@ -22,41 +47,150 @@
+ 		running_vms = []
+ 
+ 		# now let's see which ones are running
+-		# TODO:  this is ghetto, would be better not to connect repeatedly
+-		registered_vms.each do |vm|
+-			remote_cmd = "ssh #{user}@#{host} \"#{VIM_CMD} vmsvc/power.getstate #{vm[:id]}\""
+-			raw = `#{remote_cmd}`
+-			running_vms << vm if raw =~ /Powered on/			
++		# this is ghetto, but less ghetto then connecting multiple times
++		script_get_all_power_states = %Q{for item in $(#{registered_vms.map {|h| h[:esx_vmid] }.join(' ')});do echo -en \\\"${item} $(#{VIM_CMD} vmsvc/power.getstate ${item} | grep -v Retrieved)\\n\\\";done}
++		remote_cmd = "ssh #{user}@#{host} \"#{script_get_all_power_states}\""
++		self.bugger("running remote command:  #{remote_cmd}")		
++		# returns 304 Powered on\n305 Powered off  etc
++		raw = `#{remote_cmd}`
++		registered_vms.each do |vmh|
++			if raw =~ /^#{vmh[:esx_vmid]} Powered on/
++				vm[:state] = "on"
++				running_vms << vm 
++			elsif raw =~ /^#{vmh[:esx_vmid]} Powered off/
++				vm[:state] = "off"
++			else
++				vm[:state] = "unknown"
++			end
+ 		end
+ 
+ 		return running_vms
+ 	end
++	def self.get_location(user,host,esx_vmid)
++		# takes an esx_vmid
++		# returns the location of the vm with that id as
++		# "[datastore1] the_vmx_that_i_want.vmx"
++		
++		raise ArgumentError, "esx_vmid must be a number" if ! esx_vmid =~ /^[0-9]+$/
++		
++		remote_cmd = "ssh #{user}@#{host} \"#{VIM_CMD} vmsvc/get.summary #{esx_vmid} | grep vmPathName\""
++		self.bugger("running remote command:  #{remote_cmd}")
++		raw = `#{remote_cmd}`
++		if raw =~ /vim.fault.NotFound/ or raw.empty?
++			raise "#{esx_vmid} not recognized by the server as a valid id"
++			return nil
++		else
++			# vmPathName = "[datastore1] ubuntu-server.vmx",
++			return raw.split('"')[1].to_s
++		end
++	end
++	def self.get_esx_vmid(user,host,loc)
++		# takes a location as:	[datastorename] rest/of/path/to/my_vmx
++		# it will also support just rest/of/path/to/my_vmx but you run the risk of getting the
++		# wrong datastore should there be two identical paths on 2 different datastores
++		
++		user.gsub!(/(\W)*/, '')
++		host.gsub!(/(\W)*/, '')
++		if not loc =~ /^\[.+\]/
++			puts "Warning: your location doesn't seem to have a datastore in it.\n" +
++				"Datastore resolution could be incorrect.\n" +
++				"I will use the first path I find that includes your relative path"
++		end
++				
++		vms = self.get_vms(user,host)
++		vms.each do |vmh|
++			if "#{vmh[:datastore]} #{vmh[:rel_path]}" =~ /#{Regexp.escape(loc)}/
++				return vmh[:esx_vmid]
++			end
++		end
++	end
+ 
+ private 
+-
+ 	def self.get_vms(user, host)
+ 		user.gsub!(/(\W)*/, '')
+ 		host.gsub!(/(\W)*/, '')
+ 		
+-		vms = [] # array of VM hashes
+-		remote_cmd = "ssh #{user}@#{host} \"#{VIM_CMD} vmsvc/getallvms | grep ^[0-9] | sed 's/[[:blank:]]\\{3,\\}/ /g'\""
+-		raw = `#{remote_cmd}`.split("\n")
+-
+-		raw.each do |line|
+-			# So effing ghetto
+-			id_and_name = line.split('[datastore').first
+-			id = id_and_name.split(' ').first
++		vms = self.getallvms(user,host) # array of raw vm hashes
++		# :esx_vmid,:name,:datastore,:rel_path,:os,:vmx_type,:description etc
++		
++		#let's clean up the hash and make it pallatable to other driver/controller code
++		vms.each do |h|
++			h[:vmid] = h[:name] if (h[:vmid] = nil or h[:vmid] = '')
++			h[:location] = "#{h[:datastore]} #{h[:rel_path]}"
++			if h[:os] =~ /^win/
++				h[:os] = "windows"
++			else 
++				h[:os] = "linux" # there's a million different things esx/i will put here, screw it
++			end
++		end
++		#bugger("vms is #{vms.inspect}")
++		return vms
++	end
+ 	
+-			## TODO - there's surely a better way to do this.
+-			name_array = id_and_name.split(' ')
+-			name_array.shift
+-			name = name_array.join(' ')
+-			vms << {:id => id, :name => name}
++	def self.getallvms(user,host) # use get_vms instead of this unless you want the raw stuff
++		remote_cmd = "ssh #{user}@#{host} \"#{VIM_CMD} vmsvc/getallvms\""
++		self.bugger("running remote command:  #{remote_cmd}")
++		raw = `#{remote_cmd}`
++		vms = [] # array of vm hashes
++		# :esx_vmid,:name,:datastore,:rel_path,:os,:vmx_type,:description
++		vms = self.hashify_getallmvs(raw)
++	end
++	
++	def self.hashify_getallmvs(raw_string)
++		arr = raw_string.scan(/^[0-9]+.+$/) # only the lines that start with numbers
++		array_of_hashes = []
++		arr.each do |line|
++			arr_of_arrs = [:esx_vmid,:name,:datastore,:rel_path,:os,:vmx_type,:description].zip(line.split(" ",7))
++			array_of_hashes << Hash[*arr_of_arrs.flatten]
+ 		end
++		return array_of_hashes
++	end
++	def self.resolve_datastore(user,host,loc='[datastore1]')
++		##  This may no longer be needed.  Keeping for now.
++		# takes a location as either:
++		#	[datastorename] blah/blahblah
++		#	/vmfs/volumes/uuid/blahblah
++		#	/vmfs/volumes/datastorename/blahblah
++		# returns abs path to the datastore (e.g. /vmfs/volumes/uuid) if loc looks like a datastore
++		# returns the name of the datstore as "[name]" if loc looks like a path
+ 		
+-		return vms
++		if loc =~ /\[.+\]/ # then resolve datastore to path and return it
++			dsname = loc.scan(/\[.+\]/).first.gsub!(/\[/,'').gsub!(/\]/,'')
++			remote_cmd = "ssh #{user}@#{host} \"#{VIM_CMD} hostsvc/datastore/info #{dsname} | grep path\""
++			self.bugger("running remote command:  #{remote_cmd}")
++			raw = `#{remote_cmd}`
++			if raw =~ /Datastore not found/ or raw.empty?
++				raise "#{dsname} not recognized by the server as a valid datastore"
++				return nil
++			else
++				# path = "/vmfs/volumes/uuid"
++				return raw.split('"')[1].to_s
++			end
++		else # then resolve path to datstore and return it
++			# treat loc as an absolute path that needs to be converted to a datastore
++			# it could be /vmfs/volumes/uuid/blah or /vmfs/volumes/datastorename/blah (tho sorta dumb)
++			uuid_regex = '[a-fA-F0-9]{8}-[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}'
++			if loc =~ /#{uuid_regex}/
++				remote_cmd = "ssh #{user}@#{host} \"#{VIM_CMD} hostsvc/datastore/listsummary | egrep \'name|url\' |\""
++				self.bugger("running remote command:  #{remote_cmd}")
++				raw = `#{remote_cmd}` # name = "datastore1",\n url = "/vmfs/volumes/uuid", 
++				uuid = loc.scan(/#{uuid_regex}/).first
++				arr = raw.scan("/n")
++				name = ''
++				arr.each_with_index do |elem,idx|
++					if elem =~ /#{uuid_regex}/
++						name = arr[idx-1].split('"')[1] # then give me datastore name from prev. line
++						return "[#{name}]"
++					end
++				end
++			else
++				name = loc.split(/\//)[3] #assumes datastores mounted like /somedir/somevoldir/datastores
++				return "[#{name}]"
++			end
++		end
+ 	end
+ 	
+ end
+ end
+ end
++
+Index: remote_esx_driver.rb
+===================================================================
+--- remote_esx_driver.rb	(revision 13385)
++++ remote_esx_driver.rb	(working copy)
+@@ -14,16 +14,31 @@
+ class RemoteEsxDriver < VmDriver
+ 
+ 	attr_accessor :location # among other things
++	attr_accessor :esx_vmid
++	#attr_accessor :type
+ 
+-	def initialize(vmid, location, os=nil, tools=false, user=nil, host=nil, credentials=nil)
++	def initialize(vmid, esx_vmid=nil, location=nil, os=nil, tools=false, user=nil, host=nil, credentials=nil)
+ 
+ 		unless user then raise ArgumentError, "Must provide a username" end
+ 		unless host then raise ArgumentError, "Must provide a hostname" end
++		if not esx_vmid and not location
++			then raise ArgumentError, "Must provide an esx_vmid or a location"
++		end
+ 
+ 		@vmid = filter_command(vmid)
+-		@location = filter_command(location)
+ 		@user = filter_command(user)
+ 		@host = filter_command(host)
++		
++		# resolve esx_vmid or location depending on whether esx_vmid is provided or not
++		if esx_vmid
++			@esx_vmid = filter_id(esx_vmid)
++			@location = ::Lab::Controllers::RemoteEsxController.get_location(@user,@host,@esx_vmid)
++
++		else
++			@location = filter_command(location)
++			@esx_vmid = ::Lab::Controllers::RemoteEsxController.get_esx_vmid(@user,@host,@location)
++		end
++
+ 		@credentials = credentials # individually filtered
+ 		@tools = tools	# not used in command lines, no filter
+ 		@os = os	# not used in command lines, no filter
+@@ -37,27 +52,27 @@
+ 	end
+ 
+ 	def start
+-		system_command("ssh #{@user}@#{@host} \"vim-cmd vmsvc/power.on #{@vmid}\"")
++		system_command("ssh #{@user}@#{@host} \"vim-cmd vmsvc/power.on #{@esx_vmid}\"")
+ 	end
+ 
+ 	def stop
+-		system_command("ssh #{@user}@#{@host} \"vim-cmd vmsvc/power.off #{@vmid}\"")
++		system_command("ssh #{@user}@#{@host} \"vim-cmd vmsvc/power.off #{@esx_vmid}\"")
+ 	end
+ 
+ 	def suspend
+-		system_command("ssh #{@user}@#{@host} \"vim-cmd vmsvc/power.suspend #{@vmid}\"")
++		system_command("ssh #{@user}@#{@host} \"vim-cmd vmsvc/power.suspend #{@esx_vmid}\"")
+ 	end
+ 
+ 	def pause 	# no concept of pause?
+-		system_command("ssh #{@user}@#{@host} \"vim-cmd vmsvc/power.suspend #{@vmid}\"")
++		system_command("ssh #{@user}@#{@host} \"vim-cmd vmsvc/power.suspend #{@esx_vmid}\"")
+ 	end
+ 
+ 	def resume
+-		system_command("ssh #{@user}@#{@host} \"vim-cmd vmsvc/power.suspendResume #{@vmid}\"")
++		system_command("ssh #{@user}@#{@host} \"vim-cmd vmsvc/power.suspendResume #{@esx_vmid}\"")
+ 	end
+ 
+ 	def reset
+-		system_command("ssh #{@user}@#{@host} \"vim-cmd vmsvc/power.reset #{@vmid}\"")
++		system_command("ssh #{@user}@#{@host} \"vim-cmd vmsvc/power.reset #{@esx_vmid}\"")
+ 	end
+ 
+ 	def create_snapshot(snapshot)
+@@ -66,7 +81,7 @@
+ 		#vmware-vim-cmd vmsvc/snapshot.create [vmid: int] [snapshotName: string] 
+ 		#			[snapshotDescription: string] [includeMemory:bool]
+ 
+-		system_command("ssh #{@user}@#{@host} \"vim-cmd vmsvc/snapshot.create #{@vmid} #{snapshot} \'lab created snapshot\' 1 true\"")
++		system_command("ssh #{@user}@#{@host} \"vim-cmd vmsvc/snapshot.create #{@esx_vmid} #{snapshot} \'lab created snapshot\' 1 true\"")
+ 	end
+ 
+ 	def revert_snapshot(snapshot)
+@@ -76,14 +91,14 @@
+ 		# not sure how we can do this, would have to list snapshots and map name to level & index
+ 
+ 		#snapshot = filter_input(snapshot)
+-		#system_command("ssh #{@user}@#{@host} \"vim-cmd vmsvc/snapshot.revert #{@vmid} 0 0\"")
++		#system_command("ssh #{@user}@#{@host} \"vim-cmd vmsvc/snapshot.revert #{@esx_vmid} 0 0\"")
+ 	end
+ 
+ 	def delete_snapshot(snapshot)
+ 		raise "Not Implemented"
+ 
+ 		#snapshot = filter_input(snapshot)
+-		#system_command("ssh #{@user}@#{@host} \"vim-cmd vmsvc/snapshot.remove #{@vmid} true 0 0\"")
++		#system_command("ssh #{@user}@#{@host} \"vim-cmd vmsvc/snapshot.remove #{@esx_vmid} true 0 0\"")
+ 	end
+ 	
+ 	def run_command(command)
+@@ -111,11 +126,13 @@
+ 	end
+ 
+ 	def running?
+-		power_status_string = `ssh #{@user}@#{@host} \"vim-cmd vmsvc/power.getstate #{@vmid}\"`
++		power_status_string = `ssh #{@user}@#{@host} \"vim-cmd vmsvc/power.getstate #{@esx_vmid}\"`
+ 		return true if power_status_string =~ /Powered on/
+ 	false
+ 	end
++	
+ 
++
+ end
+ 
+ end 

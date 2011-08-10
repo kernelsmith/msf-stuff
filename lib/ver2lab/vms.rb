@@ -1,0 +1,5 @@
+require 'vms/vm_base'
+require 'vms/vmware_brand'
+#require 'virtualbox_brand'
+#require 'dynagen_brand'
+#require 'amazon_brand'

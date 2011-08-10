@@ -1,0 +1,36 @@
+# ver2lab musings
+
+Class Vm
+Class VirtualboxVm < Vm
+Class VmwareVm < Vm
+VmwareWorkstationVm < VmwareVm
+VmwareServerVm < VmwareVm
+VmwareEsxVm < VmwareVm
+VmwareEsxiVm < VmwareVm or possibly < VmwareEsxVm
+
+More importantly:
+Class VmServer (or maybe Hypervisor?)
+Class VirtualBoxVmServer < VmServer
+Class VmwareWorkstationVmServer < VmServer
+Class VmwareServerVmServer < VmServer
+Class VmwareEsxVmServer < VmServer
+Class VmwareEsxiVmServer < VmServer
+
+Class RemoteVirtualboxVmServer < VirtualboxVmServer
+Class RemoteVmware...Server < Vmware...Server
+etc
+
+ssh could maybe be a module to be included in any of the remotes etc, but also a driver interface could be used
+ssh module could override run_command method, basically prefacing the local command with the ssh conxn and automatically escaping everything, kind of like Regexp.escape.
+Isn't there a shell.escape or something in the framework already?
+
+I was thinking something like VmServer could consist of:
+accessor: host (local, IP, or hostname)
+accessor: array_of_possible_server_types
+methods:  getallvms, getrunning, getvmsinlocation, and any changes to the server host itself etc
+
+Vm:
+accessors:  config_file_location, current_power_state (maybe), vmtools installed etc
+constant:  base_vm_command (like vim-cmd etc)
+methods:  runcmd,
+maybe some stuff to enforce certain methods that require active comms with the server, like power state etc. 
