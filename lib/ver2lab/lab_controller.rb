@@ -71,6 +71,17 @@ module Labv2
 						'user' => user,
 						'host' => host} )
 		end
+		
+		def add_vmserver()
+			@vm_servers << VmServer.new( { 
+						'name' => name, 
+						#TODO: finish this
+						'location' => location, 
+						'credentials' => credentials,
+						'user' => user,
+						'host' => host
+						})
+		end
 
 		def remove_by_vmid(vmid)
 			@vms.delete(self.find_by_name(name))

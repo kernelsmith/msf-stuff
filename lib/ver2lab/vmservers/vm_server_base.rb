@@ -11,10 +11,11 @@ class VmServer
 	@BASE_CMD = nil # subclasses must define
 
 	def initialize(config = {})
+		super # check syntax
 		@type = "local" unless @type # subclasses should override if they are remote
 		@host = config[:host] || "localhost"
-		@brand = config[:brand] || nil #unless @brand # subclasses should override # ask jcran about this
-		super # check syntax
+		@brand = config[:brand] || nil # if no brand, must use 
+		
 	end
 	
 	def get_all_vms
@@ -33,6 +34,8 @@ class VmServer
 		def run_hyperv_cmd(cmd)
 			raw = `"#{shellescape(cmd)}"`
 		end
+		
+		def get_vmserver_brand()
 	end
 end # end VmServer Class
 
