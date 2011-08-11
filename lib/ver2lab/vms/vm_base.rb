@@ -1,4 +1,3 @@
-
 module Labv2
 module Vms
 
@@ -27,16 +26,15 @@ class Vm
 	def initialize(config = {}, avail_vmservers)	
 
 		# Mandatory
-		@name = config[:name] 			|| nil # not used in command lines
+		@name = config[:name] 					|| nil # not used in command lines
 		raise "Missing name" unless @name
-		@location = config[:location] 	|| nil #filter depends on hyperv type but general fs filter applies
+		@location = config[:location] 			|| nil #filter depends on hyperv type but general fs filter applies
 		raise "Missing location" unless @location
-		@brand = config[:brand] 		|| nil
-		raise "Missing brand" unless @brand
-		@vmserver_uid = config[:vmserver_uid] || nil # associated vmserver_uid
-		raise "Missing vmserver_uid" unless vmserver_uid
+		@vmserver_uid = config[:vmserver_uid] 	|| nil # associated vmserver_uid
+		raise "Missing vmserver_uid" unless @vmserver_uid
 
 		#optional
+		@brand = config[:brand] 			|| nil
 		@hyperv_id = config[:description] 	|| nil 	#filter depends on hyperv type
 		@description = config[:description] || nil 	# not used in command lines
 		@tools = config[:tools] 			|| false # don't filter this, not used in cmdlines
@@ -161,33 +159,31 @@ class Vm
 	 	return out
 	end
 	def relink_to_server(obj_vmserver)
-		raise(RuntimeError,"VM can't be relinked because it is running") unless self.running? = false
+		raise(RuntimeError,"VM can't be relinked because it is running") unless self.running? == false
 		raise(RuntimeError,"Vm can't be relinked because " +
 			"it's brand doesn't match the new server's brand") unless self.brand == obj_vmserver.brand
 		@obj_vmserver = obj_vmserver
 	end
 private
 
-	def filter_input(string)
-		return unless string
-					
-		if !(string =~ /^[(!)\d*\w*\s*\[\]\{\}\/\\\.\-\"\(\)]*$/)
-			raise "WARNING! Invalid character in: #{string}"
-		end
+def filter_input(string)
+	return unless string
+				
+	if !(string =~ /^[(!)\d*\w*\s*\[\]\{\}\/\\\.\-\"\(\)]*$/)
+		raise "WARNING! Invalid character in: #{string}"
+	end
+	string
+end
+	
+def resolve_vmserver(uid,avail_vmservers)
+	matches = []
+	matches = avail_vmservers.select {|vmsrv| vmsrv[:uid] = uid}
+	matches.first # return only the first just in case there's somehow more than one
+end
 
-		string
-	end
-	
-	def resolve_vmserver(uid,avail_vmservers)
-		matches = []
-		matches = avail_vmservers.select {|vmsrv| vmsrv[:uid] = uid}
-		matches.first # return only the first just in case there's somehow more than one
-	end
-	
-	def run_if_server_supports(meth,obj_vmserver,obj_vm)
-		obj_vmserver.respond_to("#{meth}") ? obj_vmserver.send("#{meth}",obj_vm) : raise(NotImplmentedError,\
-		"The VmServer (#{obj_vmserver.to_s}) does not appear to support the #{meth} method")
-	end
+def run_if_server_supports(meth,obj_vmserver,obj_vm)
+	obj_vmserver.respond_to("#{meth}") ? obj_vmserver.send("#{meth}",obj_vm) : raise(NotImplmentedError,\
+	"The VmServer (#{obj_vmserver.to_s}) does not appear to support the #{meth} method")
 end
 
 end # end Vms Module

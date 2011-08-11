@@ -1,6 +1,5 @@
-
 module Labv2
-module VmServer
+module VmServers
 module Mixins
 module Remote
 
@@ -15,11 +14,13 @@ module Remote
 			# gotta make sure user and host are in scope and defined
 			raw = `"ssh #{@user}@#{@host} \"#{shellescape(cmd)}\""`
 		end
-		end
 		# some key stuff and/or cred stuff?
 	end # end Ssh Module
 	
 	module Telnet
+		# this is just for example, it's not meant to work
+		private
+		#override run_hyperv_cmd
 		def run_hyperv_cmd(cmd)
 			# this is just here as an example
 			# do stuff using ruby telnet libraries
@@ -33,5 +34,5 @@ module Remote
 	
 end # end Remote Module
 end # end Mixins Module
-end # end VmServer Module
+end # end VmServers Module
 end # end Labv2 Module

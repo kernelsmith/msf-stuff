@@ -15,22 +15,24 @@ require 'yaml'
 require 'enumerator'
 require 'fileutils'
 
-require 'vm'
-require 'vmserver'
+require 'vms'
+require 'vmservers'
 #require 'modifiers'
 
 module Labv2
 	
-	class LabdefError << Exception
+	class LabdefError < Exception
 		
 	end
 	
 	class LabController 
-
+		
+		attr_reader :vm_servers
+		attr_reader :vms
+		
 		include Enumerable
 		include Labv2::Vms
 		include Labv2::Vmservers
-
 
 		def initialize (labdef=nil)
 			@vm_servers = [] ## Start with an empty array of vm_servers
@@ -46,6 +48,7 @@ module Labv2
 		end
 		
 		def clear!
+			@vm_servers = []
 			@vms = []
 		end
 
@@ -62,25 +65,25 @@ module Labv2
 			return nil
 		end
 
-		def add_vm(name,server_uid,type,os,location,credentials=nil,user=nil,host=nil)			
+		def add_vm(name,location,server_uid,brand,type,os)			
 			
-			@vms << Vm.new( {	'name' => name, 
-						#TODO: finish this
-						'location' => location, 
-						'credentials' => credentials,
-						'user' => user,
-						'host' => host} )
+			@vms << Vm.new( {	:name 		=> name, 
+								#TODO: finish this
+								:location 	=> location,
+								:server_uid => server_uid,
+								:brand 	=> brand,
+								:type		=> type,
+								
+							} )
 		end
 		
-		def add_vmserver()
-			@vm_servers << VmServer.new( { 
-						'name' => name, 
-						#TODO: finish this
-						'location' => location, 
-						'credentials' => credentials,
-						'user' => user,
-						'host' => host
-						})
+		def add_vmserver(uid,type,host,brand)
+			@vm_servers << VmServer.new( {	:uid 		=> uid,
+											#TODO: finish this
+											:type		=> type,
+											:host 		=> host,
+											:brand		=> brand,
+										})
 		end
 
 		def remove_by_vmid(vmid)
@@ -95,11 +98,34 @@ module Labv2
 		def load_vms(vms)
 			vms.each do |item|
 				begin
-					if item[:uid]
-						serv = VmServer.new(item)
-						@vm_servers << serv unless false # add an include name check here
-					else
-						vm = Vm.new(item)
+					if item[:uid] # then it must be a vmserver
+						case item[:brand]
+						when /esxi/i
+							serv = VmwareEsxiVmServer.new(item)
+						when /esx/i
+							serv = VmwareEsxVmServer.new(item)
+						when /workstation/i
+							serv = VmwareWorkstationVmServer.new(item)
+						when /server/i
+							serv = VmwareServerVmServer.new(item)
+						# this is the catchall for other vmware types
+						when /vmware/i
+							serv = VmwareVmServer.new(item)
+						#when /[virtualbox|vbox]/i
+						#	serv = VirtualboxServer.new(item)
+						else
+							serv = VmServer.new(item)
+						end
+						@vm_servers << serv unless includes_uid? serv.uid
+					else # else assume it's a vm
+						case item[:brand]
+						when /esx|workstation|server|vmware/i
+							vm = VmwareVm.new(item)
+						#when /[virtualbox|vbox]/i
+						#	serv = VirtualboxServer.new(item)
+						else
+							vm = Vm.new(item)
+						end
 						@vms << vm unless includes_name? vm.name
 					end
 				rescue LabdefError => e
@@ -122,15 +148,27 @@ module Labv2
 		end
 
 		def to_file(file)
-			File.open(file, 'w') { |f| @vms.each { |vm| f.puts vm.to_yaml } } 
+			File.open(file, 'w') do |f|
+				@vm_servers.each { |svr| f.puts svr.to_yaml}
+				@vms.each { |vm| f.puts vm.to_yaml }
+			end 
 		end
 
-		def each &block
+		def each_vm &block
 			@vms.each { |vm| yield vm }
 		end
+		
+		def each_vm_server &block
+			@vm_servers.each { |vm| yield vm }
+		end
 
-		def includes?(specified_vm)
-			@vms.each { |vm| if (vm == specified_vm) then return true end  }
+		def includes?(specified_vm_or_vmserver)
+			if specified_vm_or_vmserver.ancestors.include? VmServer
+				@vm_servers.each { |svr| if (svr == specified_vm_or_vmserver) then return true end  }
+			elsif specified_vm_or_vmserver.ancestors.include? Vm
+				@vms.each { |vm| if (vm == specified_vm_or_vmserver) then return true end  }
+			end
+			return false
 		end
 
 		def includes_name?(name)
@@ -139,137 +177,134 @@ module Labv2
 			end
 			return false
 		end
-
-		def build_from_dir(brand, dir, clear=false)
 		
-			if clear
-				@vms = []
+		def includes_uid?(uid)
+			@vm_servers.each do |svr| 
+				return true if (svr.uid == uid)
 			end
-			
-			#TODO:  Require the full brand, like vmware_workstation or add a method somehwere which
-			#		Can figure out the best Vm Brand Class to instantiate
-			if brand =~ /vmware/i
-				vm_list = ::Labv2::Vms::dir_list(dir)
-			elsif brand =~ /[virtualbox|vbox]/i
-				# Do vbox stuff
-			else
-				raise TypeError, "Unsupported VM Type"
-			end
+			return false
+		end		
 
-#			if driver_type.downcase == "workstation"
-#				vm_list = ::Lab::Controllers::WorkstationController::dir_list(dir)
-#			elsif driver_type.downcase == "workstation_vixr"	
-#				vm_list = ::Lab::Controllers::WorkstationVixrController::dir_list(dir)
-
+#		#TODO:  Mostly rewrite this
+#		def build_from_dir(brand, dir, clear=false)
+#		
+#			if clear
+#				@vms = []
+#			end
+#			
+#			if brand =~ when /[esxi|esx|workstation|server|vmware]/i
+#				vm_list = ::Labv2::Vms::dir_list(dir)
+#			elsif brand =~ /[virtualbox|vbox]/i
+#				# Do vbox stuff
 #			else
 #				raise TypeError, "Unsupported VM Type"
 #			end
-			
-			vm_list.each_index do |index|
-				@vms << Vm.new( {'vmid' => "vm_#{index}", 'driver' => driver_type, 'location' => vm_list[index]} )
-			end
-		end
+#			
+#			vm_list.each_index do |index|
+#				@vms << Vm.new( {'vmid' => "vm_#{index}", 'driver' => driver_type, 'location' => vm_list[index]} )
+#			end
+#		end
 
-		def build_from_running(driver_type=nil, user=nil, host=nil, clear=false)
-		
-			if clear
-				@vms = []
-			end
+#		#TODO:  Totally rewrite this
+#		def build_from_running(driver_type=nil, user=nil, host=nil, clear=false)
+#		
+#			if clear
+#				@vms = []
+#			end
 
-			case driver_type.intern
-				when :workstation
-					vm_list = ::Lab::Controllers::WorkstationController::running_list
-					
-					vm_list.each do |item|
-			
-						## Name the VM
-						index = @vms.count + 1
-	
-						## Add it to the vm list
-						@vms << Vm.new( {	'vmid' => "vm_#{index}",
-									'driver' => driver_type, 
-									'location' => item, 
-									'user' => user,
-									'host' => host } )
-					end
-					
-				when :remote_workstation
-					vm_list = ::Lab::Controllers::RemoteWorkstationController::running_list(user, host)
-					
-					vm_list.each do |item|
-			
-						## Name the VM
-						index = @vms.count + 1
-	
-						## Add it to the vm list
-						@vms << Vm.new( {	'vmid' => "vm_#{index}",
-									'driver' => driver_type, 
-									'location' => item, 
-									'user' => user,
-									'host' => host } )
-					end
-					
-				when :virtualbox
-					vm_list = ::Lab::Controllers::VirtualBoxController::running_list
-					
-					# TODO - why are user and host specified here?
+#			case driver_type.intern
+#				when :workstation
+#					vm_list = ::Lab::Controllers::WorkstationController::running_list
+#					
+#					vm_list.each do |item|
+#			
+#						## Name the VM
+#						index = @vms.count + 1
+#	
+#						## Add it to the vm list
+#						@vms << Vm.new( {	'vmid' => "vm_#{index}",
+#									'driver' => driver_type, 
+#									'location' => item, 
+#									'user' => user,
+#									'host' => host } )
+#					end
+#					
+#				when :remote_workstation
+#					vm_list = ::Lab::Controllers::RemoteWorkstationController::running_list(user, host)
+#					
+#					vm_list.each do |item|
+#			
+#						## Name the VM
+#						index = @vms.count + 1
+#	
+#						## Add it to the vm list
+#						@vms << Vm.new( {	'vmid' => "vm_#{index}",
+#									'driver' => driver_type, 
+#									'location' => item, 
+#									'user' => user,
+#									'host' => host } )
+#					end
+#					
+#				when :virtualbox
+#					vm_list = ::Lab::Controllers::VirtualBoxController::running_list
+#					
+#					# TODO - why are user and host specified here?
 
-					vm_list.each do |item|
-						## Add it to the vm list
-						@vms << Vm.new( {	'vmid' => "#{item}",
-									'driver' => driver_type,
-									'location' => nil, # this will be filled in by the driver
-									'user' => user,
-									'host' => host } )
-					end
+#					vm_list.each do |item|
+#						## Add it to the vm list
+#						@vms << Vm.new( {	'vmid' => "#{item}",
+#									'driver' => driver_type,
+#									'location' => nil, # this will be filled in by the driver
+#									'user' => user,
+#									'host' => host } )
+#					end
 
-				when :remote_esx
-					vm_list = ::Lab::Controllers::RemoteEsxController::running_list(user,host)
-					
-					vm_list.each do |item|
-						@vms << Vm.new( {	'vmid' => "#{item[:id]}",
-									'name' => "#{item[:name]}",
-									'driver' => driver_type, 
-									'user' => user,
-									'host' => host } )
-					end
-						
-				else
-					raise TypeError, "Unsupported VM Type"
-				end
+#				when :remote_esx
+#					vm_list = ::Lab::Controllers::RemoteEsxController::running_list(user,host)
+#					
+#					vm_list.each do |item|
+#						@vms << Vm.new( {	'vmid' => "#{item[:id]}",
+#									'name' => "#{item[:name]}",
+#									'driver' => driver_type, 
+#									'user' => user,
+#									'host' => host } )
+#					end
+#						
+#				else
+#					raise TypeError, "Unsupported VM Type"
+#				end
+#		end	
 
-		end	
+#		def build_from_config(driver_type=nil, user=nil, host=nil, clear=false)
+#		
+#			if clear
+#				@vms = []
+#			end
 
-		def build_from_config(driver_type=nil, user=nil, host=nil, clear=false)
-		
-			if clear
-				@vms = []
-			end
+#			case driver_type.intern
+#				when :virtualbox
+#					vm_list = ::Lab::Controllers::VirtualBoxController::config_list
+#					
+#					vm_list.each do |item|
+#						## Add it to the vm list
+#						@vms << Vm.new( {	'vmid' => "#{item}",
+#									'driver' => driver_type, 
+#									'location' => nil, 
+#									'user' => user,
+#									'host' => host } )
+#					end
+#						
+#				else
+#					raise TypeError, "Unsupported VM Type"
+#				end
 
-			case driver_type.intern
-				when :virtualbox
-					vm_list = ::Lab::Controllers::VirtualBoxController::config_list
-					
-					vm_list.each do |item|
-						## Add it to the vm list
-						@vms << Vm.new( {	'vmid' => "#{item}",
-									'driver' => driver_type, 
-									'location' => nil, 
-									'user' => user,
-									'host' => host } )
-					end
-						
-				else
-					raise TypeError, "Unsupported VM Type"
-				end
+#		end	
 
-		end	
-
-		def running?(vmid)
-			if includes_vmid?(vmid)
-				return self.find_by_vmid(vmid).running?
-			end
-			return false 
-		end
+#		def running?(name)
+#			if includes_name?(name)
+#				return self.find_by_name(name).running?
+#			end
+#			return false 
+#		end
 	end
 end

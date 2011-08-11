@@ -5,12 +5,12 @@
 $:.unshift(File.join(File.expand_path(File.dirname(__FILE__)), '..', 'lib', 'ver2lab'))
 
 require 'yaml'
-#require 'vm_controller'
+require 'lab_controller'
 
 module Msf
 
-class Plugin::Lab < Msf::Plugin
-	class LabCommandDispatcher
+class Plugin::Ver2lab < Msf::Plugin
+	class Ver2labCommandDispatcher
 		include Msf::Ui::Console::CommandDispatcher
 
 		attr_accessor :controller
@@ -24,7 +24,7 @@ class Plugin::Lab < Msf::Plugin
 		# Returns the hash of commands supported by this dispatcher.
 		#
 		def commands
-		{v
+		{
 			"lab_help" => "lab_help <lab command> - Show that command's description.",
 			"lab_show" => "lab_show - show all vms in the lab.",
 			"lab_show_running" => "lab_show_running - show running vms.",
@@ -34,14 +34,14 @@ class Plugin::Lab < Msf::Plugin
 			"lab_load_config" => "lab_load_config [type] [user] [host] - use the vms in the config to create a lab.", 
 			"lab_load_dir" => "lab_load_dir [type] [directory] - create a lab from a specified directory.",
 			"lab_clear" => "lab_clear - clear the running lab.",	
-			"lab_start" => "lab_start [vmid+|all] start the specified vm.",
-			"lab_reset" => "lab_reset [vmid+|all] reset the specified vm.",
-			"lab_suspend" => "lab_suspend [vmid+|all] suspend the specified vm.",
-			"lab_stop" => "lab_stop [vmid+|all] stop the specified vm.",
-			"lab_revert" => "lab_revert [vmid+|all] [snapshot] revert the specified vm.",
-			"lab_snapshot" => "lab_snapshot [vmid+|all] [snapshot] snapshot all targets for this exploit.",
-			"lab_run_command" => "lab_run_command [vmid+|all] [command] run a command on all targets.",
-			"lab_browse_to" => "lab_browse_to [vmid+|all] [uri] use the default browser to browse to a uri."
+			"lab_start" => "lab_start [name+|all] start the specified vm.",
+			"lab_reset" => "lab_reset [name+|all] reset the specified vm.",
+			"lab_suspend" => "lab_suspend [name+|all] suspend the specified vm.",
+			"lab_stop" => "lab_stop [name+|all] stop the specified vm.",
+			"lab_revert" => "lab_revert [name+|all] [snapshot] revert the specified vm.",
+			"lab_snapshot" => "lab_snapshot [name+|all] [snapshot] snapshot all targets for this exploit.",
+			"lab_run_command" => "lab_run_command [name+|all] [command] run a command on all targets.",
+			"lab_browse_to" => "lab_browse_to [name+|all] [uri] use the default browser to browse to a uri."
 		}
 		end
 
@@ -107,41 +107,41 @@ class Plugin::Lab < Msf::Plugin
 			if args.empty?
 				hlp_print_lab
 			else
-				args.each do |vmid|
-					if @controller.includes_vmid? vmid
-						print_line @controller[vmid].to_yaml
+				args.each_vm do |name|
+					if @controller.includes_name? name
+						print_line @controller[name].to_yaml
 					else
-						print_error "Unknown vm '#{vmid}'"
+						print_error "Unknown vm '#{name}'"
 					end 
 				end
-			end
 	        end
+	    end
 
 		def cmd_lab_show_running(*args)
 			hlp_print_lab_running
-	        end
+        end
 	        
 		def cmd_lab_start(*args)
 			return lab_usage if args.empty?
 		
 			if args[0] == "all"
-				@controller.each do |vm| 
-					print_line "Starting lab vm #{vm.vmid}."	
+				@controller.each_vm do |vm| 
+					print_line "Starting lab vm #{vm.name}."	
 					if !vm.running?
 						vm.start
 					else
-						print_line "Lab vm #{vm.vmid} already running."	
+						print_line "Lab vm #{vm.name} already running."	
 					end
 				end
 			else
-				args.each do |arg|
-					if @controller.includes_vmid? arg
-						vm = @controller.find_by_vmid(arg)	
+				args.each_vm do |arg|
+					if @controller.includes_name? arg
+						vm = @controller.find_by_name(arg)	
 						if !vm.running?
-							print_line "Starting lab vm #{vm.vmid}."	
+							print_line "Starting lab vm #{vm.name}."	
 							vm.start
 						else
-							print_line "Lab vm #{vm.vmid} already running."	
+							print_line "Lab vm #{vm.name} already running."	
 						end
 					end	
 				end
@@ -152,23 +152,23 @@ class Plugin::Lab < Msf::Plugin
 			return lab_usage if args.empty?
 		
 			if args[0] == "all"
-				@controller.each do |vm| 
-					print_line "Stopping lab vm #{vm.vmid}."	
+				@controller.each_vm do |vm| 
+					print_line "Stopping lab vm #{vm.name}."	
 					if vm.running?
 						vm.stop
 					else
-						print_line "Lab vm #{vm.vmid} not running."	
+						print_line "Lab vm #{vm.name} not running."	
 					end
 				end
 			else
-				args.each do |arg|
-					if @controller.includes_vmid? arg
-						vm = @controller.find_by_vmid(arg)	
+				args.each_vm do |arg|
+					if @controller.includes_name? arg
+						vm = @controller.find_by_name(arg)	
 						if vm.running?
-							print_line "Stopping lab vm #{vm.vmid}."	
+							print_line "Stopping lab vm #{vm.name}."	
 							vm.stop
 						else
-							print_line "Lab vm #{vm.vmid} not running."	
+							print_line "Lab vm #{vm.name} not running."	
 						end
 					end	
 				end
@@ -179,13 +179,13 @@ class Plugin::Lab < Msf::Plugin
 			return lab_usage if args.empty?
 					
 			if args[0] == "all"
-				@controller.each{ |vm| vm.suspend }
+				@controller.each_vm{ |vm| vm.suspend }
 			else
-				args.each do |arg|
-					if @controller.includes_vmid? arg
-						if @controller.find_by_vmid(arg).running?
+				args.each_vm do |arg|
+					if @controller.includes_name? arg
+						if @controller.find_by_name(arg).running?
 							print_line "Suspending lab vm #{arg}."
-							@controller.find_by_vmid(arg).suspend
+							@controller.find_by_name(arg).suspend
 						end	
 					end	
 				end
@@ -197,13 +197,13 @@ class Plugin::Lab < Msf::Plugin
 		
 			if args[0] == "all"
 				print_line "Resetting all lab vms."
-				@controller.each{ |vm| vm.reset }
+				@controller.each_vm{ |vm| vm.reset }
 			else
-				args.each do |arg|
-					if @controller.includes_vmid? arg
-						if @controller.find_by_vmid(arg).running?
+				args.each_vm do |arg|
+					if @controller.includes_name? arg
+						if @controller.find_by_name(arg).running?
 							print_line "Resetting lab vm #{arg}."
-							@controller.find_by_vmid(arg).reset	
+							@controller.find_by_name(arg).reset	
 						end
 					end	
 				end
@@ -217,12 +217,12 @@ class Plugin::Lab < Msf::Plugin
 		
 			if args[0] == "all"
 				print_line "Snapshotting all lab vms to snapshot: #{snapshot}."
-				@controller.each{ |vm| vm.create_snapshot(snapshot) }
+				@controller.each_vm{ |vm| vm.create_snapshot(snapshot) }
 			else
-				args[0..-2].each do |vmid_arg|
-					next unless @controller.includes_vmid? vmid_arg
-					print_line "Snapshotting #{vmid_arg} to snapshot: #{snapshot}."
-					@controller[vmid_arg].create_snapshot(snapshot)
+				args[0..-2].each_vm do |name_arg|
+					next unless @controller.includes_name? name_arg
+					print_line "Snapshotting #{name_arg} to snapshot: #{snapshot}."
+					@controller[name_arg].create_snapshot(snapshot)
 				end
 			end
 	        end
@@ -234,12 +234,12 @@ class Plugin::Lab < Msf::Plugin
 
 			if args[0] == "all"
 				print_line "Reverting all lab vms to snapshot: #{snapshot}."
-				@controller.each{ |vm| vm.revert_snapshot(snapshot) }
+				@controller.each_vm{ |vm| vm.revert_snapshot(snapshot) }
 			else
-				args[0..-2].each do |vmid_arg|
-					next unless @controller.includes_vmid? vmid_arg
-					print_line "Reverting #{vmid_arg} to snapshot: #{snapshot}."
-					@controller[vmid_arg].revert_snapshot(snapshot)	
+				args[0..-2].each_vm do |name_arg|
+					next unless @controller.includes_name? name_arg
+					print_line "Reverting #{name_arg} to snapshot: #{snapshot}."
+					@controller[name_arg].revert_snapshot(snapshot)	
 				end
 			end
 	        end
@@ -250,18 +250,18 @@ class Plugin::Lab < Msf::Plugin
 			command = args[args.count-1]
 			if args[0] == "all"
 				print_line "Running command #{command} on all vms."
-					@controller.each do |vm| 
+					@controller.each_vm do |vm| 
 						if vm.running?
-							print_line "#{vm.vmid} running command: #{command}."
+							print_line "#{vm.name} running command: #{command}."
 							vm.run_command(command)
 						end
 					end
 			else
-				args[0..-2].each do |vmid_arg|
-					next unless @controller.includes_vmid? vmid_arg
-					if @controller[vmid_arg].running?
-						print_line "#{vmid_arg} running command: #{command}."					
-						@controller[vmid_arg].run_command(command)
+				args[0..-2].each_vm do |name_arg|
+					next unless @controller.includes_name? name_arg
+					if @controller[name_arg].running?
+						print_line "#{name_arg} running command: #{command}."					
+						@controller[name_arg].run_command(command)
 					end
 				end
 			end
@@ -272,18 +272,18 @@ class Plugin::Lab < Msf::Plugin
 			uri = args[args.count-1]
 			if args[0] == "all"
 				print_line "Opening: #{uri} on all vms."
-				@controller.each do |vm| 
+				@controller.each_vm do |vm| 
 					if vm.running?
-						print_line "#{vm.vmid} opening to uri: #{uri}."
+						print_line "#{vm.name} opening to uri: #{uri}."
 						vm.open_uri(uri)
 					end
 				end
 			else
-				args[0..-2].each do |vmid_arg|
-					next unless @controller.includes_vmid? vmid_arg
-					if @controller[vmid_arg].running?
-						print_line "#{vmid_arg} opening to uri: #{uri}."
-						@controller[vmid_arg].open_uri(uri)
+				args[0..-2].each_vm do |name_arg|
+					next unless @controller.includes_name? name_arg
+					if @controller[name_arg].running?
+						print_line "#{name_arg} opening to uri: #{uri}."
+						@controller[name_arg].open_uri(uri)
 					end
 				end
 			end
@@ -304,7 +304,7 @@ class Plugin::Lab < Msf::Plugin
 		def extended_help
 			{
 				"lab_fake_cmd" =>              "This is a fake command. It's got its own special docs." +
-					(" " * longest_cmd_size) + "It might be long so so deal with formatting somehow."
+					(" " * longest_cmd_size) + "It might be long so deal with formatting somehow."
 			}
 		end
 
@@ -323,7 +323,7 @@ class Plugin::Lab < Msf::Plugin
 			if args.empty?
 				commands.each_pair {|k,v| print_line "%-#{longest_cmd_size}s - %s" % [k,v] }
 			else
-				args.each do |c|
+				args.each_vm do |c|
 					if extended_help[c] || commands[c]
 						print_line "%-#{longest_cmd_size}s - %s" % [c,extended_help[c] || commands[c]]
 					else
@@ -350,14 +350,14 @@ class Plugin::Lab < Msf::Plugin
 				tbl = Rex::Ui::Text::Table.new(
 					'Header'  => 'Available Lab VMs',
 					'Indent'  => indent.length,
-					'Columns' => [ 'Vmid', 'Name', 'Location', "Power?" ]
+					'Columns' => [ 'name', 'Name', 'Location', "Power?" ]
 				)
 
-				@controller.each do |vm| 
-					tbl << [ 	vm.vmid,
+				@controller.each_vm do |vm| 
+					tbl << [ 	vm.name,
 							vm.name,
-							vm.location,
-							vm.running?]
+							vm.location, ]
+						#	vm.running?]
 				end
 			
 				print_line tbl.to_s
@@ -369,15 +369,15 @@ class Plugin::Lab < Msf::Plugin
 				tbl = Rex::Ui::Text::Table.new(
 					'Header'  => 'Running Lab VMs',
 					'Indent'  => indent.length,
-					'Columns' => [ 'Vmid', 'Name', 'Location', 'Power?' ]
+					'Columns' => [ 'name', 'Name', 'Location', 'Power?' ]
 				)
 
-				@controller.each do |vm|
+				@controller.each_vm do |vm|
 					if vm.running? 
-						tbl << [ 	vm.vmid, 
+						tbl << [ 	vm.name, 
 								vm.name,
-								vm.location,
-								vm.running?]
+								vm.location, ]
+							#	vm.running?]
 					end	
 				end
 				print_line tbl.to_s
@@ -397,9 +397,9 @@ class Plugin::Lab < Msf::Plugin
 		super
 
 		## Register the commands above
-		console_dispatcher = add_console_dispatcher(LabCommandDispatcher)
+		console_dispatcher = add_console_dispatcher(Ver2labCommandDispatcher)
 
-		@controller = ::Lab::Controllers::VmController.new
+		@controller = ::Labv2::LabController.new
 
 		## Share the vms
 		console_dispatcher.controller = @controller
@@ -421,7 +421,7 @@ class Plugin::Lab < Msf::Plugin
 	# This method returns a short, friendly name for the plugin.
 	#
 	def name
-		"ver2lab"
+		"Ver2Lab"
 	end
 
 	#

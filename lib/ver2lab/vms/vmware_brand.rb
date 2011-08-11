@@ -1,4 +1,3 @@
-
 module Labv2
 module Vms
 
@@ -29,8 +28,8 @@ class VmwareWorkstationVm < VmwareVm
 	@BASE_CMD = 'vmrun'.freeze
 	
 	def initialize(config = {})
-		config[:brand] == "vmware_workstation"	# force brand
 		super
+		config[:brand] == "vmware_workstation"	# force brand
 	end
 end
 class VmwareServerVm < VmwareVm
@@ -39,8 +38,8 @@ class VmwareServerVm < VmwareVm
 	@BASE_CMD = 'vmrun'.freeze
 	
 	def initialize(config = {})
-		config[:brand] == "vmware_server"	# force brand
 		super
+		config[:brand] == "vmware_server"	# force brand
 	end
 end
 class VmwareEsxVm < VmwareVm
@@ -54,8 +53,8 @@ class VmwareEsxVm < VmwareVm
 	@BASE_CMD = 'vmware-cmd'.freeze
 	
 	def initialize(config = {})
-		config[:brand] == "vmware_esx"	# force brand
 		super
+		config[:brand] == "vmware_esx"	# force brand
 		
 		# for now, require a hyperv_id, later can also accept location and have esx server resolve id
 		@hyperv_id = config[:hyperv_id] || nil
@@ -78,8 +77,8 @@ class VmwareEsxiVm < VmwareVm # or possibly < VmwareEsxVm
 	@BASE_CMD = '/bin/vim-cmd'.freeze
 
 	def initialize(config = {})
-		config[:brand] == "vmware_esxi"	# force brand
 		super
+		config[:brand] == "vmware_esxi"	# force brand
 		
 		# for now, require a hyperv_id, later can also accept location and have esxi server resolve id
 		@hyperv_id = config[:hyperv_id] || nil
@@ -92,8 +91,6 @@ class VmwareEsxiVm < VmwareVm # or possibly < VmwareEsxVm
 		return "#{@name}: #{@brand}: #{@location}  #{@hyperv_id}"
 	end
 end
-
-
 
 end
 end

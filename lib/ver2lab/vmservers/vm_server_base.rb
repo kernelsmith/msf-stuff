@@ -14,7 +14,7 @@ class VmServer
 		super # check syntax
 		@type = "local" unless @type # subclasses should override if they are remote
 		@host = config[:host] || "localhost"
-		@brand = config[:brand] || nil # if no brand, must use 
+		@brand = config[:brand] || nil # if no brand, must use autodetec
 		
 	end
 	
@@ -31,11 +31,11 @@ class VmServer
 		#TODO:  Define to_s
 	end
 	private
-		def run_hyperv_cmd(cmd)
-			raw = `"#{shellescape(cmd)}"`
-		end
+	def run_hyperv_cmd(cmd)
+		raw = `"#{shellescape(cmd)}"`
+	end
 		
-		def get_vmserver_brand()
+	def get_vmserver_brand()
 	end
 end # end VmServer Class
 
